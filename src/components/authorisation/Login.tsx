@@ -95,7 +95,7 @@ function Login() {
             label="Login with Google"
             type="light"
             onClick={() =>
-              window.open(`${process.env.REACT_APP_FETCHURL}/auth/google`)
+              window.open(`${process.env.REACT_APP_FETCHURL}/login/google`)
             }
           />
         </div>
