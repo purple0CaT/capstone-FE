@@ -2,6 +2,7 @@ import React from "react";
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./style.css";
+// 
 function Navbar({ sideBar, toggleDrawer }: any) {
   return (
     <div className="navbar">
