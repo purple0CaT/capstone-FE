@@ -7,6 +7,10 @@ export const UserRed = (state = inititalState.user, action: any) => {
         ...state,
         ...action.payload,
       };
+    case "CLEAR_USER":
+      return {
+        _id: "",
+      };
     default:
       return state;
   }

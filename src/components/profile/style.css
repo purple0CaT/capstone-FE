@@ -1,0 +1,15 @@
+.profile-page {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  /* border-radius: 20px; */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 5px 10px rgba(128, 128, 128, 0.507);
+}
+.image-profile {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  width: 5rem;
+  object-fit: cover;
+}
