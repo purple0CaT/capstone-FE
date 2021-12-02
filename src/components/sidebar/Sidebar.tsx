@@ -14,7 +14,7 @@ import "./style.css";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 //
-function Sidebar() {
+function Sidebar({ toggleDrawer }: any) {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   const history = useHistory();
@@ -40,64 +40,66 @@ function Sidebar() {
         />{" "}
       </div>
       <br />
-      <ListItem button className="p-0">
-        <Link to="/profile" className="sidebar-profile">
-          <div>
-            <img src={user.avatar} className="imageSidebar" alt="" />
-          </div>
-          <h6 className="m-0 my-auto ml-3 text-muted">
-            {user.firstname} {user.lastname}
-          </h6>
+      <div onClick={toggleDrawer}>
+        <ListItem button className="p-0">
+          <Link to="/profile" className="sidebar-profile">
+            <div>
+              <img src={user.avatar} className="imageSidebar" alt="" />
+            </div>
+            <h6 className="m-0 my-auto ml-3 text-muted">
+              {user.firstname} {user.lastname}
+            </h6>
+          </Link>
+        </ListItem>
+        <br />
+        <Link to="/" className="sidebar-link">
+          <ListItem button>
+            <ListItemIcon>
+              <DynamicFeedIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">Feed</h6>
+          </ListItem>
         </Link>
-      </ListItem>
-      <br />
-      <Link to="/" className="sidebar-link">
+        <Link to="/messages" className="sidebar-link">
+          <ListItem button>
+            <ListItemIcon>
+              <MailOutlineIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">Messages</h6>
+          </ListItem>
+        </Link>
+        <Link to="/order" className="sidebar-link">
+          <ListItem button>
+            <ListItemIcon>
+              <ShoppingBagIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">My orders</h6>
+          </ListItem>
+        </Link>
+        <Link to="/settings" className="sidebar-link">
+          <ListItem button>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">Settings</h6>
+          </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon>
-            <DynamicFeedIcon />
+            <ShoppingCartIcon />
           </ListItemIcon>
-          <h6 className="text-muted m-0">Feed</h6>
+          <h6 className="text-muted m-0">Cart</h6>
         </ListItem>
-      </Link>
-      <Link to="/messages" className="sidebar-link">
-        <ListItem button>
-          <ListItemIcon>
-            <MailOutlineIcon />
-          </ListItemIcon>
-          <h6 className="text-muted m-0">Messages</h6>
-        </ListItem>
-      </Link>
-      <Link to="/order" className="sidebar-link">
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingBagIcon />
-          </ListItemIcon>
-          <h6 className="text-muted m-0">My orders</h6>
-        </ListItem>
-      </Link>
-      <Link to="/settings" className="sidebar-link">
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <h6 className="text-muted m-0">Settings</h6>
-        </ListItem>
-      </Link>
-      <ListItem button onClick={handleLogout}>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <h6 className="text-muted m-0">Cart</h6>
-      </ListItem>
-      {/* <br /> */}
-      <Divider />
+        {/* <br /> */}
+        <Divider />
 
-      <ListItem button onClick={handleLogout}>
-        <ListItemIcon>
-          <LogoutIcon />
-        </ListItemIcon>
-        <h6 className="text-muted m-0">Log out</h6>
-      </ListItem>
+        <ListItem button onClick={handleLogout}>
+          <ListItemIcon>
+            <LogoutIcon />
+          </ListItemIcon>
+          <h6 className="text-muted m-0">Log out</h6>
+        </ListItem>
+      </div>
     </div>
   );
 }
