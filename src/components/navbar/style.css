@@ -1,0 +1,71 @@
+.navbar {
+  background-color: rgb(111, 145, 165);
+  width: 100%;
+  height: 2.8rem;
+  display: flex;
+  padding-left: 0;
+  padding-right: 0;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+.logo-style {
+  color: white;
+  text-decoration: none;
+}
+.logo-style:hover {
+  color: white;
+  text-decoration: none;
+}
+.menuBar {
+  position: fixed;
+  /* border-top-right-radius: 10%; */
+  border-top-left-radius: 40%;
+  border-bottom-left-radius: 40%;
+  padding: 0.8rem;
+  background-color: #587483;
+  color: white;
+  bottom: 0;
+  right: 0;
+}
+
+/* NAV SEARCH */
+.navSearch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: rgb(211, 211, 211);
+  border-radius: 15px;
+  padding: 0 0.1rem;
+  color: white;
+  width: 100%;
+  /* max-width: 8rem; */
+  transition: 0.2s !important;
+}
+.navSearch input {
+  height: 2rem;
+  padding: 0 0.2rem;
+  border: 0px solid white;
+  background-color: rgb(211, 211, 211);
+  color: white;
+  max-width: 80%;
+  border-radius: 20px;
+  transition: 0.2s !important;
+}
+
+.navSearch input:focus {
+  border: 0px solid white;
+  background-color: rgb(211, 211, 211);
+  box-shadow: unset !important;
+  color: white;
+}
+/* .navSearch:focus-within {
+  max-width: 80% !important;
+  width: 100% !important;
+} */
+/* SIDEBAR */
+.sidebar {
+  background-color: white;
+  border-radius: 20px;
+  padding: 1rem;
+}

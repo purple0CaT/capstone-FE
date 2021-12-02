@@ -1,0 +1,8 @@
+.loginCard {
+  background-color: white;
+  box-shadow: 0 0 15px grey;
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
