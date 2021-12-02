@@ -1,5 +1,9 @@
+import LogoutIcon from "@mui/icons-material/Logout";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from "@mui/icons-material/Search";
-import { ListItem } from "@mui/material";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Divider, ListItem, ListItemIcon } from "@mui/material";
 import React from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +11,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { clearUser } from "../../redux/actions/action";
 import "./style.css";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 //
 function Sidebar() {
   const dispatch = useDispatch();
@@ -52,21 +57,41 @@ function Sidebar() {
       </Link>
       <Link to="/messages" className="sidebar-link">
         <ListItem button>
+          <ListItemIcon>
+            <MailOutlineIcon />
+          </ListItemIcon>
           <h6 className="text-muted m-0">Messages</h6>
         </ListItem>
       </Link>
       <Link to="/order" className="sidebar-link">
         <ListItem button>
+          <ListItemIcon>
+            <ShoppingBagIcon />
+          </ListItemIcon>
           <h6 className="text-muted m-0">My orders</h6>
         </ListItem>
       </Link>
       <Link to="/settings" className="sidebar-link">
         <ListItem button>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
           <h6 className="text-muted m-0">Settings</h6>
         </ListItem>
       </Link>
-      <br />
       <ListItem button onClick={handleLogout}>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <h6 className="text-muted m-0">Cart</h6>
+      </ListItem>
+      {/* <br /> */}
+      <Divider />
+
+      <ListItem button onClick={handleLogout}>
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
         <h6 className="text-muted m-0">Log out</h6>
       </ListItem>
     </div>
