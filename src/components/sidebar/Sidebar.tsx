@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { clearUser } from "../../redux/actions/action";
 import "./style.css";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 //
 function Sidebar() {
   const dispatch = useDispatch();
@@ -52,6 +53,9 @@ function Sidebar() {
       <br />
       <Link to="/" className="sidebar-link">
         <ListItem button>
+          <ListItemIcon>
+            <DynamicFeedIcon />
+          </ListItemIcon>
           <h6 className="text-muted m-0">Feed</h6>
         </ListItem>
       </Link>
