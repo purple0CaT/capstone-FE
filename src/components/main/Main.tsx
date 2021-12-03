@@ -8,7 +8,9 @@ function Main() {
   const history = useHistory();
   const user = useSelector((state: any) => state.user);
   useEffect(() => {
-    // history.push("/login");
+    if (user._id === "") {
+      history.push("/login");
+    }
   }, []);
   return (
     <>

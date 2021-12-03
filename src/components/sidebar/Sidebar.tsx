@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Divider, ListItem, ListItemIcon } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -16,28 +16,67 @@ import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 //
 function Sidebar({ toggleDrawer }: any) {
   const dispatch = useDispatch();
+  const tokens = useSelector((state: any) => state.tokens);
   const user = useSelector((state: any) => state.user);
   const history = useHistory();
+  const [SearchQuery, setSearchQuery] = useState("");
+  const [UsersList, setUsersList] = useState([]) as any;
   //
   const handleLogout = () => {
     dispatch(clearUser());
     history.push("/login");
   };
+  //
+  const fetchUsers = async () => {
+    try {
+      const url = `${process.env.REACT_APP_FETCHURL}/user?search=${SearchQuery}`;
+      const res = await fetch(url, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setUsersList(data);
+      } else {
+        alert(res.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //
+  // useEffect(() => {
+  //   if (SearchQuery.length >= 2) {
+  //     fetchUsers();
+  //   }
+  // }, [SearchQuery]);
   return (
     <div className="sidebar">
-      <div className="navSearch">
-        <SearchIcon className="mx-1" style={{ fontSize: "2rem" }} />{" "}
-        <Form.Control
-          // value={weather.search}
-          type="text"
-          placeholder="...search"
-          // onChange={(e) => {
-          //   dispatch(setSearch(e.target.value));
-          // }}
-          onKeyUp={(e) => {
-            console.log("Click");
-          }}
-        />{" "}
+      <div className='position-relative'>
+        <div className="navSearch">
+          <SearchIcon className="mx-1" style={{ fontSize: "2rem" }} />{" "}
+          <Form.Control
+            value={SearchQuery}
+            type="text"
+            placeholder="...search"
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                fetchUsers();
+              }
+            }}
+          />
+        </div>
+        {UsersList.length > 0 && (
+          <div className="findedUser">
+            {" "}
+            {UsersList.map((U: any) => (
+              <div>{U.firstname}</div>
+            ))}
+          </div>
+        )}
       </div>
       <br />
       <div onClick={toggleDrawer}>

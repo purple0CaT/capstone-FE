@@ -34,3 +34,10 @@
   text-decoration: none;
   color: black;
 }
+.findedUser {
+  position: absolute;
+  opacity: 1;
+  content: "";
+  background-color: rgb(223, 223, 223);
+  padding: 0.4rem;
+}
