@@ -52,7 +52,7 @@ function Sidebar({ toggleDrawer }: any) {
   // }, [SearchQuery]);
   return (
     <div className="sidebar">
-      <div className='position-relative'>
+      <div className="position-relative d-flex flex-column justify-content-center">
         <div className="navSearch">
           <SearchIcon className="mx-1" style={{ fontSize: "2rem" }} />{" "}
           <Form.Control
@@ -61,6 +61,9 @@ function Sidebar({ toggleDrawer }: any) {
             placeholder="...search"
             onChange={(e) => {
               setSearchQuery(e.target.value);
+              if (SearchQuery.length > 2) {
+                fetchUsers();
+              }
             }}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
@@ -69,11 +72,24 @@ function Sidebar({ toggleDrawer }: any) {
             }}
           />
         </div>
-        {UsersList.length > 0 && (
+        {UsersList.length > 0 && SearchQuery.length > 1 && (
           <div className="findedUser">
-            {" "}
             {UsersList.map((U: any) => (
-              <div>{U.firstname}</div>
+              <Link
+                to={`/profile/${U._id}`}
+                key={321 + U._id}
+                onClick={() => {
+                  setSearchQuery("");
+                  // toggleDrawer();
+                }}
+              >
+                <ListItem button className="d-flex align-items-center">
+                  <div>
+                    <img src={U.avatar} alt="" className="findedUserImg" />
+                  </div>
+                  <h6 className="text-muted m-0 ml-2">{U.firstname}</h6>
+                </ListItem>
+              </Link>
             ))}
           </div>
         )}

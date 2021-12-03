@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Roboto";
   height: 100vh;
-  background-color: rgb(228, 228, 228);
+  background-color: rgb(226, 222, 218);
 }
 #root {
   height: 100vh;
@@ -15,4 +15,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.main-container {
+  height: calc(100% - 2.8rem) !important;
 }

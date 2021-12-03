@@ -34,11 +34,14 @@ function App() {
     <>
       <Router>
         <Navbar sideBar={matches} toggleDrawer={toggleDrawer} />
-        <div className={`menuBar ${matches && "d-none"}`}>
+        <div
+          className={`menuBar ${matches && "d-none"}`}
+          style={{ zIndex: "200" }}
+        >
           <MenuIcon className="ml-auto mt-auto" onClick={toggleDrawer} />
         </div>
-        <Container fluid>
-          <Row>
+        <Container fluid className="main-container">
+          <Row className="h-100">
             <Switch>
               <Route path="/register" exact render={() => <Register />} />
               <Route path="/login" exact render={() => <Login />} />
