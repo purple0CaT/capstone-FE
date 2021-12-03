@@ -42,6 +42,7 @@ function App() {
         </div>
         <Container fluid className="main-container">
           <Row className="h-100">
+            {/* SWITCH CASE */}
             <Switch>
               <Route path="/register" exact render={() => <Register />} />
               <Route path="/login" exact render={() => <Login />} />

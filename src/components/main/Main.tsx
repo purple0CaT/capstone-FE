@@ -21,6 +21,9 @@ function Main() {
       if (res.ok) {
         const data = await res.json();
         setPostFetches(data);
+        setTimeout(() => {
+          console.log(PostFetches);
+        }, 1000);
       } else {
         console.log(res);
       }
