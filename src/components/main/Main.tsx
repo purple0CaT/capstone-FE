@@ -21,7 +21,7 @@ function Main() {
       if (res.ok) {
         const data = await res.json();
         setPostFetches(data);
-        console.log(PostFetches);
+        console.log(data);
       } else {
         console.log(res);
       }
@@ -41,11 +41,10 @@ function Main() {
     <>
       <div className="post-container">
         <div className="d-flex justify-content-center align-items-center post-create">
-          {" "}
           Create post
         </div>
         {/* {PostFetches.length > 0 &&
-          PostFetches.map((P: any) => <Post post={P}  />)} */}
+          PostFetches.map((P: any) => <Post post={P} key={P._id} />)} */}
       </div>
     </>
   );
