@@ -21,9 +21,7 @@ function Main() {
       if (res.ok) {
         const data = await res.json();
         setPostFetches(data);
-        setTimeout(() => {
-          console.log(PostFetches);
-        }, 1000);
+        console.log(PostFetches);
       } else {
         console.log(res);
       }
@@ -46,8 +44,8 @@ function Main() {
           {" "}
           Create post
         </div>
-        {PostFetches.length > 0 &&
-          PostFetches.map((P: any) => <Post post={P}  />)}
+        {/* {PostFetches.length > 0 &&
+          PostFetches.map((P: any) => <Post post={P}  />)} */}
       </div>
     </>
   );
