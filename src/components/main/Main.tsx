@@ -47,7 +47,7 @@ function Main() {
           Create post
         </div>
         {PostFetches.length > 0 &&
-          PostFetches.map((P: any) => <Post post={P} key={P._id + 123} />)}
+          PostFetches.map((P: any) => <Post post={P}  />)}
       </div>
     </>
   );
