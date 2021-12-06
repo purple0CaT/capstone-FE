@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import "./style.css";
 
 function Profile() {
@@ -8,11 +8,7 @@ function Profile() {
   const params: any = useParams();
   console.log(params);
   //
-  useEffect(() => {
-    if (params !== {}) {
-      alert("Id true");
-    }
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="profile-page">
       <div>

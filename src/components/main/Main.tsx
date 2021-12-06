@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import CreatePost from "./post/CreatePost";
 import Post from "./post/Post";
 import "./style.css";
 //
@@ -21,7 +22,6 @@ function Main() {
       if (res.ok) {
         const data = await res.json();
         setPostFetches(data);
-        console.log(data);
       } else {
         console.log(res);
       }
@@ -39,12 +39,12 @@ function Main() {
   }, []);
   return (
     <>
-      <div className="post-container">
-        <div className="d-flex justify-content-center align-items-center post-create px-2">
-          Create post
-        </div>
+      <div className="post-container px-3">
+        <CreatePost reFetch={fetchPosts} />
         {PostFetches.length > 0 &&
-          PostFetches.map((P: any) => <Post post={P} key={P._id} />)}
+          PostFetches.map((P: any) => (
+            <Post post={P} key={P._id} reFetch={fetchPosts} />
+          ))}
       </div>
     </>
   );

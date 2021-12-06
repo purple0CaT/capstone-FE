@@ -1,7 +1,6 @@
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Drawer } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -57,41 +56,6 @@ function App() {
                     {matches ? (
                       <Col md="3">
                         <Sidebar />
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon onClick={toggleDrawer} />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
-                )}
-              />
-              <Route
-                path="/profile"
-                exact
-                render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Profile />
-                    </Col>
-
-                    {matches ? (
-                      <Col md="3">
-                        <Sidebar toggleDrawer={toggleDrawer} />
                       </Col>
                     ) : (
                       <>

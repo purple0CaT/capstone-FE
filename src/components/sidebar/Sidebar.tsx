@@ -1,18 +1,18 @@
+import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Divider, ListItem, ListItemIcon } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { clearUser } from "../../redux/actions/action";
 import "./style.css";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 //
 function Sidebar({ toggleDrawer }: any) {
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ function Sidebar({ toggleDrawer }: any) {
       <br />
       <div onClick={toggleDrawer}>
         <ListItem button className="p-0">
-          <Link to="/profile" className="sidebar-profile">
+          <Link to={`/profile/${user._id}`} className="sidebar-profile">
             <div>
               <img src={user.avatar} className="imageSidebar" alt="" />
             </div>
@@ -131,6 +131,20 @@ function Sidebar({ toggleDrawer }: any) {
             <h6 className="text-muted m-0">My orders</h6>
           </ListItem>
         </Link>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <h6 className="text-muted m-0">Cart</h6>
+        </ListItem>
+        {user.creator && (
+          <ListItem button>
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">Creator</h6>
+          </ListItem>
+        )}
         <Link to="/settings" className="sidebar-link">
           <ListItem button>
             <ListItemIcon>
@@ -139,12 +153,6 @@ function Sidebar({ toggleDrawer }: any) {
             <h6 className="text-muted m-0">Settings</h6>
           </ListItem>
         </Link>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <h6 className="text-muted m-0">Cart</h6>
-        </ListItem>
         {/* <br /> */}
         <Divider />
 
