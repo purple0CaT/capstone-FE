@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   background-color: white;
+  overflow: hidden;
   /* border-radius: 20px; */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -12,4 +13,9 @@
   aspect-ratio: 1/1;
   width: 5rem;
   object-fit: cover;
+}
+.img-avatar {
+  position: absolute;
+  right: -5rem;
+  top: calc(50% - 5rem);
 }

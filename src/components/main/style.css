@@ -59,6 +59,7 @@
   min-width: 1rem;
   border-radius: 50%;
   /* position: absolute; */
+  opacity: 0.6;
   display: flex;
   left: 0.2rem;
   color: white;
@@ -76,7 +77,17 @@
   display: block;
 }
 .delete-btn:hover {
+  opacity: 1;
   cursor: pointer;
   transform: scale(1.2);
   border: 0px solid rgb(253, 94, 94);
+}
+/* ======= COMMENTS */
+.singleComment {
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem 0;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(209, 209, 209);
 }

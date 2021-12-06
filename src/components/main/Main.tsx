@@ -1,3 +1,4 @@
+import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -11,6 +12,7 @@ function Main() {
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [PostFetches, setPostFetches] = useState([]);
+  const [Loading, setLoading] = useState(true)
   //
   const fetchPosts = async () => {
     try {
@@ -22,10 +24,15 @@ function Main() {
       if (res.ok) {
         const data = await res.json();
         setPostFetches(data);
+        setLoading(false)
       } else {
         console.log(res);
+        setLoading(false)
+
       }
     } catch (error) {
+      setLoading(false)
+
       console.log(error);
     }
   };
@@ -39,6 +46,9 @@ function Main() {
   }, []);
   return (
     <>
+      {Loading &&
+        <LinearProgress color="success" />
+      }
       <div className="post-container px-3">
         <CreatePost reFetch={fetchPosts} />
         {PostFetches.length > 0 &&

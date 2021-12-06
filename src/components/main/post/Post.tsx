@@ -1,4 +1,4 @@
-import { ListItem } from "@mui/material";
+import { Divider, ListItem } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
@@ -67,9 +67,11 @@ function Post({ post, reFetch }: any) {
               </h6>
             </Link>
           </ListItem>
-          <ListItem button className="d-flex p-0">
-            <small>heolocation</small>
-          </ListItem>
+          {post.location && (
+            <ListItem button className="d-flex p-0">
+              <small>{post.location}</small>
+            </ListItem>
+          )}
         </div>
         {post.author._id === user._id && (
           <div className="mx-2 ml-auto">
@@ -79,14 +81,16 @@ function Post({ post, reFetch }: any) {
           </div>
         )}
       </div>
+      <Divider />
       {/* POST IMAGE */}
       <div className="post-image d-flex justify-content-center">
         <img
           src={post.media}
-          style={{ maxHeight: "20rem", maxWidth: "100%", objectFit: "cover" }}
+          style={{ maxHeight: "20rem", maxWidth: "100%" }}
           alt=""
         />
       </div>
+      <Divider />
       {/* Height */}
       <div className="px-2 mt-1 d-flex">
         <div>
@@ -120,7 +124,7 @@ function Post({ post, reFetch }: any) {
           <small className="text-muted m-0">{post.comments.length}</small>
         </div>
       </div>
-      {ComArea && <CommentsArea />}
+      {ComArea && <CommentsArea post={post} reFetch={reFetch} />}
     </div>
   );
 }

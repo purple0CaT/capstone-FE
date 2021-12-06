@@ -45,6 +45,7 @@ function App() {
             <Switch>
               <Route path="/register" exact render={() => <Register />} />
               <Route path="/login" exact render={() => <Login />} />
+              {/* MAIN PAGE */}
               <Route
                 path="/"
                 exact
@@ -79,6 +80,7 @@ function App() {
                   </>
                 )}
               />
+              {/* PROFILE PAGE */}
               <Route
                 path="/profile/:id"
                 exact
@@ -113,6 +115,7 @@ function App() {
                   </>
                 )}
               />
+              {/* ORDERS PAGE */}
               <Route
                 path="/order/:id"
                 exact
@@ -147,6 +150,7 @@ function App() {
                   </>
                 )}
               />
+              {/* NOT FOUND PAGE */}
               <Route
                 render={() => (
                   <div className="h-100 w-100 d-flex justify-content-center align-items-center">
