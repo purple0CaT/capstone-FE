@@ -96,8 +96,8 @@ function Post({ post, reFetch }: any) {
         <div>
           <p className="m-0">{post.text}</p>
         </div>
-        <div className="text-muted ml-auto">
-          <small className="m-0">
+        <div className="text-muted ml-auto" style={{ minWidth: "5rem" }}>
+          <small className="m-0" >
             {dateFormat(post.createdAt, "HH:MM, mmm d")}
           </small>
         </div>

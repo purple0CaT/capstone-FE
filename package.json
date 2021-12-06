@@ -21,6 +21,7 @@
     "@types/redux-persist": "^4.3.1",
     "bootstrap": "^4.6.0",
     "dateformat": "^5.0.2",
+    "emoji-picker-react": "^3.4.8",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.2",
     "react-calendar": "^3.5.0",

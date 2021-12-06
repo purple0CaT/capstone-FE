@@ -87,7 +87,8 @@ function CreatePost({ reFetch }: any) {
     setMediaFiles(imgFile);
   };
   //
-  useEffect(() => {}, []);
+  // useEffect(() => { }, []);
+  // =====================
   return (
     <>
       <div
@@ -125,6 +126,7 @@ function CreatePost({ reFetch }: any) {
                 setNewPost({ ...NewPost, text: e.target.value })
               }
             />
+           
             <TextField
               margin="dense"
               id="name"

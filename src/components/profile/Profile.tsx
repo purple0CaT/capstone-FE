@@ -1,17 +1,22 @@
-import { Avatar, LinearProgress } from "@mui/material";
+import { LinearProgress, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import MainCard from "./MainCard";
+import SecondCard from "./SecondCard";
 import "./style.css";
 
 function Profile() {
+  const params: any = useParams();
+  const matches = useMediaQuery("(min-width:600px)");
+  // 
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [Loading, setLoading] = useState(true)
   const [FetchedUser, setFetchedUser]: any = useState()
-  const params: any = useParams();
   // 
   const fetchProfile = async () => {
+    setLoading(true)
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/user/single/${params.id}`;
       const res = await fetch(url, {
@@ -35,32 +40,20 @@ function Profile() {
   //
   useEffect(() => {
     fetchProfile()
-  }, []);
+  }, [params.id]);
   // 
   return (
     <>
       {Loading &&
         <LinearProgress color="success" />
       }
-      <div className="profile-page">
+      <div className='d-flex flex-column'>
         {
           !Loading && FetchedUser! &&
           <>
-            <div className='position-relative'>
-              <div className='position-relative'>
-                <img src={FetchedUser.user.backGround}
-                  alt="" style={{ width: "20rem", aspectRatio: '1/1', objectFit: 'cover' }} />
-                <div className='img-avatar'>
-                  <Avatar
-                    alt={FetchedUser.user.firstname + " " + FetchedUser.user.lastname}
-                    src={FetchedUser.user.avatar}
-                    sx={{ width: "10rem", height: "10rem" }}
-                  />
-                </div>
-              </div>
-
-            </div>
-            <div className="ml-5">TEXT</div>
+            <MainCard FetchedUser={FetchedUser} />
+            <br />
+            <SecondCard />
           </>
         }
       </div>

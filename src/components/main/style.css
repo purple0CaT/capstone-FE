@@ -86,8 +86,14 @@
 .singleComment {
   justify-content: space-between;
   align-items: center;
-  margin: 0.2rem 0;
+  margin: 0.5rem 0;
   display: flex;
   border-radius: 10px;
   box-shadow: 0 0 5px rgb(209, 209, 209);
+}
+/*  EMOJI BOARD */
+.emojiBoard {
+  position: absolute !important;
+  bottom: 120%;
+  left: -2rem;
 }

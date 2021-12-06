@@ -16,6 +16,27 @@
 }
 .img-avatar {
   position: absolute;
-  right: -5rem;
-  top: calc(50% - 5rem);
+  right: -4rem;
+  top: calc(50% - 4rem);
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3.5rem;
+  width: 100%;
+}
+/* SECOND CONTENT CARD */
+.secondCard {
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgb(177, 177, 177);
+  background-color: white;
+  padding: 1rem;
+}
+
+/* FOLLOWING USER LIST */
+.following-list-user{
+
 }
