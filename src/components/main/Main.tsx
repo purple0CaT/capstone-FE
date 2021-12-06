@@ -53,7 +53,10 @@ function Main() {
         <CreatePost reFetch={fetchPosts} />
         {PostFetches.length > 0 &&
           PostFetches.map((P: any) => (
-            <Post post={P} key={P._id} reFetch={fetchPosts} />
+            <>
+              <br />
+              <Post post={P} key={P._id} reFetch={fetchPosts} />
+            </>
           ))}
       </div>
     </>

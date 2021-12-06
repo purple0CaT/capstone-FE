@@ -1,10 +1,11 @@
-import { Avatar, Dialog, IconButton, Slide } from '@mui/material'
-import React, { useEffect, useState } from 'react'
 import SettingsIcon from '@mui/icons-material/Settings';
-import { useSelector } from 'react-redux';
-import { TransitionProps } from '@mui/material/transitions';
+import { Avatar, Dialog, IconButton, Slide } from '@mui/material';
 import Button from '@mui/material/Button';
+import { TransitionProps } from '@mui/material/transitions';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 // 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -15,8 +16,9 @@ const Transition = React.forwardRef(function Transition(
     return <Slide direction="down" ref={ref} {...props} />;
 });
 // 
-function MainCard({ FetchedUser }: any) {
+function MainCard({ FetchedUser, reFetch }: any) {
     const user = useSelector((state: any) => state.user)
+    const tokens = useSelector((state: any) => state.tokens)
     // 
     const [OpenFollowers, setOpenFollowers] = useState(false)
     const [OpenFollowing, setOpenFollowing] = useState(false)
@@ -30,9 +32,18 @@ function MainCard({ FetchedUser }: any) {
         setOpenFollowing(!OpenFollowing)
     }
     // 
-    const unFollow = async () => {
+    const unFollow = async (id: string) => {
         try {
-
+            const url = `${process.env.REACT_APP_FETCHURL}/follow/${id}`;
+            const res = await fetch(url, {
+                method: "DELETE",
+                headers: { Authorization: `Bearer ${tokens.accessToken}` },
+            });
+            if (res.ok) {
+                reFetch()
+            } else {
+                console.log(res);
+            }
         } catch (error) {
             console.log(error)
         }
@@ -47,7 +58,7 @@ function MainCard({ FetchedUser }: any) {
             <div className='position-relative' style={{ maxWidth: "40%" }}>
                 <div className='position-relative h-100' >
                     <img src={FetchedUser.user.backGround}
-                        alt="" style={{ width: "100%", height: '100%', aspectRatio: '5/6', objectFit: 'cover' }} />
+                        alt="" style={{ width: "100%", height: '100%', aspectRatio: '4/3', objectFit: 'cover' }} />
                     <div className='img-avatar' style={{ width: "8rem", height: "8rem" }}>
                         <Avatar
                             alt={FetchedUser.user.firstname + " " + FetchedUser.user.lastname}
@@ -98,8 +109,8 @@ function MainCard({ FetchedUser }: any) {
                     >
                         <div className='following-list-user'>
                             {Followers.length > 0 && Followers.map((F: any) =>
-                                <div className='d-flex align-items-center justify-content-between p-1' >
-                                    <Link to={`/profile/${F._id}`} className='d-flex align-items-center' style={{ minWidth: '16rem' }}>
+                                <div className='d-flex align-items-center justify-content-between p-1' key={F._id + 131}>
+                                    <Link to={`/profile/${F._id}`} className='d-flex align-items-center' style={{ minWidth: '13rem' }}>
                                         <Avatar
                                             alt={F.firstname + " " + F.lastname}
                                             src={F.avatar}
@@ -108,9 +119,9 @@ function MainCard({ FetchedUser }: any) {
                                         <p className='m-0 ml-2'>{F.firstname + " " + F.lastname}</p>
                                     </Link>
                                     <div>
-                                        <Button color='warning'>
+                                        {/* <Button color='warning' >
                                             Unfollow
-                                        </Button>
+                                        </Button> */}
                                     </div>
                                 </div>)
                             }
@@ -128,8 +139,8 @@ function MainCard({ FetchedUser }: any) {
                     >
                         <div className='d-flex flex-column p-1'>
                             {Following.length > 0 && Following.map((F: any) =>
-                                <div className='d-flex align-items-center justify-content-between p-1' >
-                                    <Link to={`/profile/${F._id}`} className='d-flex align-items-center' style={{ minWidth: '16rem' }}>
+                                <div className='d-flex align-items-center justify-content-between p-1' key={F._id + 321} >
+                                    <Link to={`/profile/${F._id}`} className='d-flex align-items-center' style={{ minWidth: '13rem' }}>
                                         <Avatar
                                             alt={F.firstname + " " + F.lastname}
                                             src={F.avatar}
@@ -138,7 +149,7 @@ function MainCard({ FetchedUser }: any) {
                                         <p className='m-0 ml-2'>{F.firstname + " " + F.lastname}</p>
                                     </Link>
                                     <div>
-                                        <Button color='warning'>
+                                        <Button color='warning' onClick={() => unFollow(F._id)}>
                                             Unfollow
                                         </Button>
                                     </div>

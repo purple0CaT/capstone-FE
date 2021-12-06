@@ -27,7 +27,6 @@ function Profile() {
         setLoading(false)
         const data = await res.json()
         setFetchedUser(data)
-        console.log(data)
       } else {
         setLoading(false)
         console.log(res);
@@ -51,9 +50,9 @@ function Profile() {
         {
           !Loading && FetchedUser! &&
           <>
-            <MainCard FetchedUser={FetchedUser} />
+            <MainCard FetchedUser={FetchedUser} reFetch={fetchProfile} />
             <br />
-            <SecondCard />
+            <SecondCard userId={params.id} />
           </>
         }
       </div>
