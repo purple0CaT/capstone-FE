@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 
 export const setUser = (value: any) => ({
   type: "SET_USER",
@@ -18,3 +19,28 @@ export const setChats = (value: any) => ({
   type: "SET_CHATS",
   payload: value,
 });
+
+//
+export const loadAllUserChats = () => {
+  return async (dispatch: Dispatch, getState: any) => {
+    const state = getState();
+    const url = `${process.env.REACT_APP_FETCHURL}/chat/userChats`;
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${state.tokens.accessToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({
+          type: "SET_CHATS",
+          payload: data,
+        });
+      } else {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

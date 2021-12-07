@@ -12,7 +12,7 @@ import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Sidebar from "./components/sidebar/Sidebar";
-// 
+//
 //
 function App() {
   //
@@ -57,7 +57,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className='position-sticky' style={{ top: "0" }}>
+                        <div className="position-sticky" style={{ top: "0" }}>
                           <Sidebar />
                         </div>
                       </Col>
@@ -73,7 +73,10 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />
@@ -94,7 +97,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className='position-sticky' style={{ top: "0" }}>
+                        <div className="position-sticky" style={{ top: "0" }}>
                           <Sidebar />
                         </div>
                       </Col>
@@ -110,7 +113,10 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />
@@ -130,8 +136,8 @@ function App() {
                       <h1>ORDERS</h1>{" "}
                     </Col>
                     {matches ? (
-                      <Col md="3" className='position-sticky'>
-                        <div className='position-sticky' style={{ top: "0" }}>
+                      <Col md="3" className="position-sticky">
+                        <div className="position-sticky" style={{ top: "0" }}>
                           <Sidebar />
                         </div>
                       </Col>
@@ -147,7 +153,10 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />
@@ -167,7 +176,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className='position-sticky' style={{ top: "0" }}>
+                        <div className="position-sticky" style={{ top: "0" }}>
                           <Sidebar />
                         </div>
                       </Col>
@@ -183,7 +192,10 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />
