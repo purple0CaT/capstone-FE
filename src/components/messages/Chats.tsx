@@ -61,7 +61,7 @@ function Chats() {
   return (
     <div>
       {/* SEARCH FOR USER */}
-      <div className="searchChatUsers">
+      <div className="searchChatUsers mt-3">
         <SearchIcon className="mx-1" style={{ fontSize: "2rem" }} />{" "}
         <Form.Control
           value={SearchQuery}
@@ -82,7 +82,7 @@ function Chats() {
         />
       </div>
       {/* SEARCH USER LISTS */}
-      <div className="position-relative">
+      <div className="position-relative" >
         {UserLoader && <LinearProgress color="inherit" />}
         {FindedUsers.length > 0 && (
           <div
@@ -109,7 +109,7 @@ function Chats() {
           </div>
         )}
       </div>
-      <div className="d-flex flex-column w-100">
+      <div className="d-flex flex-column w-100 mt-3">
         {chat.length > 0 &&
           chat.map((C: any) => (
             <div key={C._id + "asd"} className="singleChat">

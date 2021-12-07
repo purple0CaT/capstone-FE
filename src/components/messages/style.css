@@ -130,15 +130,21 @@
   display: flex !important;
   align-items: center;
   margin: 0.1rem 0;
-  gap: 1rem;
+  gap: 0.4rem;
   border-radius: 10px;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(236, 236, 236);
+  transition: 0.2s !important;
+}
+.singleFindedUser:hover {
+  background-color: rgba(255, 255, 255, 0.801);
+  transform: scale(1.02);
 }
 /* ================ */
 .singleChat {
   display: flex;
   padding: 0.4rem;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  background-color: rgba(228, 228, 228, 0.801);
   border-top: 1px solid rgba(128, 128, 128, 0.349);
   border-bottom: 1px solid rgba(128, 128, 128, 0.349);
   transition: 0.2s;
@@ -146,9 +152,12 @@
 }
 .singleChat:hover {
   box-shadow: 0 0 5px grey;
-  background-color: rgba(228, 228, 228, 0.801);
+  background-color: rgba(238, 238, 238, 0.801);
   cursor: pointer;
   transform: scale(1.02);
+}
+.activeChat{
+  background-color: rgba(255, 255, 255, 0.801);
 }
 /*  MESAGE BTN APPEAR */
 .msgBtnMobile {
