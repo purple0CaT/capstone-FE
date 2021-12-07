@@ -8,6 +8,7 @@ import {
   setActiveChat,
   setChats,
 } from "../../redux/actions/action";
+import dateFormat from "dateformat";
 //
 function Chats({ closeChatsDrawer }: any) {
   const [SearchQuery, setSearchQuery] = useState("");
@@ -100,7 +101,7 @@ function Chats({ closeChatsDrawer }: any) {
                   setSearchQuery("");
                 }}
               >
-                <Avatar />
+                <Avatar src={U.avatar} />
                 <p>
                   {U.firstname} {U.lastname}
                 </p>
@@ -109,6 +110,7 @@ function Chats({ closeChatsDrawer }: any) {
           </div>
         )}
       </div>
+      {/* CHATS LIST */}
       <div className="d-flex flex-column w-100 mt-3">
         {chat.allChat.length > 0 &&
           chat.allChat.map((C: any) => (
@@ -122,12 +124,17 @@ function Chats({ closeChatsDrawer }: any) {
                 closeChatsDrawer();
               }}
             >
-              <Avatar src={C.image} />{" "}
+              <Avatar src={C.members[1].avatar} />{" "}
               <div className="d-flex flex-column">
                 <p className="m-0">
                   {C.members[1].firstname} {C.members[1].lastname}
                 </p>
-                <p>{C.history[-1]?.message || ""}</p>
+                <small>{C.history.at(-1)?.message || ""}</small>
+              </div>
+              <div className="ml-auto d-flex align-items-center">
+                <small>
+                  {dateFormat(C.history.at(-1)?.createdAt, "HH:MM") || ""}
+                </small>
               </div>
             </div>
           ))}

@@ -3,6 +3,7 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SendIcon from "@mui/icons-material/Send";
+import { height } from "@mui/system";
 import dateFormat from "dateformat";
 import Picker from "emoji-picker-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -26,7 +27,8 @@ function MessCard() {
   const activeChat = useSelector((state: any) => state.chat.activeChat);
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
-  let chatMembers = activeChat.members?.filter((M: any) => M._id !== user._id) || []
+  let chatMembers =
+    activeChat.members?.filter((M: any) => M._id !== user._id) || [];
   //   let chatMembers: any = [];
   //
   const [CloseSettingsModal, setCloseSettingsModal] = useState(false);
@@ -51,8 +53,11 @@ function MessCard() {
     setMessage("");
   };
   //
+  const openSettings = () => {
+    setCloseSettingsModal(true);
+  };
   const closeSettings = () => {
-    setCloseSettingsModal(!CloseSettingsModal);
+    setCloseSettingsModal(false);
   };
   // SOCKET IO
   useEffect(() => {
@@ -67,7 +72,7 @@ function MessCard() {
   return (
     <div className="d-flex flex-column message-chat">
       <div className="chat-profile">
-        {/* TOP */}
+        {/* =========================== TOP BAR*/}
         <div className="d-flex">
           {/* left side */}
           {activeChat &&
@@ -108,7 +113,7 @@ function MessCard() {
             <MoreVertIcon
               // size="1.4rem"
               style={{ cursor: "pointer" }}
-              onClick={closeSettings}
+              onClick={openSettings}
             />
           </div>
         </div>
@@ -118,8 +123,13 @@ function MessCard() {
         />
       </div>
 
-      {/* CHAT SECTION */}
-      <div className="d-flex flex-column messages p-2">
+      {/* ===============================================CHAT SECTION */}
+      <div
+        className="d-flex flex-column messages p-2"
+        style={{
+          backgroundImage: `url("${activeChat.image}")`,
+        }}
+      >
         {/* <div className=" p-2"> */}
         {/* Message */}
         {activeChat.history &&

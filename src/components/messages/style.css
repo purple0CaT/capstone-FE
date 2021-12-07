@@ -28,6 +28,9 @@
   */
 .messages {
   background-color: #e4dcd8;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   max-height: calc(100vh - 6.2rem + 1px);
   height: 100% !important;
   overflow-y: scroll !important;
@@ -149,7 +152,7 @@
   display: flex;
   padding: 0.4rem;
   gap: 0.4rem;
-  background-color: rgb(163, 169, 170);
+  background-color: rgb(141, 147, 148);
   border-top: 1px solid rgba(128, 128, 128, 0.349);
   border-bottom: 1px solid rgba(128, 128, 128, 0.349);
   color: white;
@@ -158,13 +161,13 @@
 }
 .singleChat:hover {
   box-shadow: 0 0 5px grey;
-  background-color: rgb(199, 203, 206);
-  color: rgb(82, 82, 82);
+  background-color: rgb(247, 247, 247);
+  color: rgb(68, 68, 68);
   cursor: pointer;
   transform: scale(1.02);
 }
 .activeChat {
-  background-color: rgb(227, 231, 233);
+  background-color: rgb(253, 251, 249);
   color: black;
 }
 /*  MESAGE BTN APPEAR */
