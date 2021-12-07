@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 
 export const setUser = (value: any) => ({
   type: "SET_USER",
@@ -9,5 +8,13 @@ export const clearUser = () => ({
 });
 export const setTokens = (value: any) => ({
   type: "SET_TOKENS",
+  payload: value,
+});
+export const setActiveChat = (value: any) => ({
+  type: "SET_ACTIVE_CHAT",
+  payload: value,
+});
+export const setChats = (value: any) => ({
+  type: "SET_CHATS",
   payload: value,
 });

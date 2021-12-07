@@ -1,0 +1,127 @@
+.mainMessageCard {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  box-shadow: 0 0 10px grey;
+  background-color: white;
+  height: 100%;
+}
+.message-chat {
+  /* background-color: rgba(24, 128, 128, 0.377);  */
+  height: 100%;
+}
+
+.sendmessage {
+  background-color: #f1efed;
+  padding: 0.6rem 1rem;
+}
+.sendmessage input {
+  border-radius: 10px !important;
+  border: 1px solid rgb(197, 197, 197);
+}
+
+/* .sendmessage input:focus,
+  .sendmessage input:active {
+    border: 1px solid red !important; 
+     box-shadow: 0 0 0; 
+  } 
+  */
+.messages {
+  background-color: #e4dcd8;
+  max-height: calc(100vh - 6.2rem + 1px);
+  height: 100% !important;
+  overflow-y: scroll !important;
+}
+.chat-profile {
+  height: 2.6rem;
+  padding: 0.4rem 1rem;
+  background-color: #eeeeeea6;
+}
+.messageStyle {
+  position: relative;
+  background-color: white;
+  max-width: 50%;
+  width: 100%;
+  border-radius: 10px;
+  padding: 0.2rem 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.emojiBoard-message {
+  position: absolute !important;
+  bottom: 120%;
+  left: -1rem;
+}
+/* CHAT SETTING */
+.chatSetting {
+  z-index: 900;
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0 0 10px grey;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 17rem;
+  top: -18rem;
+  right: 0;
+  transition: 0.4s;
+  z-index: 50;
+  /* opacity: 0; */
+  /* display: none; */
+}
+.chatAppear {
+  /* display: block; */
+  opacity: 1;
+  top: 0;
+}
+.addUserSearchBar {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(224, 224, 224);
+  box-shadow: 0 5px 5px grey;
+}
+
+/* ==================================== CHAT LIST CARD */
+.chatsCardWrapper {
+  background-color: rgb(238, 238, 238);
+}
+.searchChatUsers {
+  height: 2rem;
+  margin: 0.4rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: rgba(145, 145, 145, 0.349);
+  border-radius: 30px;
+  color: white;
+  transition: 0.2s !important;
+}
+.searchChatUsers input {
+  height: 2rem;
+  padding: 0 0.2rem;
+  border: 0px solid white;
+  background-color: rgba(145, 145, 145, 0.03);
+  color: white;
+  max-width: 80%;
+  border-radius: 20px;
+  transition: 0.2s !important;
+}
+.searchChatUsers input:focus {
+  border: 0px solid white;
+  background-color: rgba(145, 145, 145, 0.03);
+  box-shadow: unset !important;
+  color: white;
+}
+/*  MESAGE BTN APPEAR */
+.msgBtnMobile {
+  position: absolute;
+  left: -2rem;
+  bottom: 2.5rem;
+  background-color: rgb(151, 151, 151);
+  border-radius: 50%;
+  padding: 0.8rem;
+  color: white;
+  box-shadow: 0 0 5px grey;
+}
+.mobileAllChats {
+  min-width: 13rem;
+}

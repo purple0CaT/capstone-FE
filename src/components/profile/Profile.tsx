@@ -1,4 +1,4 @@
-import { LinearProgress, useMediaQuery } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -8,9 +8,9 @@ import "./style.css";
 
 function Profile() {
   const params: any = useParams();
-  const matches = useMediaQuery("(min-width:600px)");
-  // 
-  const user = useSelector((state: any) => state.user);
+  // const matches = useMediaQuery("(min-width:600px)");
+  // // 
+  // const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [Loading, setLoading] = useState(true)
   const [FetchedUser, setFetchedUser]: any = useState()

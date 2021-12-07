@@ -1,15 +1,14 @@
-import { Divider, ListItem } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import dateFormat from "dateformat";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useSelector } from "react-redux";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { IconButton } from "@mui/material";
 import CommentIcon from "@mui/icons-material/Comment";
-import CommentsArea from "./CommentsArea";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
+import { Divider, IconButton, ListItem } from "@mui/material";
+import dateFormat from "dateformat";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import CommentsArea from "./CommentsArea";
 //
 function Post({ post, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
@@ -26,7 +25,7 @@ function Post({ post, reFetch }: any) {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
       });
       if (res.ok) {
-        const data = await res.json();
+        // const data = await res.json();
         reFetch();
       } else {
         console.log(res);
@@ -44,7 +43,7 @@ function Post({ post, reFetch }: any) {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
       });
       if (res.ok) {
-        const data = await res.json();
+        // const data = await res.json();
         reFetch();
       } else {
         console.log(res);
@@ -75,9 +74,9 @@ function Post({ post, reFetch }: any) {
         </div>
         {post.author._id === user._id && (
           <div className="mx-2 ml-auto">
-            <a className="delete-btn" onClick={deletePost}>
+            <div className="delete-btn" onClick={deletePost}>
               <HighlightOffIcon />
-            </a>
+            </div>
           </div>
         )}
       </div>

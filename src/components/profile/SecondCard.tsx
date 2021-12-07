@@ -1,5 +1,5 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { ImageList, ImageListItem, LinearProgress, Tab } from '@mui/material';
+import { ImageList, LinearProgress, Tab } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';

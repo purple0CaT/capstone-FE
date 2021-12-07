@@ -1,10 +1,9 @@
-import { Avatar, Divider } from "@mui/material";
-import React from "react";
-import { Col, Row } from "react-bootstrap";
-import NewComment from "./NewComment";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useSelector } from "react-redux";
+import { Avatar, Divider } from "@mui/material";
 import dateFormat from "dateformat";
+import React from "react";
+import { useSelector } from "react-redux";
+import NewComment from "./NewComment";
 
 function CommentsArea({ post, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
@@ -34,7 +33,7 @@ function CommentsArea({ post, reFetch }: any) {
       {post.comments.length > 0 &&
         post.comments.map((C: any) => (
           // Comment
-          <div className="singleComment" key={C._id + 2}>
+          <div className="singleComment" key={C._id + 20}>
             <div className="d-flex align-items-center">
               <Avatar
                 alt={C.author.firstname + " " + C.author.lastname}
@@ -60,12 +59,12 @@ function CommentsArea({ post, reFetch }: any) {
               {" "}
               {C.author._id === user._id && (
                 <div className="mx-2 ml-auto">
-                  <a
+                  <div
                     className="delete-btn"
                     onClick={() => deleteComment(C._id)}
                   >
                     <HighlightOffIcon />
-                  </a>
+                  </div>
                 </div>
               )}
             </div>

@@ -28,11 +28,9 @@ function Main() {
       } else {
         console.log(res);
         setLoading(false)
-
       }
     } catch (error) {
       setLoading(false)
-
       console.log(error);
     }
   };
@@ -53,10 +51,10 @@ function Main() {
         <CreatePost reFetch={fetchPosts} />
         {PostFetches.length > 0 &&
           PostFetches.map((P: any) => (
-            <>
+            <div key={P._id + P.text} >
               <br />
-              <Post post={P} key={P._id} reFetch={fetchPosts} />
-            </>
+              <Post post={P} reFetch={fetchPosts} />
+            </div>
           ))}
       </div>
     </>

@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/authorization/Login";
 import Register from "./components/authorization/Register";
 import Main from "./components/main/Main";
+import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Sidebar from "./components/sidebar/Sidebar";
-
+// 
 //
 function App() {
+  //
   const matches = useMediaQuery("(min-width:768px)");
   const [SideBar, setSideBar] = useState(false);
   //
@@ -28,7 +30,6 @@ function App() {
 
     setSideBar(!SideBar);
   };
-
   return (
     <>
       <Router>
@@ -72,7 +73,7 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon onClick={toggleDrawer} />
+                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />
@@ -109,7 +110,7 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon onClick={toggleDrawer} />
+                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />
@@ -146,7 +147,43 @@ function App() {
                         >
                           <>
                             <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon onClick={toggleDrawer} />
+                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/messages"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <MainMess />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className='position-sticky' style={{ top: "0" }}>
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon fontSize="large" onClick={toggleDrawer} />
                             </div>
                           </>
                           <Sidebar toggleDrawer={toggleDrawer} />

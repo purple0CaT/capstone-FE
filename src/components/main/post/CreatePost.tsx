@@ -51,7 +51,7 @@ function CreatePost({ reFetch }: any) {
         },
       });
       if (res.ok) {
-        const data = await res.json();
+        // const data = await res.json();
         reFetch();
         setLoading(false);
         setOpen(false);
@@ -126,7 +126,7 @@ function CreatePost({ reFetch }: any) {
                 setNewPost({ ...NewPost, text: e.target.value })
               }
             />
-           
+
             <TextField
               margin="dense"
               id="name"
@@ -190,7 +190,7 @@ function CreatePost({ reFetch }: any) {
                   aria-label="upload picture"
                   component="span"
                 >
-                  <AddPhotoAlternateIcon />
+                  <AddPhotoAlternateIcon fontSize='large' />
                 </IconButton>
               </label>
             </div>
