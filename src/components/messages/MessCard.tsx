@@ -8,6 +8,7 @@ import Picker from "emoji-picker-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import { setActiveChat, setChats } from "../../redux/actions/action";
 import ChatSetting from "./ChatSetting";
@@ -25,8 +26,8 @@ function MessCard() {
   const activeChat = useSelector((state: any) => state.chat.activeChat);
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
-  // let chatMembers = activeChat.members.filter((M: any) => M._id !== user._id);
-  let chatMembers: any = [];
+  let chatMembers = activeChat.members?.filter((M: any) => M._id !== user._id) || []
+  //   let chatMembers: any = [];
   //
   const [CloseSettingsModal, setCloseSettingsModal] = useState(false);
   const [Message, setMessage] = useState("");
@@ -43,10 +44,8 @@ function MessCard() {
   useEffect(scrollToBottom, [activeChat.history]);
   //
   const sendMessage = () => {
-    // alert(Message);
     socket.emit("sendmessage", {
       message: Message,
-      media: "",
       room: activeChat._id,
     });
     setMessage("");
@@ -67,13 +66,13 @@ function MessCard() {
   }, []);
   return (
     <div className="d-flex flex-column message-chat">
-      <div className="chat-profile d-flex justify-content-between">
+      <div className="chat-profile">
         {/* TOP */}
         <div className="d-flex">
           {/* left side */}
           {activeChat &&
             chatMembers.map((M: any) => (
-              <>
+              <Link to={`/profile/${M._id}`} className="d-flex">
                 <div key={M._id + 321}>
                   <img
                     src={
@@ -90,11 +89,13 @@ function MessCard() {
                     }}
                   />
                 </div>
-                <div className="d-flex flex-column">
-                  <h6 className="m-0">{M.username}</h6>
-                  {/* <small>{M.socket ? "Online" : "Offline"}</small> */}
+                <div className="d-flex flex-column text-dark">
+                  <h6 className="m-0">
+                    {M.firstname} {M.lastname}
+                  </h6>
+                  <small>{"Online"}</small>
                 </div>
-              </>
+              </Link>
             ))}
         </div>
         {/* right side */}
@@ -130,7 +131,7 @@ function MessCard() {
                 m.sender._id.toString() === user._id.toString() && "ml-auto"
               }`}
             >
-              <span className="mr-1">{m.content.text}</span>
+              <span className="mr-1">{m.message}</span>
               <small className="ml-auto text-muted">
                 {dateFormat(m.createdAt, "HH:MM")}
               </small>

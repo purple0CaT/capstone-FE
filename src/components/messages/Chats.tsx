@@ -9,9 +9,9 @@ import {
   setChats,
 } from "../../redux/actions/action";
 //
-function Chats() {
+function Chats({ closeChatsDrawer }: any) {
   const [SearchQuery, setSearchQuery] = useState("");
-  const chat = useSelector((state: any) => state.chat.allChat);
+  const chat = useSelector((state: any) => state.chat);
   const tokens = useSelector((state: any) => state.tokens);
   const [FindedUsers, setFindedUsers] = useState([]);
   const [UserLoader, setUserLoader] = useState(false);
@@ -82,7 +82,7 @@ function Chats() {
         />
       </div>
       {/* SEARCH USER LISTS */}
-      <div className="position-relative" >
+      <div className="position-relative">
         {UserLoader && <LinearProgress color="inherit" />}
         {FindedUsers.length > 0 && (
           <div
@@ -110,9 +110,18 @@ function Chats() {
         )}
       </div>
       <div className="d-flex flex-column w-100 mt-3">
-        {chat.length > 0 &&
-          chat.map((C: any) => (
-            <div key={C._id + "asd"} className="singleChat">
+        {chat.allChat.length > 0 &&
+          chat.allChat.map((C: any) => (
+            <div
+              key={C._id + "asd"}
+              className={`singleChat ${
+                C._id === chat.activeChat._id && "activeChat"
+              }`}
+              onClick={() => {
+                dispatch(setActiveChat(C));
+                closeChatsDrawer();
+              }}
+            >
               <Avatar src={C.image} />{" "}
               <div className="d-flex flex-column">
                 <p className="m-0">

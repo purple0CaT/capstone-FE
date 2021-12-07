@@ -33,7 +33,11 @@
   overflow-y: scroll !important;
 }
 .chat-profile {
-  height: 3.2rem;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.6rem;
   padding: 0.4rem 1rem;
   background-color: #eeeeeea6;
 }
@@ -60,9 +64,10 @@
   box-shadow: 0 0 10px grey;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  width: 17rem;
-  top: -18rem;
-  right: 0;
+  width: 100%;
+  top: -25rem;
+  padding: 1rem 0 0 0;
+  /* right: 0; */
   transition: 0.4s;
   z-index: 50;
   /* opacity: 0; */
@@ -144,20 +149,23 @@
   display: flex;
   padding: 0.4rem;
   gap: 0.4rem;
-  background-color: rgba(228, 228, 228, 0.801);
+  background-color: rgb(163, 169, 170);
   border-top: 1px solid rgba(128, 128, 128, 0.349);
   border-bottom: 1px solid rgba(128, 128, 128, 0.349);
+  color: white;
   transition: 0.2s;
   z-index: 100;
 }
 .singleChat:hover {
   box-shadow: 0 0 5px grey;
-  background-color: rgba(238, 238, 238, 0.801);
+  background-color: rgb(199, 203, 206);
+  color: rgb(82, 82, 82);
   cursor: pointer;
   transform: scale(1.02);
 }
-.activeChat{
-  background-color: rgba(255, 255, 255, 0.801);
+.activeChat {
+  background-color: rgb(227, 231, 233);
+  color: black;
 }
 /*  MESAGE BTN APPEAR */
 .msgBtnMobile {

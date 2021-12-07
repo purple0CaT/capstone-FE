@@ -8,12 +8,11 @@
 }
 .sidebar-profile {
   display: flex;
-  justify-content: center;
   text-decoration: none;
   width: 100%;
   color: black;
   display: flex;
-  padding: 0.2rem 0.4rem;
+  padding: 0.2rem 1rem;
   box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
 }
 .sidebar-profile:hover {
