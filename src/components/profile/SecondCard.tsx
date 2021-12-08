@@ -3,8 +3,10 @@ import { ImageList, LinearProgress, Tab } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Store from "../store/Store";
 import PostImgItem from "./PostImgItem";
 import Booking from "./Tabs/Booking";
+import StoreTab from "./Tabs/StoreTab";
 
 function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
   const [value, setValue] = React.useState("1");
@@ -72,7 +74,9 @@ function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
         <TabPanel value="2">
           <Booking creator={FetchedCreator} />
         </TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="3">
+          <StoreTab creator={FetchedCreator} />
+        </TabPanel>
       </TabContext>
     </div>
   );

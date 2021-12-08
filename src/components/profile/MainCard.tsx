@@ -25,6 +25,42 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
   const [Following, setFollowing] = useState([]);
   const [Followers, setFollowers] = useState([]);
   //
+  const followUser = async () => {
+    try {
+      const url = `${process.env.REACT_APP_FETCHURL}/follow/${FetchedUser.user._id}`;
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        reFetch();
+      } else {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //
+  const unfollowUser = async () => {
+    try {
+      const url = `${process.env.REACT_APP_FETCHURL}/follow/${FetchedUser.user._id}`;
+      const res = await fetch(url, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        reFetch();
+      } else {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //
   const handleFollowers = () => {
     setOpenFollowers(!OpenFollowers);
   };
@@ -89,7 +125,17 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               <SettingsIcon />
             </IconButton>
           ) : (
-            <Button>Follow</Button>
+            <>
+              {FetchedUser.followers.followers.some(
+                (F: any) => F._id == user._id,
+              ) ? (
+                <Button color="warning" onClick={() => unfollowUser()}>
+                  Unfollow
+                </Button>
+              ) : (
+                <Button onClick={() => followUser()}>Follow</Button>
+              )}
+            </>
           )}
         </div>
         <br />

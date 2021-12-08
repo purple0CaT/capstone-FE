@@ -53,7 +53,12 @@ function CommentsArea({ post, reFetch }: any) {
               </div>
             </div>
             <div className=" ml-4 mr-auto">
-              <p className="m-0">{C.text}</p>
+              <p
+                className="m-0"
+                style={{ wordWrap: "break-word", wordBreak: "break-all" }}
+              >
+                {C.text}
+              </p>
             </div>
             <div>
               {" "}
