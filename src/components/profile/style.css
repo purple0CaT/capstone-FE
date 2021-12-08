@@ -37,6 +37,14 @@
 }
 
 /* FOLLOWING USER LIST */
-.following-list-user{
-
+.following-list-user {
+}
+/* ============================================ SECOND CARD TABS */
+/* Booking tab */
+.availabilityCard {
+  border-radius: 10px;
+  box-shadow: 0 0 3px grey;
+  padding: 0.4rem;
+  width: auto;
+  margin: 0.2rem 0;
 }

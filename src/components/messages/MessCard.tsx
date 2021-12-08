@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import { setActiveChat, setChats } from "../../redux/actions/action";
-import ChatSetting from "./ChatSetting";
+import ChatSetting from "./ChatSettings/ChatSetting";
 
 function MessCard() {
   const tokens = useSelector((state: any) => state.tokens);
@@ -78,7 +78,7 @@ function MessCard() {
           {activeChat &&
             chatMembers.map((M: any) => (
               <Link to={`/profile/${M._id}`} className="d-flex">
-                <div key={M._id + 321}>
+                <div key={M._id + "mem"}>
                   <img
                     src={
                       M.avatar ||
@@ -136,7 +136,7 @@ function MessCard() {
           activeChat.history.length > 0 &&
           activeChat.history.map((m: any) => (
             <div
-              key={m._id + 54}
+              key={m._id + "history"}
               className={`messageStyle my-1 ${
                 m.sender._id.toString() === user._id.toString() && "ml-auto"
               }`}

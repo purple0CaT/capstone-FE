@@ -28,10 +28,10 @@
   */
 .messages {
   background-color: #e4dcd8;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: auto;
+  background-repeat: initial;
   background-position: center;
-  max-height: calc(100vh - 6.2rem + 1px);
+  max-height: calc(100vh - 10.4rem);
   height: 100% !important;
   overflow-y: scroll !important;
 }
@@ -84,13 +84,14 @@
 .addUserSearchBar {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-color: rgb(224, 224, 224);
+  background-color: rgba(224, 224, 224, 0.808);
   box-shadow: 0 5px 5px grey;
 }
 
 /* ==================================== CHAT LIST CARD */
 .chatsCardWrapper {
   background-color: rgb(238, 238, 238);
+  border-right: 1px solid rgba(128, 128, 128, 0.349);
 }
 .searchChatUsers {
   height: 2rem;
@@ -98,7 +99,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  background-color: rgba(145, 145, 145, 0.349);
+  background-color: rgba(187, 187, 187, 0.178);
   border-radius: 30px;
   color: white;
   transition: 0.2s !important;
@@ -152,11 +153,12 @@
   display: flex;
   padding: 0.4rem;
   gap: 0.4rem;
-  background-color: rgb(141, 147, 148);
-  border-top: 1px solid rgba(128, 128, 128, 0.349);
-  border-bottom: 1px solid rgba(128, 128, 128, 0.349);
+  background-color: #a9b5bdb7;
+  border-top: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
   color: white;
   transition: 0.2s;
+  transition-timing-function: ease-in;
   z-index: 100;
 }
 .singleChat:hover {
@@ -167,7 +169,7 @@
   transform: scale(1.02);
 }
 .activeChat {
-  background-color: rgb(253, 251, 249);
+  background-color: #f5f1ed;
   color: black;
 }
 /*  MESAGE BTN APPEAR */

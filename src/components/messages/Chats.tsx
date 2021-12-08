@@ -49,8 +49,10 @@ function Chats({ closeChatsDrawer }: any) {
       });
       if (res.ok) {
         const data = await res.json();
-        dispatch(setActiveChat(data.newChat));
+        // dispatch(setActiveChat(data.newChat));
         dispatch(setChats(data.allChats));
+      } else {
+        console.log(res);
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +95,7 @@ function Chats({ closeChatsDrawer }: any) {
             {FindedUsers.map((U: any) => (
               <div
                 style={{ cursor: "pointer" }}
-                key={U.avatar + "321"}
+                key={U.avatar + "3as1"}
                 className="singleFindedUser"
                 onClick={() => {
                   createChat(U._id);
@@ -115,7 +117,7 @@ function Chats({ closeChatsDrawer }: any) {
         {chat.allChat.length > 0 &&
           chat.allChat.map((C: any) => (
             <div
-              key={C._id + "asd"}
+              key={C._id + "alk"}
               className={`singleChat ${
                 C._id === chat.activeChat._id && "activeChat"
               }`}

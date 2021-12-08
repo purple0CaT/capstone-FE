@@ -3,48 +3,55 @@ import { Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { Button, Col, FormControl, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveChat, setChats } from "../../redux/actions/action";
+import { setActiveChat, setChats } from "../../../redux/actions/action";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link } from "react-router-dom";
+import zIndex from "@mui/material/styles/zIndex";
+import DeleteChat from "./DeleteChat";
 
 function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
   const users = useSelector((state: any) => state.chat.activeChat.members);
   const chat = useSelector((state: any) => state.chat.activeChat);
+  const tokens = useSelector((state: any) => state.tokens);
   const dispatch = useDispatch();
   //
   const [AddField, setAddField] = useState(false);
   const [FetchedUsers, setFetchedUsers]: any = useState([]);
   const [AddFieldQuery, setAddFieldQuery] = useState("");
-  // DELETE USER
-  const deleteUser = async (id: string) => {
+  //
+  // ADD USER TO CHAT
+  const addUserToChat = async (id: string) => {
     try {
-      const url = `${process.env.REACT_APP_FETCHURL}/chats/deleteFromChat/${id}/${chat._id}`;
+      const url = `${process.env.REACT_APP_FETCHURL}/chat/addUser/${id}/${chat._id}`;
       const res = await fetch(url, {
-        credentials: "include",
-        method: "DELETE",
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        method: "POST",
       });
       if (res.ok) {
         const data = await res.json();
         dispatch(setChats(data.allChats));
         dispatch(setActiveChat(data.chat));
+        setAddField(!AddField);
       } else {
-        console.log("Delete!", id);
+        console.log("Error!");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  // ADD USER TO CHAT
-  const addUserToChat = async (id: string) => {
+  // DELETE USER FROM CHAT
+  const deleteUser = async (id: string) => {
     try {
-      const url = `${process.env.REACT_APP_FETCHURL}/chats/addToChat/${id}/${chat._id}`;
-      const res = await fetch(url, { credentials: "include", method: "POST" });
+      const url = `${process.env.REACT_APP_FETCHURL}/chat/deleteUser/${id}/${chat._id}`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        method: "DELETE",
+      });
       if (res.ok) {
         const data = await res.json();
         console.log(data);
         dispatch(setChats(data.allChats));
-        dispatch(setActiveChat(data.newChat));
+        dispatch(setActiveChat(data.chat));
         setAddField(!AddField);
       } else {
         console.log("Error!");
@@ -56,8 +63,10 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
   // FIND USER
   const fetchUsers = async () => {
     try {
-      const url = `${process.env.REACT_APP_FETCHURL}/users/search/${AddFieldQuery}`;
-      const res = await fetch(url, { credentials: "include" });
+      const url = `${process.env.REACT_APP_FETCHURL}/user?search=${AddFieldQuery}`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+      });
       if (res.ok) {
         const data = await res.json();
         setFetchedUsers(data);
@@ -73,7 +82,7 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
         CloseSettingsModal && "chatAppear"
       }`}
       onMouseLeave={closeSettings}
-      onBlur={closeSettings}
+      // onBlur={closeSettings}
     >
       {/* <div className="d-flex flex-column align-items-center p-3"> */}
       {/* Chat Users */}
@@ -81,7 +90,10 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
         <h5 className="text-muted mx-auto"> Users </h5>
         {users &&
           users.map((U: any) => (
-            <div className="d-flex my-1 align-items-center border-bottom">
+            <div
+              className="d-flex my-1 align-items-center border-bottom"
+              key={U._id + "0923"}
+            >
               <div>
                 <img
                   src={
@@ -112,7 +124,7 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
             </div>
           ))}
       </Col>
-      {/* FIND USER AND ADD TO CHAT */}
+      {/*======================================== FIND USER AND ADD TO CHAT */}
       <Col xs="12" md="6" className="d-flex flex-column justify-content-center">
         <div className="d-flex flex-column justify-content-center align-items-center">
           <br />
@@ -121,7 +133,7 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
               <Button
                 variant="success"
                 onClick={() => {
-                  setAddField(!AddField);
+                  setAddField(true);
                   setFetchedUsers([]);
                 }}
               >
@@ -129,12 +141,17 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
               </Button>
             </div>
           ) : (
-            <>
+            <div className="position-relative">
               <FormControl
                 type="text"
                 value={AddFieldQuery}
-                onBlur={(e) => {
-                  if (e.target.value.length < 2) setAddField(false);
+                // onBlur={(e) => {
+                //   if (e.target.value.length < 2) setAddField(false);
+                // }}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    fetchUsers();
+                  }
                 }}
                 onChange={(e) => {
                   setAddFieldQuery(e.target.value);
@@ -145,17 +162,20 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
                   }
                 }}
               />
-              <div className="addUserSearchBar py-2">
-                {/* user div     */}
-                {FetchedUsers.length > 0 &&
-                  FetchedUsers.map((U: any) => (
+              {/* ================================= LIST OF USERS DIV */}
+              {FetchedUsers.length > 0 && (
+                <div className="addUserSearchBar py-2">
+                  {FetchedUsers.map((U: any) => (
                     <div
+                      key={U._id + "asd"}
                       onClick={() => {
                         addUserToChat(U._id);
+                        setFetchedUsers([]);
+                        setAddField(false);
                         setAddFieldQuery("");
                       }}
-                      className="d-flex justify-content-between align-items-center p-1 px-4"
-                      style={{ cursor: "pointer" }}
+                      className="d-flex justify-content-between align-items-center p-1 px-2"
+                      style={{ cursor: "pointer", zIndex: "200" }}
                     >
                       {/* image div */}
                       <div>
@@ -179,15 +199,12 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
                       </span>
                     </div>
                   ))}
-              </div>
-            </>
+                </div>
+              )}
+            </div>
           )}
         </div>
-        <div className="mt-3 mx-auto">
-          <h5 onClick={() => console.log("Hey!")} className="btn btn-danger">
-            DELETE CHAT
-          </h5>
-        </div>
+        <DeleteChat closeSettings={closeSettings} />
       </Col>
       <Col xs="12">
         <Divider />
