@@ -183,10 +183,11 @@
 /*  MESAGE BTN APPEAR */
 .msgBtnMobile {
   position: absolute;
-  left: -2rem;
-  bottom: 2.5rem;
-  background-color: rgb(151, 151, 151);
-  border-radius: 50%;
+  left: -1.5rem;
+  bottom: 3rem;
+  background-color: rgb(150, 141, 132);
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
   padding: 0.8rem;
   color: white;
   box-shadow: 0 0 5px grey;

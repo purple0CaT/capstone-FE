@@ -38,7 +38,11 @@ function App() {
           className={`menuBar ${matches && "d-none"}`}
           style={{ zIndex: "200" }}
         >
-          <MenuIcon className="ml-auto mt-auto" onClick={toggleDrawer} />
+          <MenuIcon
+            fontSize="large"
+            className="ml-auto mt-auto"
+            onClick={toggleDrawer}
+          />
         </div>
         <Container fluid className="main-container">
           <Row className="h-100">

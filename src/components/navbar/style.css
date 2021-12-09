@@ -22,8 +22,10 @@
   position: fixed;
   /* border-top-right-radius: 10%; */
   box-shadow: 0 0 5px rgb(23, 66, 71);
-  border-radius: 50%;
-  padding: 0.8rem;
+  /* border-left-top-radius: 50%; */
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%; 
+  padding: 0.6rem;
   background-color: #587483;
   color: white;
   bottom: 3rem;

@@ -8,7 +8,7 @@ import dateFormat from "dateformat";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CommentsArea from "./CommentsArea";
+import CommentsArea from "../comments/CommentsArea";
 //
 function Post({ post, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
