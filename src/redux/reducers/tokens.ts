@@ -7,6 +7,11 @@ export const TokenRed = (state = inititalState.tokens, action: any) => {
         ...state,
         ...action.payload,
       };
+    case "CLEAR_TOKENS":
+      return {
+        accessToken: "",
+        refreshToken: "",
+      };
     default:
       return state;
   }

@@ -7,6 +7,12 @@ export const setUser = (value: any) => ({
 export const clearUser = () => ({
   type: "CLEAR_USER",
 });
+export const clearToken = () => ({
+  type: "CLEAR_TOKENS",
+});
+export const clearChat = () => ({
+  type: "CLEAR_CHATS",
+});
 export const setTokens = (value: any) => ({
   type: "SET_TOKENS",
   payload: value,

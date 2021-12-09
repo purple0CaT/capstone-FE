@@ -11,7 +11,11 @@ import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { clearUser } from "../../redux/actions/action";
+import {
+  clearUser,
+  clearToken,
+  clearChat,
+} from "../../../redux/actions/action";
 import "./style.css";
 //
 function Sidebar({ toggleDrawer }: any) {
@@ -24,6 +28,8 @@ function Sidebar({ toggleDrawer }: any) {
   //
   const handleLogout = () => {
     dispatch(clearUser());
+    dispatch(clearToken());
+    dispatch(clearChat());
     history.push("/login");
   };
   //

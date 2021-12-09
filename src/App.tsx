@@ -11,7 +11,7 @@ import Main from "./components/main/Main";
 import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
-import Sidebar from "./components/sidebar/Sidebar";
+import Sidebar from "./components/navbar/sidebar/Sidebar";
 //
 //
 function App() {

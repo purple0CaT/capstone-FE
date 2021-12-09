@@ -12,6 +12,11 @@ export const ChatRed = (state = inititalState.chat, action: any) => {
         ...state,
         activeChat: action.payload,
       };
+    case "CLEAR_CHATS":
+      return {
+        allChat: [],
+        activeChat: [],
+      };
     default:
       return state;
   }
