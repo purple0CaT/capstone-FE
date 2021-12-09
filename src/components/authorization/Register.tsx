@@ -15,6 +15,7 @@ function Register() {
     password: "",
     firstname: "",
     lastname: "",
+    nickname: "",
   });
   const [Loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -51,6 +52,17 @@ function Register() {
       <div className="loginCard">
         <h5 className="mx-auto text-muted">Register</h5>
         <Form onSubmit={handleSubmit} className="d-flex flex-column">
+          <TextField
+            required
+            id="standard-required"
+            label="nickname"
+            margin="dense"
+            variant="standard"
+            value={FormInfo.nickname}
+            onChange={(e) =>
+              setFormInfo({ ...FormInfo, nickname: e.target.value })
+            }
+          />
           <div>
             <TextField
               className="mr-2"

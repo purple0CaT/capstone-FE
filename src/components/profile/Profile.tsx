@@ -1,13 +1,16 @@
 import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import MainCard from "./MainCard";
-import SecondCard from "./SecondCard";
+import { setUser } from "../../redux/actions/action";
+import MainCard from "./MainCard/MainCard";
+import SecondCard from "./SecondTab/SecondCard";
 import "./style.css";
 
 function Profile() {
   const params: any = useParams();
+  const user = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
   // const matches = useMediaQuery("(min-width:600px)");
   // //
   // const user = useSelector((state: any) => state.user);
@@ -31,6 +34,9 @@ function Profile() {
           fetchCreator(data.user.creator);
         } else {
           setLoading(false);
+        }
+        if (data.user._id === user._id) {
+          dispatch(setUser(data.user));
         }
       } else {
         setLoading(false);

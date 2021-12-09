@@ -3,7 +3,7 @@ import { ImageList, LinearProgress, Tab } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import PostImgItem from "./PostImgItem";
+import PostImgItem from "../MainCard/PostImgItem";
 import Booking from "./Tabs/Booking";
 import StoreTab from "./Tabs/StoreTab";
 

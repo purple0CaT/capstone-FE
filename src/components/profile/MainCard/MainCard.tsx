@@ -1,10 +1,13 @@
-import SettingsIcon from "@mui/icons-material/Settings";
-import { Avatar, Dialog, IconButton, Slide } from "@mui/material";
+import { Avatar, Dialog, Slide } from "@mui/material";
 import Button from "@mui/material/Button";
 import { TransitionProps } from "@mui/material/transitions";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import EditProfile from "./EditProfile";
+import LoadingButton from "@mui/lab/LoadingButton";
+import UpdateBG from "./UpdateBG";
+import UpdateAvatar from "./UpdateAvatar";
 
 //
 const Transition = React.forwardRef(function Transition(
@@ -95,22 +98,9 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
     <div className="profile-page">
       <div className="position-relative" style={{ maxWidth: "40%" }}>
         <div className="position-relative h-100">
-          <img
-            src={FetchedUser.user.backGround}
-            alt=""
-            style={{
-              width: "100%",
-              height: "100%",
-              aspectRatio: "4/3",
-              objectFit: "cover",
-            }}
-          />
+          <UpdateBG user={FetchedUser.user} reFetch={reFetch} />
           <div className="img-avatar" style={{ width: "8rem", height: "8rem" }}>
-            <Avatar
-              alt={FetchedUser.user.firstname + " " + FetchedUser.user.lastname}
-              src={FetchedUser.user.avatar}
-              sx={{ width: "100%", height: "100%" }}
-            />
+            <UpdateAvatar user={FetchedUser.user} reFetch={reFetch} />
           </div>
         </div>
       </div>
@@ -121,9 +111,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
             {FetchedUser.user.nickname}
           </h4>
           {user._id === FetchedUser.user._id ? (
-            <IconButton>
-              <SettingsIcon />
-            </IconButton>
+            <EditProfile userInfo={FetchedUser.user} reFetch={reFetch} />
           ) : (
             <>
               {FetchedUser.followers.followers.some(
@@ -161,13 +149,21 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
           className="d-flex w-100 align-items-center"
           style={{ gap: "2rem" }}
         >
-          <Button color="primary" onClick={handleFollowers}>
+          <Button
+            disabled={Followers.length > 0 ? false : true}
+            color="primary"
+            onClick={handleFollowers}
+          >
             {" "}
             <h6 className="font-weight-light m-0">
               Followers {Followers.length}
             </h6>
           </Button>
-          <Button color="info" onClick={handleFollowing}>
+          <Button
+            disabled={Following.length > 0 ? false : true}
+            color="info"
+            onClick={handleFollowing}
+          >
             {" "}
             <h6 className="font-weight-light m-0">
               Following {Following.length}
@@ -186,7 +182,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               backdropFilter: "blur(2px)",
             }}
           >
-            <div className="following-list-user">
+            <div className="d-flex flex-column p-2">
               {Followers.length > 0 &&
                 Followers.map((F: any) => (
                   <div
@@ -207,11 +203,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
                         {F.firstname + " " + F.lastname}
                       </p>
                     </Link>
-                    <div>
-                      {/* <Button color='warning' >
-                                            Unfollow
-                                        </Button> */}
-                    </div>
+                    <div></div>
                   </div>
                 ))}
             </div>
@@ -226,7 +218,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               backdropFilter: "blur(2px)",
             }}
           >
-            <div className="d-flex flex-column p-1">
+            <div className="d-flex flex-column p-2">
               {Following.length > 0 &&
                 Following.map((F: any) => (
                   <div
@@ -247,11 +239,13 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
                         {F.firstname + " " + F.lastname}
                       </p>
                     </Link>
-                    <div>
-                      <Button color="warning" onClick={() => unFollow(F._id)}>
-                        Unfollow
-                      </Button>
-                    </div>
+                    {FetchedUser.user._id === user._id && (
+                      <div>
+                        <Button color="warning" onClick={() => unFollow(F._id)}>
+                          Unfollow
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 ))}
             </div>

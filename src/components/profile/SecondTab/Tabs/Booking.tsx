@@ -1,6 +1,6 @@
 import { StaticDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { LocalizationProvider } from "@mui/lab";
 import { Divider, TextField } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
