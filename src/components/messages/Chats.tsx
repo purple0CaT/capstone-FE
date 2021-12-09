@@ -131,11 +131,14 @@ function Chats({ closeChatsDrawer }: any) {
                 <p className="m-0">
                   {C.members[1].firstname} {C.members[1].lastname}
                 </p>
-                <small>{C.history.at(-1)?.message || ""}</small>
+                <small>{C.history[C.history.length - 1].message || ""}</small>
               </div>
               <div className="ml-auto d-flex align-items-center">
                 <small>
-                  {dateFormat(C.history.at(-1)?.createdAt, "HH:MM") || ""}
+                  {dateFormat(
+                    C.history[C.history.length - 1].createdAt,
+                    "HH:MM",
+                  ) || ""}
                 </small>
               </div>
             </div>

@@ -1,11 +1,11 @@
-import { Divider, LinearProgress, TextField } from "@mui/material";
+import { StaticDatePicker } from "@mui/lab";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { Divider, TextField } from "@mui/material";
+import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import dateFormat from "dateformat";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import { DateTimePicker, StaticDatePicker } from "@mui/lab";
 
 function Booking({ creator }: any) {
   const tokens = useSelector((state: any) => state.tokens);
