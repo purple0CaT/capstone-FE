@@ -46,6 +46,9 @@
   background-color: #eeeeeea6;
   box-shadow: 0 1px 5px grey;
 }
+.messageStyle span {
+  word-break: break-word;
+}
 .messageStyle {
   position: relative;
   background-color: white;
