@@ -1,3 +1,4 @@
+import BrushIcon from "@mui/icons-material/Brush";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -5,15 +6,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, Divider, ListItem, ListItemIcon } from "@mui/material";
+import { Avatar, Badge, Divider, ListItem, ListItemIcon } from "@mui/material";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import { clearUser, clearToken, clearChat } from "../../redux/actions/action";
+import { Link, NavLink } from "react-router-dom";
+import {
+  clearChat,
+  clearShop,
+  clearToken,
+  clearUser,
+} from "../../redux/actions/action";
 import "./style.css";
-import BrushIcon from "@mui/icons-material/Brush";
 //
 function Sidebar({ toggleDrawer }: any) {
   const dispatch = useDispatch();
@@ -28,6 +33,7 @@ function Sidebar({ toggleDrawer }: any) {
     dispatch(clearUser());
     dispatch(clearToken());
     dispatch(clearChat());
+    dispatch(clearShop());
     history.push("/login");
   };
   //
@@ -103,7 +109,17 @@ function Sidebar({ toggleDrawer }: any) {
         <ListItem button className="p-0">
           <Link to={`/profile/${user._id}`} className="sidebar-profile">
             <div>
-              <img src={user.avatar} className="imageSidebar" alt="" />
+              <Avatar
+                src={user.avatar}
+                alt={user.firstname}
+                sx={{ width: 45, height: 45, boxShadow: "0 0 5px grey" }}
+              />
+              {/* <img
+                src={user.avatar}
+                className="imageSidebar"
+                style={{ boxShadow: "0 0 8px grey" }}
+                alt=""
+              /> */}
             </div>
             <h6 className="m-0 my-auto ml-3 text-muted">
               {user.firstname} {user.lastname}
@@ -111,31 +127,51 @@ function Sidebar({ toggleDrawer }: any) {
           </Link>
         </ListItem>
         <br />
-        <Link to="/" className="sidebar-link">
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/"
+          className="sidebar-link"
+        >
           <ListItem button>
             <ListItemIcon>
               <DynamicFeedIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">Feed</h6>
           </ListItem>
-        </Link>
-        <Link to="/messages" className="sidebar-link">
+        </NavLink>
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/messages"
+          className="sidebar-link"
+        >
           <ListItem button>
             <ListItemIcon>
               <MailOutlineIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">Messages</h6>
           </ListItem>
-        </Link>
-        <Link to="/order" className="sidebar-link">
+        </NavLink>
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/order"
+          className="sidebar-link"
+        >
           <ListItem button>
             <ListItemIcon>
               <ShoppingBagIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">My orders</h6>
           </ListItem>
-        </Link>
-        <Link to="/cart" className="sidebar-link">
+        </NavLink>
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/cart"
+          className="sidebar-link"
+        >
           <ListItem button>
             <ListItemIcon>
               <Badge badgeContent={shop.cart.length} color="primary">
@@ -144,7 +180,7 @@ function Sidebar({ toggleDrawer }: any) {
             </ListItemIcon>
             <h6 className="text-muted m-0">Cart</h6>
           </ListItem>
-        </Link>
+        </NavLink>
         {user.creator && (
           <ListItem button>
             <ListItemIcon>

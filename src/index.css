@@ -19,3 +19,11 @@ code {
 .main-container {
   height: calc(100% - 2.8rem) !important;
 }
+.sidebarWraper {
+  top: 0;
+  position: sticky;
+  box-shadow: 0 4px 8px grey;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}

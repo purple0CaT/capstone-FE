@@ -58,7 +58,7 @@ function UpdateAvatar({ user, reFetch }: any) {
       <Avatar
         alt={user.firstname + " " + user.lastname}
         src={user.avatar}
-        sx={{ width: "100%", height: "100%" }}
+        sx={{ width: "100%", height: "100%", boxShadow: "0 0 8px grey" }}
         onClick={() => {
           if (myUser._id === user._id) {
             setShowAvatarUpdate(true);

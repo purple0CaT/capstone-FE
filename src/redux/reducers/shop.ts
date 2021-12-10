@@ -7,6 +7,16 @@ export const ShopRed = (state = inititalState.shop, action: any) => {
         ...state,
         cart: [...state.cart, action.payload],
       };
+    case "CLEAR_SHOP":
+      return {
+        cart: [null],
+        orders: [null],
+      };
+    case "SET_ITEM_QTY":
+      return {
+        ...state,
+        cart: action.payload,
+      };
     default:
       return state;
   }

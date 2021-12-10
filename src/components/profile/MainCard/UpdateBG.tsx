@@ -1,9 +1,9 @@
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { LoadingButton } from "@mui/lab";
 import { Dialog, Divider, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { LoadingButton } from "@mui/lab";
 import { useSelector } from "react-redux";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function UpdateBG({ user, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);

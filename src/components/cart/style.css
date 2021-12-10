@@ -1,0 +1,13 @@
+.cartCard {
+  padding: 1em;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  box-shadow: 0 5px 10px grey;
+}
+.itemCart {
+  box-shadow: 0 3px 5px grey;
+  /* padding: 1em; */
+  border-radius: 10px;
+  margin: 0.8rem 0;
+}

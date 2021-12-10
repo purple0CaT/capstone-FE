@@ -1,14 +1,14 @@
-import { Avatar, Divider, LinearProgress } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { Avatar, LinearProgress } from "@mui/material";
+import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loadAllUserChats,
   setActiveChat,
-  setChats,
+  setChats
 } from "../../redux/actions/action";
-import dateFormat from "dateformat";
 //
 function Chats({ closeChatsDrawer }: any) {
   const user = useSelector((state: any) => state.user);

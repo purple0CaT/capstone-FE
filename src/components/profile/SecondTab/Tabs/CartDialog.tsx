@@ -1,7 +1,7 @@
-import { Button, Dialog, Divider, IconButton, Input } from "@mui/material";
-import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { Button, Dialog, Divider, IconButton, Input } from "@mui/material";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../redux/actions/action";
 //
@@ -67,7 +67,7 @@ function CartDialog({ I, allPosts }: any) {
                 ))}
             </div>
           )}
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center align-items-center">
             <div className="quatnityPick ">
               <IconButton
                 onClick={() => {
@@ -78,13 +78,7 @@ function CartDialog({ I, allPosts }: any) {
               >
                 <RemoveIcon />
               </IconButton>
-              <Input
-                value={ItemQty}
-                type="number"
-                inputProps={{ min: 1, max: I.quantity }}
-                onChange={(e: any) => setItemQty(e.target.value)}
-                style={{ width: "3rem", textAlign: "center" }}
-              />
+              <h5 className="text-muted m-0">{ItemQty}</h5>
               <IconButton
                 onClick={() => {
                   if (ItemQty < 10) {
@@ -102,9 +96,10 @@ function CartDialog({ I, allPosts }: any) {
             <Button onClick={() => setDialogWindow(false)}>Close</Button>
             <Button
               color="success"
-              onClick={() =>
-                dispatch(addToCart({ item: PickedItem, qty: ItemQty }))
-              }
+              onClick={() => {
+                dispatch(addToCart({ item: PickedItem, qty: ItemQty }));
+                setDialogWindow(false);
+              }}
             >
               Add to cart
             </Button>

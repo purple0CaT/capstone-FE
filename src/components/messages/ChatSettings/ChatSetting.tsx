@@ -1,12 +1,11 @@
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { Button, Col, FormControl, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveChat, setChats } from "../../../redux/actions/action";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link } from "react-router-dom";
-import zIndex from "@mui/material/styles/zIndex";
+import { setActiveChat, setChats } from "../../../redux/actions/action";
 import DeleteChat from "./DeleteChat";
 
 function ChatSetting({ closeSettings, CloseSettingsModal }: any) {

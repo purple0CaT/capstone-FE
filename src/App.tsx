@@ -62,7 +62,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className="position-sticky" style={{ top: "0" }}>
+                        <div className="sidebarWraper">
                           <Sidebar />
                         </div>
                       </Col>
@@ -102,7 +102,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className="position-sticky" style={{ top: "0" }}>
+                        <div className="sidebarWraper">
                           <Sidebar />
                         </div>
                       </Col>
@@ -142,7 +142,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3" className="position-sticky">
-                        <div className="position-sticky" style={{ top: "0" }}>
+                        <div className="sidebarWraper">
                           <Sidebar />
                         </div>
                       </Col>
@@ -181,7 +181,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className="position-sticky" style={{ top: "0" }}>
+                        <div className="sidebarWraper">
                           <Sidebar />
                         </div>
                       </Col>
@@ -220,7 +220,7 @@ function App() {
                     </Col>
                     {matches ? (
                       <Col md="3">
-                        <div className="position-sticky" style={{ top: "0" }}>
+                        <div className="sidebarWraper">
                           <Sidebar />
                         </div>
                       </Col>

@@ -13,6 +13,9 @@ export const clearToken = () => ({
 export const clearChat = () => ({
   type: "CLEAR_CHATS",
 });
+export const clearShop = () => ({
+  type: "CLEAR_SHOP",
+});
 export const setTokens = (value: any) => ({
   type: "SET_TOKENS",
   payload: value,
@@ -25,6 +28,28 @@ export const setChats = (value: any) => ({
   type: "SET_CHATS",
   payload: value,
 });
+export const setItemQty = (value: any, index: number) => {
+  return async (dispatch: Dispatch, getState: any) => {
+    const state = getState();
+    const modifCart = state.shop.cart;
+    modifCart[index] = value;
+    dispatch({
+      type: "SET_ITEM_QTY",
+      payload: modifCart,
+    });
+  };
+};
+export const setDelItem = (index: number) => {
+  return async (dispatch: Dispatch, getState: any) => {
+    const state = getState();
+    const modifCart = state.shop.cart;
+    modifCart.splice(index, 1);
+    dispatch({
+      type: "SET_ITEM_QTY",
+      payload: modifCart,
+    });
+  };
+};
 
 // CHATS
 export const loadAllUserChats = () => {
