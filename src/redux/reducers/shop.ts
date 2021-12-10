@@ -9,8 +9,8 @@ export const ShopRed = (state = inititalState.shop, action: any) => {
       };
     case "CLEAR_SHOP":
       return {
-        cart: [null],
-        orders: [null],
+        cart: [],
+        orders: [],
       };
     case "SET_ITEM_QTY":
       return {

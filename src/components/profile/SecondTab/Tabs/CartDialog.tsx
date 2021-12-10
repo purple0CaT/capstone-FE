@@ -1,7 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Button, Dialog, Divider, IconButton, Input } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../redux/actions/action";
 //
@@ -12,6 +12,9 @@ function CartDialog({ I, allPosts }: any) {
   const [PickedItem, setPickedItem]: any = useState({ image: "" });
   const dispatch = useDispatch();
   //   console.log(I);
+  useEffect(() => {
+    setPickedItem(I);
+  }, []);
   return (
     <>
       <Button
@@ -96,6 +99,14 @@ function CartDialog({ I, allPosts }: any) {
             <Button onClick={() => setDialogWindow(false)}>Close</Button>
             <Button
               color="success"
+              disabled={
+                PickedItem.type === "default"
+                  ? PickedItem.image !==
+                    "https://www.bevi.com/static/files/0/ecommerce-default-product.png"
+                    ? false
+                    : true
+                  : false
+              }
               onClick={() => {
                 dispatch(addToCart({ item: PickedItem, qty: ItemQty }));
                 setDialogWindow(false);
