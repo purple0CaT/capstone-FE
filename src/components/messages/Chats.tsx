@@ -131,7 +131,9 @@ function Chats({ closeChatsDrawer }: any) {
                 <p className="m-0">
                   {C.members[1].firstname} {C.members[1].lastname}
                 </p>
-                <small style={{ wordBreak: "break-word" }}>
+                <small
+                  className="chatLastMess"
+                >
                   {(C.history && C.history[C.history.length - 1]?.message) ||
                     ""}
                 </small>

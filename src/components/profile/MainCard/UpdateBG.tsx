@@ -7,6 +7,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function UpdateBG({ user, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);
+  const myUser = useSelector((state: any) => state.user);
   const [MediaImg, setMediaImg]: any = useState();
   const [MediaPrew, setMediaPrew]: any = useState();
   const [ShowBGUpdate, setShowBGUpdate] = useState(false);
@@ -55,7 +56,13 @@ function UpdateBG({ user, reFetch }: any) {
   return (
     <>
       <img
-        onClick={() => setShowBGUpdate(true)}
+        onClick={() => {
+          {
+            if (myUser._id === user._id) {
+              setShowBGUpdate(true);
+            }
+          }
+        }}
         src={user.background}
         alt=""
         style={{
@@ -75,7 +82,7 @@ function UpdateBG({ user, reFetch }: any) {
           backdropFilter: "blur(2px)",
         }}
       >
-        <div className="d-flex flex-column p-3" style={{ minWidth: "50%" }}>
+        <div className="d-flex flex-column p-3" style={{ minWidth: "18rem" }}>
           {MediaPrew && (
             <div className="d-flex justify-content-center position-relative">
               <img

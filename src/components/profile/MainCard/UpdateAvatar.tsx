@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 function UpdateAvatar({ user, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);
+  const myUser = useSelector((state: any) => state.user);
   const [MediaImg, setMediaImg]: any = useState();
   const [MediaPrew, setMediaPrew]: any = useState();
   const [ShowAvatarUpdate, setShowAvatarUpdate] = useState(false);
@@ -59,7 +60,11 @@ function UpdateAvatar({ user, reFetch }: any) {
         alt={user.firstname + " " + user.lastname}
         src={user.avatar}
         sx={{ width: "100%", height: "100%" }}
-        onClick={() => setShowAvatarUpdate(true)}
+        onClick={() => {
+          if (myUser._id === user._id) {
+            setShowAvatarUpdate(true);
+          }
+        }}
         style={{ cursor: "pointer" }}
       />
       <Dialog
