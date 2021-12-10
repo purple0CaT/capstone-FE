@@ -1,6 +1,7 @@
 import { Divider } from "@mui/material";
 import Button from "@mui/material/Button";
 import React from "react";
+import CartDialog from "./CartDialog";
 //
 function StoreTab({ creator }: any) {
   return (
@@ -30,9 +31,7 @@ function StoreTab({ creator }: any) {
               </h6>
             </div>
             <Divider />
-            <Button color="success" disabled={I.quantity === 0 ? true : false}>
-              Buy
-            </Button>
+            <CartDialog I={I} />
           </div>
         </div>
       ))}

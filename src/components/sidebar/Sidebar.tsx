@@ -11,12 +11,9 @@ import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import {
-  clearUser,
-  clearToken,
-  clearChat,
-} from "../../../redux/actions/action";
+import { clearUser, clearToken, clearChat } from "../../redux/actions/action";
 import "./style.css";
+import BrushIcon from "@mui/icons-material/Brush";
 //
 function Sidebar({ toggleDrawer }: any) {
   const dispatch = useDispatch();
@@ -146,7 +143,7 @@ function Sidebar({ toggleDrawer }: any) {
         {user.creator && (
           <ListItem button>
             <ListItemIcon>
-              <ShoppingCartIcon />
+              <BrushIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">Creator</h6>
           </ListItem>

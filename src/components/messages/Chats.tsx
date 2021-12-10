@@ -11,6 +11,7 @@ import {
 import dateFormat from "dateformat";
 //
 function Chats({ closeChatsDrawer }: any) {
+  const user = useSelector((state: any) => state.user);
   const [SearchQuery, setSearchQuery] = useState("");
   const chat = useSelector((state: any) => state.chat);
   const tokens = useSelector((state: any) => state.tokens);
@@ -29,6 +30,8 @@ function Chats({ closeChatsDrawer }: any) {
       });
       if (res) {
         const data = await res.json();
+        // console.log(data);
+        // const filteredData = data.fitler((U: any) => U._id !== user._id);
         setFindedUsers(data);
         setUserLoader(false);
       } else {
@@ -49,8 +52,11 @@ function Chats({ closeChatsDrawer }: any) {
       });
       if (res.ok) {
         const data = await res.json();
-        // dispatch(setActiveChat(data.newChat));
+        dispatch(setActiveChat(data.newChat));
         dispatch(setChats(data.allChats));
+        setTimeout(() => {
+          dispatch(loadAllUserChats());
+        }, 1000);
       } else {
         console.log(res);
       }
@@ -95,7 +101,7 @@ function Chats({ closeChatsDrawer }: any) {
             {FindedUsers.map((U: any) => (
               <div
                 style={{ cursor: "pointer" }}
-                key={U.avatar + "3as1"}
+                key={U._id + "3as1"}
                 className="singleFindedUser"
                 onClick={() => {
                   createChat(U._id);
@@ -126,14 +132,18 @@ function Chats({ closeChatsDrawer }: any) {
                 closeChatsDrawer();
               }}
             >
-              <Avatar src={C.members[1].avatar} />{" "}
+              <Avatar
+                src={C.members.filter((M: any) => M._id !== user._id)[0].avatar}
+              />{" "}
               <div className="d-flex flex-column">
                 <p className="m-0">
-                  {C.members[1].firstname} {C.members[1].lastname}
+                  {
+                    C.members.filter((M: any) => M._id !== user._id)[0]
+                      .firstname
+                  }{" "}
+                  {C.members.filter((M: any) => M._id !== user._id)[0].lastname}
                 </p>
-                <small
-                  className="chatLastMess"
-                >
+                <small className="chatLastMess">
                   {(C.history && C.history[C.history.length - 1]?.message) ||
                     ""}
                 </small>

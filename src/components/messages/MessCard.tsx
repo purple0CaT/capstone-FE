@@ -25,6 +25,7 @@ function MessCard() {
   });
   //
   const activeChat = useSelector((state: any) => state.chat.activeChat);
+  const chat = useSelector((state: any) => state.chat);
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   let chatMembers =
@@ -65,8 +66,9 @@ function MessCard() {
       console.log("connect");
     });
     socket.on("message", ({ chatHistory, allChats }) => {
-      dispatch(setActiveChat(chatHistory));
+      console.log(chatHistory);
       dispatch(setChats(allChats));
+      dispatch(setActiveChat(chatHistory));
     });
   }, []);
   return (
@@ -77,8 +79,12 @@ function MessCard() {
           {/* left side */}
           {activeChat &&
             chatMembers.map((M: any) => (
-              <Link to={`/profile/${M._id}`} className="d-flex">
-                <div key={M._id + "mem"}>
+              <Link
+                to={`/profile/${M._id}`}
+                className="d-flex"
+                key={M._id + "mem"}
+              >
+                <div>
                   <img
                     src={
                       M.avatar ||
