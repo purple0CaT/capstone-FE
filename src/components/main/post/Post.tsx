@@ -54,7 +54,7 @@ function Post({ post, reFetch }: any) {
   };
   return (
     <div className="post">
-      <div className="d-flex align-items-center px-2">
+      <div className="d-flex align-items-center px-2 py-1">
         <div className="mr-2">
           <img src={post.author.avatar} alt="" className="post-img" />
         </div>

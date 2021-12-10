@@ -182,7 +182,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               backdropFilter: "blur(2px)",
             }}
           >
-            <div className="d-flex flex-column p-2">
+            <div className="d-flex flex-column p-3">
               {Followers.length > 0 &&
                 Followers.map((F: any) => (
                   <div
@@ -218,7 +218,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               backdropFilter: "blur(2px)",
             }}
           >
-            <div className="d-flex flex-column p-2">
+            <div className="d-flex flex-column p-3">
               {Following.length > 0 &&
                 Following.map((F: any) => (
                   <div

@@ -7,6 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/authorization/Login";
 import Register from "./components/authorization/Register";
+import Cart from "./components/cart/Cart";
 import Main from "./components/main/Main";
 import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
@@ -177,6 +178,45 @@ function App() {
                   <>
                     <Col xs="12" md="9" className="w-100">
                       <MainMess />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className="position-sticky" style={{ top: "0" }}>
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/cart"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <Cart />
                     </Col>
                     {matches ? (
                       <Col md="3">

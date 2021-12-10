@@ -44,7 +44,6 @@ function UpdateAvatar({ user, reFetch }: any) {
   };
   //
   useEffect(() => {
-    console.log("UseEffect");
     if (MediaImg) {
       const prew: any = URL.createObjectURL(MediaImg);
       setMediaPrew(prew);

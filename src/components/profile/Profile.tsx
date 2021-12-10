@@ -58,7 +58,6 @@ function Profile() {
       if (res.ok) {
         setLoading(false);
         const data = await res.json();
-        console.log(data);
         setFetchedCreator(data);
         setLoading(false);
       } else {

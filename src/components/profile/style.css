@@ -59,10 +59,27 @@
   gap: 1rem;
 }
 .storeItem {
+  display: flex;
+  flex-direction: column;
   position: relative;
   min-width: 13rem;
   max-width: 13rem;
   border: 1px solid rgba(128, 128, 128, 0.3);
   border-radius: 10px;
   overflow: hidden;
+}
+.cartImgPicker {
+  margin: 0.4rem 0;
+  display: flex;
+  overflow-x: scroll;
+  gap: 1rem;
+}
+.quatnityPick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(128, 128, 128, 0.466);
+  margin: 0.4rem 0;
+  gap: 1rem;
 }

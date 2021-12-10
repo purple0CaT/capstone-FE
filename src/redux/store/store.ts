@@ -5,6 +5,7 @@ import persistStore from "redux-persist/es/persistStore";
 import localStorage from "redux-persist/es/storage";
 import thunk from "redux-thunk";
 import { ChatRed } from "../reducers/chat";
+import { ShopRed } from "../reducers/shop";
 import { TokenRed } from "../reducers/tokens";
 import { UserRed } from "../reducers/user";
 
@@ -29,6 +30,7 @@ export const inititalState = {
       orders: [],
     },
   },
+  shop: { cart: [null], orders: [null] },
   tokens: {
     accessToken: "",
     refreshToken: "",
@@ -41,6 +43,7 @@ export const inititalState = {
 
 const Reducer = combineReducers({
   user: UserRed,
+  shop: ShopRed,
   chat: ChatRed,
   tokens: TokenRed,
 });
@@ -58,7 +61,7 @@ const persistedReducer = persistReducer(persistConfigs, Reducer);
 const configureStore: any = createStore(
   persistedReducer,
   inititalState,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 const persistor = persistStore(configureStore);

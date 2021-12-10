@@ -74,7 +74,7 @@ function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
           <Booking creator={FetchedCreator} />
         </TabPanel>
         <TabPanel value="3">
-          <StoreTab creator={FetchedCreator} />
+          <StoreTab creator={FetchedCreator} Posts={Posts} />
         </TabPanel>
       </TabContext>
     </div>

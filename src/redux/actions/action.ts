@@ -26,7 +26,7 @@ export const setChats = (value: any) => ({
   payload: value,
 });
 
-//
+// CHATS
 export const loadAllUserChats = () => {
   return async (dispatch: Dispatch, getState: any) => {
     const state = getState();
@@ -42,11 +42,27 @@ export const loadAllUserChats = () => {
           type: "SET_CHATS",
           payload: data,
         });
+        dispatch({
+          type: "SET_ACTIVE_CHAT",
+          payload: data[0],
+        });
       } else {
         console.log(res);
       }
     } catch (error) {
       console.log(error);
     }
+  };
+};
+//  CART
+export const addToCart = (value: any) => {
+  return async (dispatch: Dispatch, getState: any) => {
+    const state = getState();
+    dispatch({
+      type: "ADD_ITEM_CART",
+      payload: value,
+    });
+    console.log(state);
+    console.log(value);
   };
 };

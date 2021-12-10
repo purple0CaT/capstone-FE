@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Divider, ListItem, ListItemIcon } from "@mui/material";
+import { Badge, Divider, ListItem, ListItemIcon } from "@mui/material";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ function Sidebar({ toggleDrawer }: any) {
   const dispatch = useDispatch();
   const tokens = useSelector((state: any) => state.tokens);
   const user = useSelector((state: any) => state.user);
+  const shop = useSelector((state: any) => state.shop);
   const history = useHistory();
   const [SearchQuery, setSearchQuery] = useState("");
   const [UsersList, setUsersList] = useState([]) as any;
@@ -134,12 +135,16 @@ function Sidebar({ toggleDrawer }: any) {
             <h6 className="text-muted m-0">My orders</h6>
           </ListItem>
         </Link>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <h6 className="text-muted m-0">Cart</h6>
-        </ListItem>
+        <Link to="/cart" className="sidebar-link">
+          <ListItem button>
+            <ListItemIcon>
+              <Badge badgeContent={shop.cart.length} color="primary">
+                <ShoppingCartIcon />
+              </Badge>
+            </ListItemIcon>
+            <h6 className="text-muted m-0">Cart</h6>
+          </ListItem>
+        </Link>
         {user.creator && (
           <ListItem button>
             <ListItemIcon>

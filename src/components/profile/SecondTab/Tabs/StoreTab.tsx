@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import React from "react";
 import CartDialog from "./CartDialog";
 //
-function StoreTab({ creator }: any) {
+function StoreTab({ creator, Posts }: any) {
   return (
     <div className="storeTab">
       {creator.shop.items.map((I: any) => (
@@ -18,12 +18,14 @@ function StoreTab({ creator }: any) {
             >
               {I.title}
             </h6>
-            <p>{I.descrition}</p>
+            <p>{I.description}</p>
             {/*  */}
-            <div className="d-flex justify-content-between mt-auto">
+          </div>
+          <div className="d-flex flex-column mt-auto">
+            <div className="d-flex justify-content-between px-1">
               <h6>
                 <small>price: </small>
-                {I.price}
+                {I.price} £
               </h6>
               <h6>
                 <small>quantity: </small>
@@ -31,7 +33,7 @@ function StoreTab({ creator }: any) {
               </h6>
             </div>
             <Divider />
-            <CartDialog I={I} />
+            <CartDialog I={I} allPosts={Posts} />
           </div>
         </div>
       ))}
