@@ -12,6 +12,7 @@ import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link, NavLink } from "react-router-dom";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import {
   clearChat,
   clearShop,
@@ -179,6 +180,19 @@ function Sidebar({ toggleDrawer }: any) {
               <ShoppingBagIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">My orders</h6>
+          </ListItem>
+        </NavLink>
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/bookings"
+          className="sidebar-link"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <EventAvailableIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">My Bookings</h6>
           </ListItem>
         </NavLink>
 

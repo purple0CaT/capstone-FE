@@ -14,7 +14,7 @@ function EditProfile({ userInfo, reFetch }: any) {
   const handleInfoUpdate = () => {
     setOpenInfoUpdate(!OpenInfoUpdate);
   };
-  const updateUserInfo = async (e:  React.FormEvent<HTMLFormElement>) => {
+  const updateUserInfo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -94,6 +94,18 @@ function EditProfile({ userInfo, reFetch }: any) {
                 value={FormInfo.lastname}
                 onChange={(e) =>
                   setFormInfo({ ...FormInfo, lastname: e.target.value })
+                }
+              />
+              <TextField
+                className="mr-2"
+                required
+                id="standard-required"
+                label="Bio"
+                margin="dense"
+                variant="standard"
+                value={FormInfo.bio}
+                onChange={(e) =>
+                  setFormInfo({ ...FormInfo, bio: e.target.value })
                 }
               />
             </div>

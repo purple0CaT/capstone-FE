@@ -9,7 +9,7 @@ import { setActiveChat, setChats } from "../../../redux/actions/action";
 import DeleteChat from "./DeleteChat";
 
 function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
-  const users = useSelector((state: any) => state.chat.activeChat.members);
+  const users = useSelector((state: any) => state.chat.activeChat?.members);
   const chat = useSelector((state: any) => state.chat.activeChat);
   const tokens = useSelector((state: any) => state.tokens);
   const dispatch = useDispatch();

@@ -16,7 +16,7 @@
 }
 .img-avatar {
   position: absolute;
-  right: -4rem;
+  right: -3.5em;
   top: calc(50% - 4rem);
 }
 .user-info {

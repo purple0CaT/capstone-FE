@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loadAllUserChats,
   setActiveChat,
-  setChats
+  setChats,
 } from "../../redux/actions/action";
 //
 function Chats({ closeChatsDrawer }: any) {
@@ -54,14 +54,14 @@ function Chats({ closeChatsDrawer }: any) {
         const data = await res.json();
         dispatch(setActiveChat(data.newChat));
         dispatch(setChats(data.allChats));
-        setTimeout(() => {
-          dispatch(loadAllUserChats());
-        }, 1000);
+        loadAllUserChats();
       } else {
         console.log(res);
+        alert("Error");
       }
     } catch (error) {
       console.log(error);
+      alert("Error");
     }
   };
   useEffect(() => {
@@ -92,7 +92,7 @@ function Chats({ closeChatsDrawer }: any) {
       </div>
       {/* SEARCH USER LISTS */}
       <div className="position-relative">
-        {UserLoader && <LinearProgress color="inherit" />}
+        {UserLoader && <LinearProgress />}
         {FindedUsers.length > 0 && (
           <div
             className="searchUserList"

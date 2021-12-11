@@ -29,8 +29,9 @@ function MessCard() {
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   let chatMembers =
-    activeChat.members?.filter((M: any) => M._id !== user._id) || [];
-  //   let chatMembers: any = [];
+    activeChat?.members?.length > 0
+      ? activeChat.members.filter((M: any) => M._id !== user._id)
+      : [];
   //
   const [CloseSettingsModal, setCloseSettingsModal] = useState(false);
   const [Message, setMessage] = useState("");
@@ -44,7 +45,7 @@ function MessCard() {
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  useEffect(scrollToBottom, [activeChat.history]);
+  useEffect(scrollToBottom, [activeChat?.history]);
   //
   const sendMessage = () => {
     socket.emit("sendmessage", {
@@ -111,10 +112,9 @@ function MessCard() {
         </div>
         {/* right side */}
         <div className="d-flex align-items-center">
-          <div className="mx-1">
-            {/* <PictureModal /> */}
+          {/* <div className="mx-1">
             add Picture to chat
-          </div>
+          </div> */}
           <div className="mx-1">
             <MoreVertIcon
               // size="1.4rem"
@@ -133,12 +133,12 @@ function MessCard() {
       <div
         className="d-flex flex-column messages p-2"
         style={{
-          backgroundImage: `url("${activeChat.image}")`,
+          backgroundImage: `url("${activeChat?.image}")`,
         }}
       >
         {/* <div className=" p-2"> */}
         {/* Message */}
-        {activeChat.history &&
+        {activeChat?.history &&
           activeChat.history.length > 0 &&
           activeChat.history.map((m: any) => (
             <div

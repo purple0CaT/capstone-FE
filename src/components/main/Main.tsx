@@ -45,7 +45,7 @@ function Main() {
   return (
     <>
       {Loading &&
-        <LinearProgress color="success" />
+        <LinearProgress />
       }
       <div className="post-container px-3">
         <CreatePost reFetch={fetchPosts} />

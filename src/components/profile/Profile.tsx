@@ -76,7 +76,7 @@ function Profile() {
   //
   return (
     <>
-      {Loading && <LinearProgress color="success" />}
+      {Loading && <LinearProgress  />}
       <div className="d-flex flex-column">
         {!Loading && FetchedUser! && (
           <>
