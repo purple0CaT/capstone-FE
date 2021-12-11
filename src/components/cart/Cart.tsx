@@ -36,6 +36,7 @@ function Cart() {
         method: "POST",
         body: JSON.stringify({
           items: shop.cart,
+          paid: false,
           deliveryAddress:
             DeliveryAddress.city +
             ", " +

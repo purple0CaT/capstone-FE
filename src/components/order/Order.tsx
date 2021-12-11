@@ -8,23 +8,47 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelIcon from "@mui/icons-material/Cancel";
 import "./style.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DeleteOrder from "./DeleteOrder";
+import { setUser } from "../../redux/actions/action";
 
 function Order() {
   const user = useSelector((state: any) => state.user);
+  const tokens = useSelector((state: any) => state.tokens);
+  const dispatch = useDispatch();
+  //
+  const fetchUser = async () => {
+    try {
+      const url = `${process.env.REACT_APP_FETCHURL}/user/single/${user._id}`;
+      const res = await fetch(url, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+
+        dispatch(setUser(data.user));
+      } else {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //
   useEffect(() => {
-    console.log(user.shopping.orders);
+    fetchUser();
   }, []);
   return (
     <Grid container style={{ boxShadow: "0 0 5px grey" }}>
       <Grid item xs={12} className="orderWrapper">
         <br />
         <h4 className="text-muted text-center">My orders</h4>
+        <Divider />
         {user.shopping.orders &&
           user.shopping.orders.map((Order: any) => (
             <>
@@ -62,7 +86,7 @@ function Order() {
                     </span>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className="itemsOrderWrapper">
                   <Divider />
                   {Order.items.map((I: any) => (
                     <Grid
@@ -70,16 +94,18 @@ function Order() {
                       className="d-flex justify-content-between p-1 orderItem"
                     >
                       <Grid xs={12} sm={4} item>
-                        <img
-                          src={I.item.image}
-                          style={{
-                            maxWidth: "100%",
-                            maxHeight: "100%",
-                            aspectRatio: "1/1",
-                            objectFit: "cover",
-                          }}
-                          alt=""
-                        />
+                        <div className="d-flex align-items-center justify-content-center">
+                          <img
+                            src={I.item.image}
+                            style={{
+                              maxWidth: "50%",
+                              maxHeight: "50%",
+                              aspectRatio: "1/1",
+                              objectFit: "cover",
+                            }}
+                            alt=""
+                          />
+                        </div>
                       </Grid>
                       <Grid
                         item

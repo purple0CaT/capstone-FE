@@ -5,13 +5,19 @@
 .simpleOrder {
   border-radius: 20px;
   background-color: white;
-  box-shadow: 0 4px 8px grey;
+  box-shadow: 0 0 10px grey !important;
+  margin: 0.3rem 0;
   /* padding: 1em; */
   /* margin: 1em 0; */
 }
 .orderItem {
   padding: 1rem;
   margin: 1rem 0;
-  box-shadow: 0 4px 8px grey;
+  box-shadow: 0 4px 10px grey;
+  background-color: white;
   border-radius: 10px;
+}
+.itemsOrderWrapper {
+  /* box-shadow: 0 0 10px grey; */
+  background-color: rgb(228, 228, 228);
 }
