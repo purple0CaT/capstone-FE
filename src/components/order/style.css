@@ -1,0 +1,17 @@
+.orderWrapper {
+  background-color: white;
+  padding: 0 1em;
+}
+.simpleOrder {
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px grey;
+  /* padding: 1em; */
+  /* margin: 1em 0; */
+}
+.orderItem {
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px grey;
+  border-radius: 10px;
+}

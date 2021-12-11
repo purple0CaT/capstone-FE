@@ -1,0 +1,12 @@
+.successOrder {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px grey;
+  padding: 1em;
+}
+.orderItem {
+  padding: 1rem;
+  box-shadow: 0 4px 8px grey;
+  border-radius: 10px;
+}

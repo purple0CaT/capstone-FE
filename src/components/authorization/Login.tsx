@@ -17,7 +17,7 @@ function Login() {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   //
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {

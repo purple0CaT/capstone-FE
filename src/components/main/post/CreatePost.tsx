@@ -32,7 +32,7 @@ function CreatePost({ reFetch }: any) {
   const [Loading, setLoading] = useState(false);
   const tokens = useSelector((state: any) => state.tokens);
   // CREATE POST
-  const createPost = async (e: any) => {
+  const createPost = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("text", NewPost.text);

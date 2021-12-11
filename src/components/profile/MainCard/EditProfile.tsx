@@ -14,7 +14,7 @@ function EditProfile({ userInfo, reFetch }: any) {
   const handleInfoUpdate = () => {
     setOpenInfoUpdate(!OpenInfoUpdate);
   };
-  const updateUserInfo = async (e: any) => {
+  const updateUserInfo = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {

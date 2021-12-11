@@ -8,11 +8,16 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/authorization/Login";
 import Register from "./components/authorization/Register";
 import Cart from "./components/cart/Cart";
+import Creator from "./components/creator/Creator";
 import Main from "./components/main/Main";
 import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
+import Order from "./components/order/Order";
+import PayOrder from "./components/payorder/PayOrder";
 import Profile from "./components/profile/Profile";
+import Settings from "./components/settings/Settings";
 import Sidebar from "./components/sidebar/Sidebar";
+import SuccessOrder from "./components/success/SuccessOrder";
 //
 //
 function App() {
@@ -217,6 +222,201 @@ function App() {
                   <>
                     <Col xs="12" md="9" className="w-100">
                       <Cart />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className="sidebarWraper">
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/order"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <Order />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className="sidebarWraper">
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/settings"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <Settings />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className="sidebarWraper">
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/creator"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <Creator />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className="sidebarWraper">
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/payorder/:id"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <PayOrder />
+                    </Col>
+                    {matches ? (
+                      <Col md="3">
+                        <div className="sidebarWraper">
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/success/:id"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <SuccessOrder />
                     </Col>
                     {matches ? (
                       <Col md="3">

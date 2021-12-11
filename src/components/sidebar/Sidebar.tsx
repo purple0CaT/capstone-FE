@@ -156,19 +156,6 @@ function Sidebar({ toggleDrawer }: any) {
         <NavLink
           exact
           activeClassName="selectedNavb"
-          to="/order"
-          className="sidebar-link"
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <ShoppingBagIcon />
-            </ListItemIcon>
-            <h6 className="text-muted m-0">My orders</h6>
-          </ListItem>
-        </NavLink>
-        <NavLink
-          exact
-          activeClassName="selectedNavb"
           to="/cart"
           className="sidebar-link"
         >
@@ -181,13 +168,34 @@ function Sidebar({ toggleDrawer }: any) {
             <h6 className="text-muted m-0">Cart</h6>
           </ListItem>
         </NavLink>
-        {user.creator && (
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/order"
+          className="sidebar-link"
+        >
           <ListItem button>
             <ListItemIcon>
-              <BrushIcon />
+              <ShoppingBagIcon />
             </ListItemIcon>
-            <h6 className="text-muted m-0">Creator</h6>
+            <h6 className="text-muted m-0">My orders</h6>
           </ListItem>
+        </NavLink>
+
+        {user.creator && (
+          <NavLink
+            exact
+            activeClassName="selectedNavb"
+            to="/creator"
+            className="sidebar-link"
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <BrushIcon />
+              </ListItemIcon>
+              <h6 className="text-muted m-0">Creator</h6>
+            </ListItem>
+          </NavLink>
         )}
         <Link to="/settings" className="sidebar-link">
           <ListItem button>

@@ -4,12 +4,13 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Button, Divider, Grid, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDelItem, setItemQty } from "../../redux/actions/action";
+import { useHistory } from "react-router-dom";
+import { clearShop, setDelItem, setItemQty } from "../../redux/actions/action";
 import "./style.css";
 // Style
 const imgStyle = {
   maxWidth: "100%",
-  maxHight: "10rem",
+  maxHeight: "15rem",
   borderRadius: "10px",
   boxShadow: "0 1px 2px grey",
 };
@@ -26,7 +27,9 @@ function Cart() {
   const dispatch = useDispatch();
   const [ItemsCart, setItemsCart] = useState([{ item: {}, qty: 0 }]);
   //
-  const createOrder = async () => {
+  const createOrder = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/order/createOrder`;
       const res = await fetch(url, {
@@ -41,7 +44,7 @@ function Cart() {
             DeliveryAddress.country +
             ", " +
             DeliveryAddress.postal,
-          totalAmount: shop.cart
+          totalCost: shop.cart
             .map((I: any) => {
               return I.item.price * I.qty;
             })
@@ -56,7 +59,8 @@ function Cart() {
       });
       const data = await res.json();
       if (res.ok) {
-        console.log(data);
+        dispatch(clearShop());
+        window.location.href = `${process.env.REACT_APP_FETCHURL}/order/checkout-session/${data._id}`;
       }
     } catch (error) {
       console.log(error);
@@ -148,13 +152,16 @@ function Cart() {
           <h4 className="text-center"> Your cart is empty!</h4>
         )}
         {shop.cart.length > 0 && (
-          <form onSubmit={createOrder} className="d-flex flex-column p-2">
+          <form
+            onSubmit={(e) => createOrder(e)}
+            className="d-flex flex-column p-2"
+          >
             <h6 className="text-muted text-center">Delivery address</h6>
-            <div className="d-flex flex-wrap" style={{ gap: "1rem" }}>
+            <div className="d-flex justify-content-between flex-wrap">
               <TextField
                 required
                 variant="standard"
-                label="House number & street"
+                label="House № & street"
                 value={DeliveryAddress.street}
                 onChange={(e) =>
                   setDeliveryAddress({

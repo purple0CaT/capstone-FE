@@ -6,7 +6,7 @@
   /* border-radius: 20px; */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 0 5px 10px rgba(128, 128, 128, 0.507);
+  box-shadow: 0 5px 10px grey;
 }
 .image-profile {
   border-radius: 50%;
