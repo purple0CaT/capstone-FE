@@ -1,6 +1,7 @@
 .orderWrapper {
   background-color: white;
   padding: 0 1em;
+  min-height: calc(100vh - 2.8rem);
 }
 .simpleOrder {
   border-radius: 20px;

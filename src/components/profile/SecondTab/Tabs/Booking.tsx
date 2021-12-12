@@ -32,14 +32,14 @@ function Booking({ creator }: any) {
                 {creator.booking.appointments.map((APP: any) => {
                   if (
                     A.start <= APP.appointmentDate &&
-                    A.end >= APP.appointmentDate
+                    A.end >= APP.appointmentEnd
                   ) {
                     return (
                       <div className="d-flex flex-column align-items-center">
                         <small className="text-muted">Booked Appointment</small>
                         <p className="m-0">
                           {dateFormat(APP.appointmentDate, "HH:MM")} -{" "}
-                          {dateFormat(APP.appointmentDate, "HH:MM")}
+                          {dateFormat(APP.appointmentEnd, "HH:MM")}
                         </p>
                       </div>
                     );

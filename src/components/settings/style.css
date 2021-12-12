@@ -1,0 +1,13 @@
+.settingsCard {
+  padding: 1em;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0 5px 10px grey;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+}
+.confirmUserType {
+  padding: 1em;
+}
