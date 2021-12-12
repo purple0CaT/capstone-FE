@@ -141,7 +141,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
           </div>
         )}
         <div className="mr-auto">
-          <p className="m-0">{FetchedUser.user.bio} test</p>
+          <p className="m-0">{FetchedUser.user.bio}</p>
         </div>
         <br />
         {/* FOLLOWERS */}

@@ -96,19 +96,19 @@ function EditProfile({ userInfo, reFetch }: any) {
                   setFormInfo({ ...FormInfo, lastname: e.target.value })
                 }
               />
-              <TextField
-                className="mr-2"
-                required
-                id="standard-required"
-                label="Bio"
-                margin="dense"
-                variant="standard"
-                value={FormInfo.bio}
-                onChange={(e) =>
-                  setFormInfo({ ...FormInfo, bio: e.target.value })
-                }
-              />
             </div>
+            <TextField
+              className="mr-2"
+              required
+              id="standard-required"
+              label="Bio"
+              margin="dense"
+              variant="standard"
+              value={FormInfo.bio}
+              onChange={(e) =>
+                setFormInfo({ ...FormInfo, bio: e.target.value })
+              }
+            />
             <br />
             <Divider />
             {/* {Loading && <LinearProgress />} */}

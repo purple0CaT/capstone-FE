@@ -154,47 +154,65 @@ function Sidebar({ toggleDrawer }: any) {
             <h6 className="text-muted m-0">Messages</h6>
           </ListItem>
         </NavLink>
-        <NavLink
-          exact
-          activeClassName="selectedNavb"
-          to="/cart"
-          className="sidebar-link"
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <Badge badgeContent={shop.cart.length} color="primary">
-                <ShoppingCartIcon />
-              </Badge>
-            </ListItemIcon>
-            <h6 className="text-muted m-0">Cart</h6>
-          </ListItem>
-        </NavLink>
-        <NavLink
-          exact
-          activeClassName="selectedNavb"
-          to="/order"
-          className="sidebar-link"
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <ShoppingBagIcon />
-            </ListItemIcon>
-            <h6 className="text-muted m-0">My orders</h6>
-          </ListItem>
-        </NavLink>
-        <NavLink
-          exact
-          activeClassName="selectedNavb"
-          to="/bookings"
-          className="sidebar-link"
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <EventAvailableIcon />
-            </ListItemIcon>
-            <h6 className="text-muted m-0">My Bookings</h6>
-          </ListItem>
-        </NavLink>
+        {user.type === "user" ? (
+          <>
+            <NavLink
+              exact
+              activeClassName="selectedNavb"
+              to="/cart"
+              className="sidebar-link"
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <Badge badgeContent={shop.cart.length} color="primary">
+                    <ShoppingCartIcon />
+                  </Badge>
+                </ListItemIcon>
+                <h6 className="text-muted m-0">Cart</h6>
+              </ListItem>
+            </NavLink>
+            <NavLink
+              exact
+              activeClassName="selectedNavb"
+              to="/order"
+              className="sidebar-link"
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <ShoppingBagIcon />
+                </ListItemIcon>
+                <h6 className="text-muted m-0">My orders</h6>
+              </ListItem>
+            </NavLink>
+            <NavLink
+              exact
+              activeClassName="selectedNavb"
+              to="/bookings"
+              className="sidebar-link"
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <EventAvailableIcon />
+                </ListItemIcon>
+                <h6 className="text-muted m-0">My Bookings</h6>
+              </ListItem>
+            </NavLink>
+          </>
+        ) : (
+          <NavLink
+            exact
+            activeClassName="selectedNavb"
+            to="/storeorders"
+            className="sidebar-link"
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <EventAvailableIcon />
+              </ListItemIcon>
+              <h6 className="text-muted m-0">Store orders</h6>
+            </ListItem>
+          </NavLink>
+        )}
 
         {user.creator && (
           <NavLink
