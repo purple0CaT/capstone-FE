@@ -3,7 +3,6 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SendIcon from "@mui/icons-material/Send";
-import { height } from "@mui/system";
 import dateFormat from "dateformat";
 import Picker from "emoji-picker-react";
 import React, { useEffect, useRef, useState } from "react";

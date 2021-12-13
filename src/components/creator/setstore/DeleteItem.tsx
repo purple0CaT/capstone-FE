@@ -1,7 +1,7 @@
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Dialog, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 function DeleteItem({ item, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);

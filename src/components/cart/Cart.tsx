@@ -4,7 +4,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Button, Divider, Grid, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { clearShop, setDelItem, setItemQty } from "../../redux/actions/action";
 import "./style.css";
 // Style

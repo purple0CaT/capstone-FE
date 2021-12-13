@@ -8,7 +8,7 @@ import {
   Button,
   Divider,
   Grid,
-  TextField,
+  TextField
 } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useState } from "react";
@@ -67,7 +67,7 @@ function SingleOrder({ Order, reFetch }: any) {
     }
   };
   return (
-    <Accordion className="simpleOrder p-0" key={Order._id + "zvffcc"}>
+    <Accordion className="simpleOrder p-0">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -101,7 +101,7 @@ function SingleOrder({ Order, reFetch }: any) {
           <Grid
             container
             className="d-flex justify-content-between p-0 orderItem"
-            key={"321" + I._id}
+            key={"331" + I.item._id}
           >
             <Grid xs={12} sm={4} item>
               <div className="d-flex align-items-center justify-content-center">

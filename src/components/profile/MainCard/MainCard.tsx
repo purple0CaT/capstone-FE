@@ -5,9 +5,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
-import LoadingButton from "@mui/lab/LoadingButton";
-import UpdateBG from "./UpdateBG";
 import UpdateAvatar from "./UpdateAvatar";
+import UpdateBG from "./UpdateBG";
 
 //
 const Transition = React.forwardRef(function Transition(

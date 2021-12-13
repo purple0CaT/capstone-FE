@@ -4,11 +4,9 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { useSelector } from "react-redux";
 //
 function Booking({ creator }: any) {
-  const tokens = useSelector((state: any) => state.tokens);
-  const [Loading, setLoading] = useState(false);
+
   const [CustomDate, setCustomDate] = useState();
   const [date, setDate]: any = useState();
   // CALENDAR AVAILAB

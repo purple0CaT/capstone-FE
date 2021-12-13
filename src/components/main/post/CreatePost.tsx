@@ -19,7 +19,7 @@ const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
   },
-  ref: React.Ref<unknown>
+  ref: React.Ref<unknown>,
 ) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
@@ -32,7 +32,7 @@ function CreatePost({ reFetch }: any) {
   const [Loading, setLoading] = useState(false);
   const tokens = useSelector((state: any) => state.tokens);
   // CREATE POST
-  const createPost = async (e:  React.FormEvent<HTMLFormElement>) => {
+  const createPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("text", NewPost.text);
@@ -189,19 +189,14 @@ function CreatePost({ reFetch }: any) {
                   aria-label="upload picture"
                   component="span"
                 >
-                  <AddPhotoAlternateIcon fontSize='large' />
+                  <AddPhotoAlternateIcon fontSize="large" />
                 </IconButton>
               </label>
             </div>
           </DialogContent>
           <DialogActions className="d-flex justify-content-center">
             <Button onClick={handleClose}>Cancel</Button>
-            <LoadingButton
-              type="submit"
-              loading={Loading}
-              variant="outlined"
-              loadingPosition="start"
-            >
+            <LoadingButton type="submit" loading={Loading} variant="outlined">
               Post
             </LoadingButton>
           </DialogActions>

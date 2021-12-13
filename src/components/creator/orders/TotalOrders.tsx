@@ -6,7 +6,11 @@ function TotalOrders({ reFetch, FetchedCreator }: any) {
     <>
       {FetchedCreator &&
         FetchedCreator.shop.orders.map((Order: any) => (
-          <SingleOrder Order={Order} reFetch={reFetch}/>
+          <SingleOrder
+            Order={Order}
+            reFetch={reFetch}
+            key={Order._id + "zvffcc"}
+          />
         ))}
     </>
   );
