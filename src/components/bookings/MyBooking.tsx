@@ -54,7 +54,7 @@ function MyBooking() {
                 return (
                   B.confirmed &&
                   new Date(B.appointmentDate) >= new Date() && (
-                    <div className="bookingItem">
+                    <div className="bookingItem" key={B._id + "aef"}>
                       <small className="d-flex">
                         id:{" "}
                         <span className="font-weight-bold text-muted ml-1">
@@ -89,7 +89,7 @@ function MyBooking() {
                 return (
                   !B.confirmed &&
                   new Date(B.appointmentDate) >= new Date() && (
-                    <div className="bookingItem">
+                    <div className="bookingItem" key={"321" + B._id}>
                       <small className="d-flex">
                         id:{" "}
                         <span className="font-weight-bold text-muted ml-1">
@@ -123,7 +123,7 @@ function MyBooking() {
               user.booking.map((B: any) => {
                 return (
                   new Date(B.appointmentDate) <= new Date() && (
-                    <div className="bookingItem">
+                    <div className="bookingItem" key={B._id + "acxf"}>
                       <small className="d-flex">
                         id:{" "}
                         <span className="font-weight-bold text-muted ml-1">

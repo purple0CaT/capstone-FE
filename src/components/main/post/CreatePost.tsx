@@ -116,7 +116,7 @@ function CreatePost({ reFetch }: any) {
               required
               autoFocus
               margin="dense"
-              id="name"
+              id="text"
               label="Text"
               type="text"
               fullWidth
@@ -129,7 +129,7 @@ function CreatePost({ reFetch }: any) {
 
             <TextField
               margin="dense"
-              id="name"
+              id="heo"
               label="Heolocation"
               type="text"
               fullWidth
@@ -163,7 +163,7 @@ function CreatePost({ reFetch }: any) {
                       >
                         <IconButton
                           className="p-1"
-                          color="info"
+                          color="warning"
                           aria-label="upload picture"
                           component="span"
                         >
@@ -176,12 +176,11 @@ function CreatePost({ reFetch }: any) {
             </div>
             <div className="w-100 d-flex justify-content-center mt-3">
               <input
-                required
-                accept="image/*"
-                onChange={(e: any) => imageHandler(e)}
-                style={{ display: "none" }}
                 id="raised-button-file"
-                multiple
+                onChange={(e: any) => imageHandler(e)}
+                accept="image/*"
+                required
+                style={{ display: "none" }}
                 type="file"
               />
               <label htmlFor="raised-button-file">

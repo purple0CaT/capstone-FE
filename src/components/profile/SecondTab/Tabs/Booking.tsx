@@ -46,7 +46,8 @@ function Booking({ creator }: any) {
                       {creator.booking.appointments.map((APP: any) => {
                         if (
                           A.start <= APP.appointmentDate &&
-                          A.end >= APP.appointmentEnd
+                          A.end >= APP.appointmentEnd &&
+                          APP.confirmed
                         ) {
                           return (
                             <div className="d-flex flex-column align-items-center">

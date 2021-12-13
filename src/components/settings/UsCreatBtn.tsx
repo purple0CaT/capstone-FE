@@ -39,6 +39,7 @@ function UsCreatBtn() {
   return (
     <div>
       <Button
+        variant="outlined"
         onClick={() => setShowModal(true)}
         color={user.creator ? "success" : "primary"}
       >

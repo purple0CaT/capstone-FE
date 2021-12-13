@@ -12,7 +12,7 @@ function Main() {
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [PostFetches, setPostFetches] = useState([]);
-  const [Loading, setLoading] = useState(true)
+  const [Loading, setLoading] = useState(true);
   //
   const fetchPosts = async () => {
     try {
@@ -24,13 +24,13 @@ function Main() {
       if (res.ok) {
         const data = await res.json();
         setPostFetches(data);
-        setLoading(false)
+        setLoading(false);
       } else {
         console.log(res);
-        setLoading(false)
+        setLoading(false);
       }
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log(error);
     }
   };
@@ -44,14 +44,12 @@ function Main() {
   }, []);
   return (
     <>
-      {Loading &&
-        <LinearProgress />
-      }
+      {Loading && <LinearProgress />}
       <div className="post-container px-3">
         <CreatePost reFetch={fetchPosts} />
         {PostFetches.length > 0 &&
           PostFetches.map((P: any) => (
-            <div key={P._id + P.text} >
+            <div key={P._id + P.text}>
               <br />
               <Post post={P} reFetch={fetchPosts} />
             </div>

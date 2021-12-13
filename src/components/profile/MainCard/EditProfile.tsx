@@ -54,10 +54,11 @@ function EditProfile({ userInfo, reFetch }: any) {
           backdropFilter: "blur(2px)",
         }}
       >
+        <h6 className="text-center mt-3">Update profile</h6>
         {FormInfo && (
           <form
             onSubmit={updateUserInfo}
-            className="d-flex flex-column px-3 py-1"
+            className="d-flex flex-column px-5 py-2"
           >
             <TextField
               className="mr-2"

@@ -96,7 +96,7 @@ function UpdateBG({ user, reFetch }: any) {
               <div className="delete-img-button" onClick={() => removeImg()}>
                 <IconButton
                   className="p-1"
-                  color="info"
+                  color="warning"
                   aria-label="upload picture"
                   component="span"
                 >

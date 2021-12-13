@@ -1,0 +1,40 @@
+.cardWrapper {
+  padding: 1em;
+  box-shadow: 0 5px 10px grey;
+  /* border-bottom-left-radius: 20px; */
+  /* border-bottom-right-radius: 20px; */
+  background-color: white;
+  overflow: hidden;
+  min-height: calc(100vh - 2.8rem);
+}
+.creatorCard {
+  box-shadow: 0 0 5px rgba(128, 128, 128, 0.4);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  /* border-radius: 5px; */
+}
+.creatorItemCard {
+  box-shadow: 0 0 5px grey;
+  border-radius: 5px;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+}
+.availItemBook {
+  border-radius: 10px;
+  box-shadow: 0 0 3px grey;
+  background-color: white;
+
+  padding: 0.4rem;
+  margin: 0.2rem 0;
+  min-width: 10rem;
+}
+.react-calendar {
+  border-radius: 5px !important;
+  overflow: hidden;
+  border: unset !important;
+  box-shadow: 0 0 5px grey !important;
+}

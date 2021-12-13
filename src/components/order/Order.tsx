@@ -1,20 +1,21 @@
+import CancelIcon from "@mui/icons-material/Cancel";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Button,
   Divider,
-  Grid,
-  Typography,
+  Grid
 } from "@mui/material";
+import dateFormat from "dateformat";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CancelIcon from "@mui/icons-material/Cancel";
-import "./style.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import DeleteOrder from "./DeleteOrder";
+import { Link } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
+import DeleteOrder from "./DeleteOrder";
+import "./style.css";
 
 function Order() {
   const user = useSelector((state: any) => state.user);
@@ -67,10 +68,10 @@ function Order() {
                       {Order.completed ? (
                         <CheckCircleOutlineIcon
                           color="success"
-                          fontSize="large"
+                          fontSize="medium"
                         />
                       ) : (
-                        <CancelIcon color="warning" fontSize="large" />
+                        <CancelIcon color="warning" fontSize="medium" />
                       )}
                     </span>
                     <span className="d-flex align-items-center font-weight-bold">
@@ -78,17 +79,17 @@ function Order() {
                       {Order.paid ? (
                         <CheckCircleOutlineIcon
                           color="success"
-                          fontSize="large"
+                          fontSize="medium"
                         />
                       ) : (
-                        <CancelIcon color="warning" fontSize="large" />
+                        <CancelIcon color="warning" fontSize="medium" />
                       )}
                     </span>
                   </div>
                 </AccordionSummary>
                 <AccordionDetails className="itemsOrderWrapper">
                   <Divider />
-                  {Order.items.map((I: any) => (
+                  {Order.items?.map((I: any) => (
                     <Grid
                       container
                       className="d-flex justify-content-between p-1 orderItem"
@@ -114,6 +115,26 @@ function Order() {
                         className="d-flex justify-content-center w-100 flex-column p-2"
                       >
                         <p>{I.item.title}</p>
+                        <span className="d-flex align-items-center">
+                          Seller:{" "}
+                          <Link
+                            className="ml-1 font-weight-bold"
+                            to={`/profile/${I.item.sellerId}`}
+                          >
+                            {I.item.sellerId}
+                          </Link>
+                        </span>
+                        <div className="d-flex">
+                          <span>Completed: </span>
+                          {I.item.completed ? (
+                            <CheckCircleOutlineIcon
+                              color="success"
+                              fontSize="medium"
+                            />
+                          ) : (
+                            <CancelIcon color="warning" fontSize="medium" />
+                          )}
+                        </div>
                         <div className="d-flex justify-content-between">
                           <span className="d-flex align-items-center">
                             Items price :{" "}
@@ -128,58 +149,16 @@ function Order() {
                       </Grid>
                     </Grid>
                   ))}
-                  <br />
-                  <Divider />
-                  <div className="d-flex flex-column align-items-center">
-                    <div className="d-flex justify-content-between flex-wrap w-100 p-1">
-                      <span className="d-flex align-items-center">
-                        {" "}
-                        Total cost:{" "}
-                        <h6 className="m-0 ml-1">{Order.totalCost}£</h6>
-                      </span>
-                      <span className="d-flex align-items-center ml-auto mr-4 font-weight-bold">
-                        Completed:{" "}
-                        {Order.completed ? (
-                          <CheckCircleOutlineIcon
-                            color="success"
-                            fontSize="large"
-                          />
-                        ) : (
-                          <CancelIcon color="warning" fontSize="large" />
-                        )}
-                      </span>
-                      <span className="d-flex align-items-center font-weight-bold">
-                        Paid:{" "}
-                        {Order.paid ? (
-                          <CheckCircleOutlineIcon
-                            color="success"
-                            fontSize="large"
-                          />
-                        ) : (
-                          <CancelIcon color="warning" fontSize="large" />
-                        )}
-                      </span>
-                      {!Order.paid && (
-                        <Button
-                          className="ml-3"
-                          variant="contained"
-                          color="info"
-                          onClick={() => {
-                            window.location.href = `${process.env.REACT_APP_FETCHURL}/order/checkout-session/${Order._id}`;
-                          }}
-                        >
-                          Pay now!
-                        </Button>
-                      )}
-                    </div>
-                    <div className="w-100 my-1">
-                      <Divider />
-                    </div>
+                  <hr />
+                  <div
+                    className="d-flex flex-column align-items-center"
+                    style={{ backgroundColor: "white", borderRadius: "3px" }}
+                  >
                     <span className="d-flex align-items-center">
                       Delivery address:
                       <h6 className="m-0 ml-1">{Order.deliveryAddress}</h6>
                     </span>
-                    <span className="d-flex align-items-center">
+                    <span className="d-flex align-items-center flex-wrap">
                       Delivery code/number:{" "}
                       <h6 className="m-0 ml-1">
                         {Order.deliveryCodeTracking
@@ -187,9 +166,59 @@ function Order() {
                           : "-"}
                       </h6>
                     </span>
+                    <span className="d-flex align-items-center mt-3">
+                      Order created at:{" "}
+                      <h6 className="m-0 ml-2 text-muted">
+                        {dateFormat(Order.createdAt)}
+                      </h6>
+                    </span>
                   </div>
-                  <br />
-                  <Divider />
+                  <hr />
+                  <div
+                    className="d-flex justify-content-between flex-wrap w-100 p-1"
+                    style={{ backgroundColor: "white", borderRadius: "3px" }}
+                  >
+                    <span className="d-flex align-items-center">
+                      {" "}
+                      Total cost:{" "}
+                      <h6 className="m-0 ml-1">{Order.totalCost}£</h6>
+                    </span>
+                    <span className="d-flex align-items-center ml-auto mr-4 font-weight-bold">
+                      Completed:{" "}
+                      {Order.completed ? (
+                        <CheckCircleOutlineIcon
+                          color="success"
+                          fontSize="large"
+                        />
+                      ) : (
+                        <CancelIcon color="warning" fontSize="medium" />
+                      )}
+                    </span>
+                    <span className="d-flex align-items-center font-weight-bold">
+                      Paid:{" "}
+                      {Order.paid ? (
+                        <CheckCircleOutlineIcon
+                          color="success"
+                          fontSize="medium"
+                        />
+                      ) : (
+                        <CancelIcon color="warning" fontSize="medium" />
+                      )}
+                    </span>
+                    {!Order.paid && (
+                      <Button
+                        className="ml-3"
+                        variant="contained"
+                        color="info"
+                        onClick={() => {
+                          window.location.href = `${process.env.REACT_APP_FETCHURL}/order/checkout-session/${Order._id}`;
+                        }}
+                      >
+                        Pay now!
+                      </Button>
+                    )}
+                  </div>{" "}
+                  <hr />
                   <div className="d-flex justify-content-center align-items-center w-100">
                     <DeleteOrder id={Order._id} />{" "}
                   </div>

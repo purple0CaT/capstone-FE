@@ -52,7 +52,11 @@ function DeleteOrder({ id }: any) {
   };
   return (
     <>
-      <Button onClick={() => setShowConfirmModal(true)} color="warning">
+      <Button
+        variant="outlined"
+        onClick={() => setShowConfirmModal(true)}
+        color="warning"
+      >
         Cancel Order
       </Button>
       <Dialog
