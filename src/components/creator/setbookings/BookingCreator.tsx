@@ -122,7 +122,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
           </div>
           <hr className="w-100" />
           <div className="d-flex flex-column align-items-center">
-            <h5 className="text-muted">Approved bookings</h5>
+            <h5 className="text-muted">Approved appointments</h5>
             <div
               className="d-flex p-1 w-100"
               style={{ gap: "1rem", overflowX: "scroll" }}
