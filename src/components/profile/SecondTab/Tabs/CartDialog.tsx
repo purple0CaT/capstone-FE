@@ -84,7 +84,7 @@ function CartDialog({ I, allPosts }: any) {
               <h5 className="text-muted m-0">{ItemQty}</h5>
               <IconButton
                 onClick={() => {
-                  if (ItemQty < 10) {
+                  if (ItemQty < I.quantity) {
                     setItemQty(ItemQty + 1);
                   }
                 }}

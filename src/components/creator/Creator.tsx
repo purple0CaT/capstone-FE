@@ -3,7 +3,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  LinearProgress
+  LinearProgress,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -23,9 +23,13 @@ function Creator() {
   const total2 = myTotalEarnings
     ?.map((OR: any) => OR?.map((IT: any) => IT.item.price * IT.qty))
     .flat();
-  const totalEarnings = total2?.reduce(
-    (previousValue: any, currentValue: any) => previousValue + currentValue,
-  );
+  const totalEarnings =
+    total2?.length > 0
+      ? total2.reduce(
+          (previousValue: any, currentValue: any) =>
+            previousValue + currentValue,
+        )
+      : 0;
   //
   const fetchCreator = async () => {
     setLoading(true);

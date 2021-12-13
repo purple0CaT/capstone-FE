@@ -79,7 +79,8 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       <Grid item xs={12} md={7}>
         <div className="creatorCard">
           <div className="d-flex flex-column align-items-center">
-            <h5 className="text-muted">Pending bookings</h5>
+            {/* =================================================== PENDING APPOINTMENTS */}
+            <h5 className="text-muted">Pending appointments</h5>
             <div
               className="d-flex p-1 w-100"
               style={{ gap: "1rem", overflowX: "scroll" }}
@@ -87,7 +88,8 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
               {FetchedCreator?.booking &&
                 FetchedCreator.booking.appointments.map(
                   (AP: any) =>
-                    !AP.confirmed && (
+                    !AP.confirmed &&
+                    new Date(AP.appointmentEnd) >= new Date() && (
                       <div className="creatorItemCard" key={AP._id + "lsls"}>
                         <span className="d-flex align-items-center font-weight-bold">
                           <small className="mr-1">id: </small> {AP._id}
@@ -128,7 +130,8 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
               {FetchedCreator?.booking &&
                 FetchedCreator.booking.appointments.map(
                   (AP: any) =>
-                    AP.confirmed && (
+                    AP.confirmed &&
+                    new Date(AP.appointmentEnd) >= new Date() && (
                       <div className="creatorItemCard" key={AP._id + "zcsf"}>
                         <span className="d-flex align-items-center font-weight-bold">
                           <small className="mr-1">id: </small> {AP._id}
@@ -152,6 +155,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                 )}
             </div>
           </div>
+          {/* =================================================== Your Availability */}
           <hr className="w-100" />
           <h5 className="text-muted text-center">Your Availability</h5>
           <div
@@ -203,6 +207,44 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                 <h5 className="text-center text-muted">No availability set!</h5>
               </div>
             )}
+          </div>
+          <hr className="w-100" />
+          <div className="d-flex flex-column align-items-center">
+            <h5 className="text-muted">Appointments Archive</h5>
+            <div
+              className="d-flex p-1 w-100"
+              style={{ gap: "1rem", overflowX: "scroll" }}
+            >
+              {FetchedCreator?.booking &&
+                FetchedCreator.booking.appointments.map(
+                  (AP: any) =>
+                    new Date(AP.appointmentEnd) <= new Date() && (
+                      <div className="creatorItemCard" key={AP._id + "zcsf"}>
+                        <span className="d-flex align-items-center font-weight-bold">
+                          <small className="mr-1">id: </small> {AP._id}
+                        </span>
+                        <Link to={`/profile/${AP.user}`}>User profile</Link>{" "}
+                        <h6 className="my-2">
+                          {dateFormat(
+                            AP.appointmentDate,
+                            "mmm d, yyyy |  HH:MM ",
+                          )}
+                          {dateFormat(AP.appointmentEnd, "- HH:MM")}
+                        </h6>
+                        <div className="d-flex align-items-center justify-content-between w-100">
+                          <div className="d-flex align-items-center">
+                            <h6 className="m-0">Confirmed: </h6>
+                            {AP.confirmed ? (
+                              <CheckCircleOutlineIcon color="success" />
+                            ) : (
+                              <CancelIcon color="warning" />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ),
+                )}
+            </div>
           </div>
         </div>
       </Grid>
