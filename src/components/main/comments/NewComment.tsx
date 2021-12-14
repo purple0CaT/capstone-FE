@@ -43,7 +43,7 @@ function NewComment({ postId, reFetch }: any) {
   };
   return (
     <div className="px-4">
-      <form onSubmit={sendComment} className="d-flex align-items-center">
+      <form onSubmit={sendComment} className="d-flex align-items-baseline">
         <div className='d-flex align-items-center w-100'>
           <div className='mt-auto position-relative'>
             {!ShowEmoji ? (
