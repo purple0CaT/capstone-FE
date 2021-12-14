@@ -30,7 +30,7 @@ export const inititalState = {
       orders: [],
     },
   },
-  shop: { cart: [null], orders: [null] },
+  shop: { cart: [], orders: [] },
   tokens: {
     accessToken: "",
     refreshToken: "",
