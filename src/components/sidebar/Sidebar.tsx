@@ -122,9 +122,7 @@ function Sidebar({ toggleDrawer }: any) {
                 alt=""
               /> */}
             </div>
-            <h6 className="m-0 my-auto ml-3 text-muted">
-              {user.firstname} {user.lastname}
-            </h6>
+            <h6 className="m-0 my-auto ml-3 text-muted">{user.firstname}</h6>
           </Link>
         </ListItem>
         <br />

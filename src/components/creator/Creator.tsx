@@ -63,42 +63,40 @@ function Creator() {
         <LinearProgress />
       ) : (
         <div className="cardWrapper">
-          {/* <Accordion>
+          <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-            > */}
-          <br />
-          <h3 className="text-center text-muted">Booking</h3>
-          {/* </AccordionSummary>
+              className="m-0"
+            >
+              <h3 className="text-center text-muted m-0">Booking</h3>
+            </AccordionSummary>
             <AccordionDetails
               style={{ backgroundColor: "#f2f2f2" }}
               className="p-1"
             >
-          */}
-          <BookingCreator
-            FetchedCreator={FetchedCreator}
-            reFetch={fetchCreator}
-          />
-          {/*
+              <BookingCreator
+                FetchedCreator={FetchedCreator}
+                reFetch={fetchCreator}
+              />
             </AccordionDetails>
-          </Accordion> */}
-          {/* <hr className="w-100" /> */}
-          {/* <Accordion>
+          </Accordion>
+          <hr className="w-100" />
+          {/*<Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-            > */}
+            >
           <br />
           <br />
-          <h3 className="text-center text-muted">Store</h3>
           {/* </AccordionSummary>
             <AccordionDetails
               style={{ backgroundColor: "#f2f2f2" }}
               className="p-1"
             > */}
+          <h3 className="text-center text-muted">Store</h3>
           <StoreSet FetchedCreator={FetchedCreator} reFetch={fetchCreator} />
           {/* </AccordionDetails>
           </Accordion> */}
@@ -110,7 +108,7 @@ function Creator() {
               id="panel1a-header"
             >
               <div className="d-flex justify-content-between align-items-center w-100">
-                <h4 className="text-center text-muted">Orders</h4>
+                <h4 className="text-center text-muted m-0">Orders</h4>
                 <span className="d-flex">
                   Total earnings: <h5 className="ml-1">{totalEarnings}£</h5>
                 </span>

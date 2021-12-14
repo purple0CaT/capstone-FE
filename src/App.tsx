@@ -68,7 +68,7 @@ function App() {
                       <Main />
                     </Col>
                     {matches ? (
-                      <Col md="3">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -187,7 +187,7 @@ function App() {
                       <MainMess />
                     </Col>
                     {matches ? (
-                      <Col md="3">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -226,7 +226,7 @@ function App() {
                       <Cart />
                     </Col>
                     {matches ? (
-                      <Col md="3">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -265,7 +265,7 @@ function App() {
                       <Order />
                     </Col>
                     {matches ? (
-                      <Col md="3" className="p-0 pr-2">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -304,7 +304,7 @@ function App() {
                       <Settings />
                     </Col>
                     {matches ? (
-                      <Col md="3" className="p-0 pr-2">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -352,7 +352,7 @@ function App() {
                       <Creator />
                     </Col>
                     {matches ? (
-                      <Col md="3" className="p-0 pr-2">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -391,7 +391,7 @@ function App() {
                       <MyBooking />
                     </Col>
                     {matches ? (
-                      <Col md="3">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -430,7 +430,7 @@ function App() {
                       <PayOrder />
                     </Col>
                     {matches ? (
-                      <Col md="3">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>

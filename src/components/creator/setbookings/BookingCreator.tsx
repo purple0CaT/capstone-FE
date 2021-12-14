@@ -76,8 +76,8 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
   };
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={8}>
-        <div className="creatorCard">
+      <Grid item xs={12}>
+        <div className="">
           <div className="d-flex flex-column align-items-center">
             {/* =================================================== PENDING APPOINTMENTS */}
             <br />
@@ -214,9 +214,9 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
           <br />
         </div>
       </Grid>
-      <Grid item xs={12} md={4}>
+      {/* =================================================== Your Availability */}
+      <Grid item xs={12} md={8}>
         <div className="creatorCard">
-          {/* =================================================== Your Availability */}
           <br />
           <h5 className="text-muted text-center">Your Availability</h5>
           <div
@@ -275,9 +275,13 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
               </div>
             )}
           </div>
-          <hr className="w-100" />
+        </div>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        {/* <hr className="w-100" /> */}
+        <div className="creatorCard">
           <div className="d-flex flex-column align-items-center w-100">
-            <br />
+            {/* <br /> */}
             <h5 className="text-center text-muted">Set availability</h5>
             <Calendar
               minDate={new Date()}
