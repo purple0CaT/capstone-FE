@@ -200,14 +200,14 @@ function Sidebar({ toggleDrawer }: any) {
           <NavLink
             exact
             activeClassName="selectedNavb"
-            to="/storeorders"
+            to="/admin"
             className="sidebar-link"
           >
             <ListItem button>
               <ListItemIcon>
                 <EventAvailableIcon />
               </ListItemIcon>
-              <h6 className="text-muted m-0">Store orders</h6>
+              <h6 className="text-muted m-0">Admin orders</h6>
             </ListItem>
           </NavLink>
         )}

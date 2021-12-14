@@ -5,6 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Admin from "./components/admin/Admin";
 import Login from "./components/authorization/Login";
 import Register from "./components/authorization/Register";
 import MyBooking from "./components/bookings/MyBooking";
@@ -389,6 +390,45 @@ function App() {
                   <>
                     <Col xs="12" md="9" className="w-100">
                       <MyBooking />
+                    </Col>
+                    {matches ? (
+                      <Col md="3" className="pr-4">
+                        <div className="sidebarWraper">
+                          <Sidebar />
+                        </div>
+                      </Col>
+                    ) : (
+                      <>
+                        <Drawer
+                          sx={{
+                            backdropFilter: "blur(2px)",
+                          }}
+                          anchor="right"
+                          open={SideBar}
+                          onClose={toggleDrawer}
+                        >
+                          <>
+                            <div className="navbar d-flex align-items-center side-drawer">
+                              <ChevronRightIcon
+                                fontSize="large"
+                                onClick={toggleDrawer}
+                              />
+                            </div>
+                          </>
+                          <Sidebar toggleDrawer={toggleDrawer} />
+                        </Drawer>
+                      </>
+                    )}
+                  </>
+                )}
+              />
+              <Route
+                path="/admin"
+                exact
+                render={() => (
+                  <>
+                    <Col xs="12" md="9" className="w-100">
+                      <Admin />
                     </Col>
                     {matches ? (
                       <Col md="3" className="pr-4">
