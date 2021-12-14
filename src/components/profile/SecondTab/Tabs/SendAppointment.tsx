@@ -47,7 +47,6 @@ function SendAppointment({ appInfo, creator }: any) {
         Create Appointment
       </Button>
       <Dialog open={ShowDialog} onClose={() => setShowDialog(false)}>
-        {" "}
         <div className="p-3 d-flex flex-column align-items-center">
           <h5 className="text-muted"> Confirm appointment</h5>{" "}
           <hr className="w-100" />

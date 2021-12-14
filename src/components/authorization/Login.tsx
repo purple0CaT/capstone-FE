@@ -17,7 +17,7 @@ function Login() {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   //
-  const handleSubmit = async (e:  React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -51,7 +51,16 @@ function Login() {
   }, []);
   //
   return (
-    <div className=" h-75 w-100 d-flex justify-content-center align-items-center">
+    <div className=" h-75 w-100 d-flex flex-column justify-content-center align-items-center">
+      <br />
+      <br />
+      <div className="w-100 d-flex justify-content-center h-50 mt-3">
+        <img
+          src="./sandorawLogo.png"
+          alt="Logo"
+          style={{ width: "20rem", aspectRatio: "1/1", marginRight: "0.4rem" }}
+        />
+      </div>
       <div className="loginCard">
         <h5 className="mx-auto">Login</h5>
         <Form onSubmit={handleSubmit} className="d-flex flex-column">

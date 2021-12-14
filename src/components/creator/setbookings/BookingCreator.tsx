@@ -3,7 +3,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { LoadingButton } from "@mui/lab";
-import { Button, Grid, IconButton } from "@mui/material";
+import { Button, Divider, Grid, IconButton } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useState } from "react";
 import Calendar from "react-calendar";
@@ -155,59 +155,6 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                 )}
             </div>
           </div>
-          {/* =================================================== Your Availability */}
-          <hr className="w-100" />
-          <h5 className="text-muted text-center">Your Availability</h5>
-          <div
-            className="d-flex p-1 w-100"
-            style={{ gap: "1rem", overflowX: "scroll" }}
-          >
-            {FetchedCreator?.booking.availability.length > 0 ? (
-              FetchedCreator.booking.availability.map(
-                (A: any) =>
-                  new Date(A.end) >= new Date() && (
-                    <div
-                      className="availItemBook text-center"
-                      key={A._id + "kcvs"}
-                    >
-                      <h6 className="m-0 text-muted">
-                        {dateFormat(A.start, "mmm dd yyyy | HH:MM")} -
-                        {dateFormat(A.end, "HH:MM")}
-                      </h6>
-                      <div>
-                        {FetchedCreator.booking.appointments.map((APP: any) => {
-                          if (
-                            A.start <= APP.appointmentDate &&
-                            A.end >= APP.appointmentEnd &&
-                            APP.confirmed
-                          ) {
-                            return (
-                              <div
-                                className="d-flex flex-column align-items-center"
-                                key={APP._id + "pfpf"}
-                              >
-                                <small className="text-muted">
-                                  Booked Appointment
-                                </small>
-                                <p className="m-0">
-                                  {dateFormat(APP.appointmentDate, "HH:MM")} -{" "}
-                                  {dateFormat(APP.appointmentEnd, "HH:MM")}
-                                </p>
-                              </div>
-                            );
-                          }
-                        })}
-                      </div>
-                    </div>
-                  ),
-              )
-            ) : (
-              <div>
-                <br />
-                <h5 className="text-center text-muted">No availability set!</h5>
-              </div>
-            )}
-          </div>
           <hr className="w-100" />
           <div className="d-flex flex-column align-items-center">
             <h5 className="text-muted">Appointments Archive</h5>
@@ -250,6 +197,60 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       </Grid>
       <Grid item xs={12} md={5}>
         <div className="creatorCard">
+          {/* =================================================== Your Availability */}
+          <h5 className="text-muted text-center">Your Availability</h5>
+          <div
+            className="d-flex p-1 w-100"
+            style={{ gap: "1rem", overflowX: "scroll" }}
+          >
+            {FetchedCreator?.booking.availability.length > 0 ? (
+              FetchedCreator.booking.availability.map(
+                (A: any) =>
+                  new Date(A.end) >= new Date() && (
+                    <div
+                      className="availItemBook text-center"
+                      key={A._id + "kcvs"}
+                    >
+                      <h6 className="m-0 text-muted">
+                        {dateFormat(A.start, "mmm dd yyyy | HH:MM")} -
+                        {dateFormat(A.end, "HH:MM")}
+                      </h6>
+                      <div>
+                        <Divider className="w-100" />
+                        {FetchedCreator.booking.appointments.map((APP: any) => {
+                          if (
+                            A.start <= APP.appointmentDate &&
+                            A.end >= APP.appointmentEnd &&
+                            APP.confirmed
+                          ) {
+                            return (
+                              <div
+                                className="d-flex flex-column align-items-center"
+                                key={APP._id + "pfpf"}
+                              >
+                                <small className="text-muted">
+                                  Booked Appointment
+                                </small>
+                                <p className="m-0">
+                                  {dateFormat(APP.appointmentDate, "HH:MM")} -{" "}
+                                  {dateFormat(APP.appointmentEnd, "HH:MM")}
+                                </p>
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
+                    </div>
+                  ),
+              )
+            ) : (
+              <div>
+                <br />
+                <h5 className="text-center text-muted">No availability set!</h5>
+              </div>
+            )}
+          </div>
+          <hr className="w-100" />
           <div className="d-flex flex-column align-items-center w-100">
             <h5 className="text-center text-muted">Set availability</h5>
             <Calendar
