@@ -52,7 +52,7 @@ function App() {
             onClick={toggleDrawer}
           />
         </div>
-        <Container fluid className="main-container">
+        <Container fluid="xl" className="main-container">
           <Row className="h-100">
             {/* SWITCH CASE */}
             <Switch>
@@ -64,11 +64,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <Main />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -104,11 +104,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <Profile />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -183,11 +183,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <MainMess />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -222,11 +222,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <Cart />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -261,11 +261,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <Order />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3" className="p-0 pr-2">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -300,11 +300,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <Settings />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3" className="p-0 pr-2">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -348,11 +348,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <Creator />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3" className="p-0 pr-2">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -387,11 +387,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <MyBooking />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -426,11 +426,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <PayOrder />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
@@ -465,11 +465,11 @@ function App() {
                 exact
                 render={() => (
                   <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
+                    <Col xs="12" md="9" className="w-100">
                       <SuccessOrder />
                     </Col>
                     {matches ? (
-                      <Col md="3" xl="2" className="p-0 pr-2">
+                      <Col md="3" className="">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
