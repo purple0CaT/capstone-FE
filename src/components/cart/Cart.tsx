@@ -69,7 +69,6 @@ function Cart() {
   //
   useEffect(() => {
     setItemsCart(shop.cart);
-    console.log(shop.cart);
   }, []);
   return (
     <>

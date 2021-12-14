@@ -72,7 +72,7 @@ function Settings() {
             >
               <TextField
                 className="my-1"
-                id="standard-error-helper-text"
+                id="old-pass"
                 label="Old password"
                 type="password"
                 // helperText="Incorrect entry."
@@ -90,7 +90,7 @@ function Settings() {
                   ChangePassword.repeat === ChangePassword.pass ? false : true
                 }
                 type="password"
-                id="standard-error-helper-text"
+                id="new-pass"
                 label="New password"
                 variant="standard"
                 value={ChangePassword.pass}
@@ -108,7 +108,7 @@ function Settings() {
                 error={
                   ChangePassword.repeat === ChangePassword.pass ? false : true
                 }
-                id="standard-error-helper-text"
+                id="repeat-pass"
                 label="Repeat password"
                 variant="standard"
                 value={ChangePassword.repeat}
@@ -138,7 +138,7 @@ function Settings() {
               type="email"
               className="my-1"
               error={ChangeEmail.old === ChangeEmail.new ? false : true}
-              id="standard-error-helper-text"
+              id="email-change"
               label="Old email"
               variant="standard"
               value={ChangeEmail.old}
@@ -153,7 +153,7 @@ function Settings() {
               type="email"
               className="my-1"
               error={ChangeEmail.old === ChangeEmail.new ? false : true}
-              id="standard-error-helper-text"
+              id="new-email"
               label="New email"
               variant="standard"
               value={ChangeEmail.new}
