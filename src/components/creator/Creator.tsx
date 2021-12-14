@@ -3,7 +3,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  LinearProgress
+  LinearProgress,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -63,43 +63,45 @@ function Creator() {
         <LinearProgress />
       ) : (
         <div className="cardWrapper">
-          <Accordion>
+          {/* <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-            >
-              <h4 className="text-center text-muted">Booking</h4>
-            </AccordionSummary>
+            > */}
+          <br />
+          <h3 className="text-center text-muted">Booking</h3>
+          {/* </AccordionSummary>
             <AccordionDetails
               style={{ backgroundColor: "#f2f2f2" }}
               className="p-1"
             >
-              <BookingCreator
-                FetchedCreator={FetchedCreator}
-                reFetch={fetchCreator}
-              />
+          */}
+          <BookingCreator
+            FetchedCreator={FetchedCreator}
+            reFetch={fetchCreator}
+          />
+          {/*
             </AccordionDetails>
-          </Accordion>
-          <hr className="w-100" />
-          <Accordion>
+          </Accordion> */}
+          {/* <hr className="w-100" /> */}
+          {/* <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-            >
-              <h4 className="text-center text-muted">Store</h4>
-            </AccordionSummary>
+            > */}
+          <br />
+          <br />
+          <h3 className="text-center text-muted">Store</h3>
+          {/* </AccordionSummary>
             <AccordionDetails
               style={{ backgroundColor: "#f2f2f2" }}
               className="p-1"
-            >
-              <StoreSet
-                FetchedCreator={FetchedCreator}
-                reFetch={fetchCreator}
-              />
-            </AccordionDetails>
-          </Accordion>
+            > */}
+          <StoreSet FetchedCreator={FetchedCreator} reFetch={fetchCreator} />
+          {/* </AccordionDetails>
+          </Accordion> */}
           <hr />
           <Accordion>
             <AccordionSummary

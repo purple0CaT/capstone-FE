@@ -10,14 +10,17 @@ function StoreSet({ FetchedCreator, reFetch }: any) {
   return (
     <div>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={8}>
           <div className="d-flex flex-column p-1 py-2 creatorCard">
+            <br />
             <h5 className="text-muted text-center">Items in my store</h5>
             <div
               className="d-flex p-1"
               style={{
                 overflowX: "scroll",
                 gap: "1rem",
+                borderRight: "1px solid Gainsboro",
+                borderLeft: "1px solid Gainsboro",
               }}
             >
               {FetchedCreator?.shop &&
@@ -59,7 +62,7 @@ function StoreSet({ FetchedCreator, reFetch }: any) {
             </div>
           </div>
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={4}>
           <CreateItem reFetch={reFetch} />
         </Grid>
       </Grid>

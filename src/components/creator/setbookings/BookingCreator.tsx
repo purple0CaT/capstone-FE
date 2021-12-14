@@ -76,14 +76,20 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
   };
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={7}>
+      <Grid item xs={12} md={8}>
         <div className="creatorCard">
           <div className="d-flex flex-column align-items-center">
             {/* =================================================== PENDING APPOINTMENTS */}
+            <br />
             <h5 className="text-muted">Pending appointments</h5>
             <div
               className="d-flex p-1 w-100"
-              style={{ gap: "1rem", overflowX: "scroll" }}
+              style={{
+                gap: "1rem",
+                overflowX: "scroll",
+                borderRight: "1px solid Gainsboro",
+                borderLeft: "1px solid Gainsboro",
+              }}
             >
               {FetchedCreator?.booking &&
                 FetchedCreator.booking.appointments.map(
@@ -122,10 +128,16 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
           </div>
           <hr className="w-100" />
           <div className="d-flex flex-column align-items-center">
+            <br />
             <h5 className="text-muted">Approved appointments</h5>
             <div
               className="d-flex p-1 w-100"
-              style={{ gap: "1rem", overflowX: "scroll" }}
+              style={{
+                gap: "1rem",
+                overflowX: "scroll",
+                borderRight: "1px solid Gainsboro",
+                borderLeft: "1px solid Gainsboro",
+              }}
             >
               {FetchedCreator?.booking &&
                 FetchedCreator.booking.appointments.map(
@@ -157,10 +169,16 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
           </div>
           <hr className="w-100" />
           <div className="d-flex flex-column align-items-center">
+            <br />
             <h5 className="text-muted">Appointments Archive</h5>
             <div
               className="d-flex p-1 w-100"
-              style={{ gap: "1rem", overflowX: "scroll" }}
+              style={{
+                gap: "1rem",
+                overflowX: "scroll",
+                borderRight: "1px solid Gainsboro",
+                borderLeft: "1px solid Gainsboro",
+              }}
             >
               {FetchedCreator?.booking &&
                 FetchedCreator.booking.appointments.map(
@@ -193,15 +211,22 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                 )}
             </div>
           </div>
+          <br />
         </div>
       </Grid>
-      <Grid item xs={12} md={5}>
+      <Grid item xs={12} md={4}>
         <div className="creatorCard">
           {/* =================================================== Your Availability */}
+          <br />
           <h5 className="text-muted text-center">Your Availability</h5>
           <div
             className="d-flex p-1 w-100"
-            style={{ gap: "1rem", overflowX: "scroll" }}
+            style={{
+              gap: "1rem",
+              overflowX: "scroll",
+              borderRight: "1px solid Gainsboro",
+              borderLeft: "1px solid Gainsboro",
+            }}
           >
             {FetchedCreator?.booking.availability.length > 0 ? (
               FetchedCreator.booking.availability.map(
@@ -211,7 +236,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                       className="availItemBook text-center"
                       key={A._id + "kcvs"}
                     >
-                      <h6 className="m-0 text-muted">
+                      <h6 className="m-0">
                         {dateFormat(A.start, "mmm dd yyyy | HH:MM")} -
                         {dateFormat(A.end, "HH:MM")}
                       </h6>
@@ -252,6 +277,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
           </div>
           <hr className="w-100" />
           <div className="d-flex flex-column align-items-center w-100">
+            <br />
             <h5 className="text-center text-muted">Set availability</h5>
             <Calendar
               minDate={new Date()}
@@ -317,7 +343,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
               </div>
               <div className="d-flex w-100 justify-content-center">
                 <h5 className="text-muted">
-                  {AvailabEnd.getHours() - AvailabDate.getHours()} hours
+                  {AvailabEnd.getHours() - AvailabDate.getHours()} h
                 </h5>
               </div>
               {/* ============================== END HOURS  */}

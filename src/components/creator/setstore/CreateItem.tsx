@@ -54,107 +54,108 @@ function CreateItem({ reFetch }: any) {
     }
   };
   return (
-    <div>
-      <form className="d-flex flex-column creatorCard" onSubmit={createItem} style={{ backgroundColor: "white" }}>
-        <h5 className="text-center text-muted">Add new item</h5>
-        <div className="w-100 d-flex justify-content-center">
-          {ImgPrev ? (
-            <div className="position-relative">
-              <img src={ImgPrev} alt="" style={{ width: "100%" }} />
-              <div
-                className="delete-img-button"
-                onClick={() => {
-                  setItemImage();
-                  setImgPrev();
-                }}
+    <form
+      className="d-flex flex-column creatorCard p-3"
+      onSubmit={createItem}
+      style={{ backgroundColor: "white" }}
+    >
+      <br />
+      <h5 className="text-center text-muted">Add new item</h5>
+      <div className="w-100 d-flex justify-content-center">
+        {ImgPrev ? (
+          <div className="position-relative">
+            <img src={ImgPrev} alt="" style={{ width: "100%" }} />
+            <div
+              className="delete-img-button"
+              onClick={() => {
+                setItemImage();
+                setImgPrev();
+              }}
+            >
+              <IconButton
+                className="p-1"
+                color="warning"
+                aria-label="upload picture"
+                component="span"
               >
-                <IconButton
-                  className="p-1"
-                  color="warning"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <HighlightOffIcon />
-                </IconButton>
-              </div>
+                <HighlightOffIcon />
+              </IconButton>
             </div>
-          ) : (
-            <>
-              <input
-                id="createItemImg"
-                className="d-none"
-                type="file"
-                accept="image/*"
-                required
-                style={{ display: "none" }}
-                onChange={imageHandler}
-              />
-              <label htmlFor="createItemImg">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <AddPhotoAlternateIcon fontSize="large" />
-                </IconButton>
-              </label>
-            </>
-          )}
-        </div>
-        <TextField
-          required
-          id="standard-required"
-          label="Title"
-          margin="dense"
-          variant="standard"
-          value={ItemForm.title}
-          onChange={(e) => setItemForm({ ...ItemForm, title: e.target.value })}
-        />
-        <TextField
-          required
-          id="standard-required"
-          label="Descrition"
-          margin="dense"
-          variant="standard"
-          value={ItemForm.description}
-          onChange={(e) =>
-            setItemForm({ ...ItemForm, description: e.target.value })
-          }
-        />
-        <TextField
-          required
-          type="number"
-          id="standard-required"
-          label="Quantity"
-          margin="dense"
-          variant="standard"
-          value={ItemForm.quantity}
-          onChange={(e) =>
-            setItemForm({ ...ItemForm, quantity: e.target.value })
-          }
-        />
-        <TextField
-          required
-          type="number"
-          id="standard-required"
-          label="Price"
-          margin="dense"
-          variant="standard"
-          value={ItemForm.price}
-          onChange={(e) => setItemForm({ ...ItemForm, price: e.target.value })}
-        />
+          </div>
+        ) : (
+          <>
+            <input
+              id="createItemImg"
+              className="d-none"
+              type="file"
+              accept="image/*"
+              required
+              style={{ display: "none" }}
+              onChange={imageHandler}
+            />
+            <label htmlFor="createItemImg">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <AddPhotoAlternateIcon fontSize="large" />
+              </IconButton>
+            </label>
+          </>
+        )}
+      </div>
+      <TextField
+        required
+        id="standard-required"
+        label="Title"
+        margin="dense"
+        variant="standard"
+        value={ItemForm.title}
+        onChange={(e) => setItemForm({ ...ItemForm, title: e.target.value })}
+      />
+      <TextField
+        required
+        id="standard-required"
+        label="Descrition"
+        margin="dense"
+        variant="standard"
+        value={ItemForm.description}
+        onChange={(e) =>
+          setItemForm({ ...ItemForm, description: e.target.value })
+        }
+      />
+      <TextField
+        required
+        type="number"
+        id="standard-required"
+        label="Quantity"
+        margin="dense"
+        variant="standard"
+        value={ItemForm.quantity}
+        onChange={(e) => setItemForm({ ...ItemForm, quantity: e.target.value })}
+      />
+      <TextField
+        required
+        type="number"
+        id="standard-required"
+        label="Price"
+        margin="dense"
+        variant="standard"
+        value={ItemForm.price}
+        onChange={(e) => setItemForm({ ...ItemForm, price: e.target.value })}
+      />
 
-        <br />
-        <LoadingButton
-          type="submit"
-          variant="outlined"
-          color="info"
-          loading={Loading}
-        >
-          Create
-        </LoadingButton>
-      </form>
-    </div>
+      <br />
+      <LoadingButton
+        type="submit"
+        variant="outlined"
+        color="info"
+        loading={Loading}
+      >
+        Create
+      </LoadingButton>
+    </form>
   );
 }
 
