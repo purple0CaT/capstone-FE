@@ -108,7 +108,7 @@ function App() {
                       <Profile />
                     </Col>
                     {matches ? (
-                      <Col md="3">
+                      <Col md="3" className="pr-4">
                         <div className="sidebarWraper">
                           <Sidebar />
                         </div>
