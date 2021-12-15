@@ -69,7 +69,13 @@ function EditItemStore({ itemInfo, reFetch }: any) {
       <IconButton onClick={() => setShowEdit(true)}>
         <EditIcon />
       </IconButton>
-      <Dialog open={ShowEdit} onClose={() => setShowEdit(false)}>
+      <Dialog
+        open={ShowEdit}
+        onClose={() => setShowEdit(false)}
+        sx={{
+          backdropFilter: "blur(2px)",
+        }}
+      >
         <form
           className="d-flex flex-column creatorCard p-4"
           onSubmit={updateItem}

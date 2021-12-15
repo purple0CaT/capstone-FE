@@ -33,7 +33,13 @@ function DeleteItem({ item, reFetch }: any) {
       <IconButton color="warning" onClick={() => setShowDelete(true)}>
         <DeleteIcon />
       </IconButton>
-      <Dialog open={ShowDelete} onClose={() => setShowDelete(false)}>
+      <Dialog
+        open={ShowDelete}
+        onClose={() => setShowDelete(false)}
+        sx={{
+          backdropFilter: "blur(2px)",
+        }}
+      >
         <div className="p-3 d-flex flex-column w-100">
           <h5 className="text-center text-muted">Delete this item?</h5>
           <hr className="w-100" />

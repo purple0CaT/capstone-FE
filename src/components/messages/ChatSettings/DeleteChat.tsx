@@ -44,7 +44,13 @@ function DeleteChat({ closeSettings }: any) {
       <h5 onClick={() => setDeleteModal(true)} className="btn btn-danger">
         DELETE CHAT
       </h5>
-      <Dialog open={DeleteModal} onClose={handleClose}>
+      <Dialog
+        open={DeleteModal}
+        onClose={handleClose}
+        sx={{
+          backdropFilter: "blur(2px)",
+        }}
+      >
         {" "}
         <DialogTitle>Are you shure you want to delete these chat?</DialogTitle>
         <DialogActions className="w-100">
