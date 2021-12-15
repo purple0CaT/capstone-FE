@@ -1,5 +1,6 @@
 .profile-page {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   background-color: white;
   overflow: hidden;
@@ -22,10 +23,10 @@
 .user-info {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0.5rem;
+  padding: 1rem;
   align-items: center;
   justify-content: center;
-  margin-left: 3.5rem;
+  /* margin-left: 3.5rem; */
   width: 100%;
 }
 /* SECOND CONTENT CARD */

@@ -1,11 +1,12 @@
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { LoadingButton } from "@mui/lab";
-import { Dialog, Divider, IconButton } from "@mui/material";
+import { Dialog, Divider, IconButton, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 function UpdateBG({ user, reFetch }: any) {
+  const matches = useMediaQuery("(min-width:599px)");
   const tokens = useSelector((state: any) => state.tokens);
   const myUser = useSelector((state: any) => state.user);
   const [MediaImg, setMediaImg]: any = useState();
@@ -68,7 +69,7 @@ function UpdateBG({ user, reFetch }: any) {
         style={{
           width: "100%",
           height: "100%",
-          aspectRatio: "4/3",
+          aspectRatio: matches ? "4/3" : "16/5",
           objectFit: "cover",
           cursor: "pointer",
         }}
