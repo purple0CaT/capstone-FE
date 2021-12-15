@@ -8,41 +8,17 @@ import {
   Button,
   Divider,
   Grid,
-  TextField,
 } from "@mui/material";
 import dateFormat from "dateformat";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import DeleteOrder from "./DeleteOrder";
 //
-function SingleOrder({ Order, reFetch }: any) {
+function SingOrder({ Order, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
-  const [DeliveryCode, setDeliveryCode] = useState("");
   //
-  const confirmItem = async (orderId: string, itemId: string) => {
-    try {
-      const url = `${process.env.REACT_APP_FETCHURL}/order/completeItemDelivery/${orderId}/${itemId}`;
-      const res = await fetch(url, {
-        method: "PUT",
-        body: JSON.stringify({ deliveryCode: DeliveryCode }),
-        headers: {
-          Authorization: `Bearer ${tokens.accessToken}`,
-          "Content-type": "application/json",
-        },
-      });
-      const data = await res.json();
-      if (res.ok) {
-        console.log(data);
-        reFetch();
-      } else {
-        alert("Error!");
-        console.log(res);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <Accordion className="simpleOrder p-0">
       <AccordionSummary
@@ -131,28 +107,6 @@ function SingleOrder({ Order, reFetch }: any) {
                     {I.item.deliveryCode ? I.item.deliveryCode : "-"}
                   </h6>
                 </span>
-                {I.item.sellerId === user._id && !I.item.completed && (
-                  <div className="d-flex align-items-baseline">
-                    <TextField
-                      required
-                      color="info"
-                      variant="standard"
-                      label="Tracking code"
-                      value={DeliveryCode}
-                      size="small"
-                      onChange={(e) => setDeliveryCode(e.target.value)}
-                    />
-                    <Button
-                      disabled={DeliveryCode ? false : true}
-                      onClick={() => confirmItem(Order._id, I.item._id)}
-                      variant="outlined"
-                      className="ml-1"
-                      size="small"
-                    >
-                      Add track
-                    </Button>
-                  </div>
-                )}
               </div>
               <div className="d-flex justify-content-between flex-wrap">
                 <span className="d-flex align-items-center">
@@ -210,6 +164,22 @@ function SingleOrder({ Order, reFetch }: any) {
               <CancelIcon color="warning" fontSize="medium" />
             )}
           </span>
+          {!Order.paid && (
+            <Button
+              className="ml-3"
+              variant="contained"
+              color="info"
+              onClick={() => {
+                window.location.href = `${process.env.REACT_APP_FETCHURL}/order/checkout-session/${Order._id}`;
+              }}
+            >
+              Pay now!
+            </Button>
+          )}
+        </div>
+        <hr />
+        <div className="d-flex justify-content-center align-items-center w-100">
+          <DeleteOrder id={Order._id} />{" "}
         </div>
         <br />
       </AccordionDetails>
@@ -217,4 +187,4 @@ function SingleOrder({ Order, reFetch }: any) {
   );
 }
 
-export default SingleOrder;
+export default SingOrder;

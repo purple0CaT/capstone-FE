@@ -100,7 +100,8 @@ function Creator() {
           <StoreSet FetchedCreator={FetchedCreator} reFetch={fetchCreator} />
           {/* </AccordionDetails>
           </Accordion> */}
-          <hr />
+          <br />
+          <h3 className="text-center text-muted">Orders</h3>
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -121,6 +122,7 @@ function Creator() {
               />
             </AccordionDetails>
           </Accordion>{" "}
+          <br />
         </div>
       )}
     </>
