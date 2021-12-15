@@ -2,7 +2,7 @@ import { Divider, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/actions/action";
-import SingOrder from "./SingOrder";
+import OrderSingleOne from "./OrderSingleOne";
 import "./style.css";
 
 function Order() {
@@ -30,11 +30,8 @@ function Order() {
     }
   };
   //
-  useEffect(() => {
+  const sortingShopOrders = () => {
     fetchUser();
-  }, []);
-  //
-  useEffect(() => {
     if (user.shopping.orders.length > 0) {
       const sorted = user.shopping.orders.sort(function (a: any, b: any) {
         let st: any = new Date(a.createdAt);
@@ -42,21 +39,31 @@ function Order() {
         return en - st;
       });
       setSortOrders(sorted);
-      console.log(sorted);
     }
+  };
+  //
+  useEffect(() => {}, []);
+  //
+  useEffect(() => {
+    sortingShopOrders();
   }, [user]);
   return (
     <Grid container style={{ boxShadow: "0 0 5px grey" }}>
-      <Grid item xs={12} className="orderWrapper">
-        <br />
-        <h4 className="text-muted text-center">My orders</h4>
-        <Divider />
-        {SortOrders.length > 0 &&
-          SortOrders.map((Order: any) => (
-            <SingOrder Order={Order} reFetch={fetchUser} />
+      {SortOrders.length > 0 && (
+        <Grid item xs={12} className="orderWrapper">
+          <br />
+          <h4 className="text-muted text-center">My orders</h4>
+          <Divider />
+          {SortOrders.map((Order: any) => (
+            <OrderSingleOne
+              Order={Order}
+              reFetch={fetchUser}
+              key={"asls" + Order._id}
+            />
           ))}
-        <br />
-      </Grid>
+          <br />
+        </Grid>
+      )}
     </Grid>
   );
 }

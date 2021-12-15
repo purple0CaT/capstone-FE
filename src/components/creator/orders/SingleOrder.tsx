@@ -173,6 +173,15 @@ function SingleOrder({ Order, reFetch }: any) {
           className="d-flex flex-column align-items-center p-2"
           style={{ backgroundColor: "white", borderRadius: "3px" }}
         >
+          <span>
+            Customer page:{" "}
+            <Link
+              to={`/profile/${Order.customerId}`}
+              className="ml-2 font-weight-bold"
+            >
+              {Order.customerId}
+            </Link>
+          </span>
           <span className="d-flex align-items-center">
             Delivery address:
             <h6 className="m-0 ml-1">{Order.deliveryAddress}</h6>
@@ -196,7 +205,7 @@ function SingleOrder({ Order, reFetch }: any) {
           </span>
           <span className="d-flex align-items-center ml-auto mr-4 font-weight-bold">
             Completed:{" "}
-            {!Order.items.some((itm: any) => itm.item.completed === false) ? (
+            {!Order?.items.some((itm: any) => itm.item.completed === false) ? (
               <CheckCircleOutlineIcon color="success" fontSize="medium" />
             ) : (
               <CancelIcon color="warning" fontSize="medium" />

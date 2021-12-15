@@ -16,7 +16,7 @@ function TotalOrders({ reFetch, FetchedCreator }: any) {
   }, [FetchedCreator]);
   return (
     <>
-      {SortOrders &&
+      {SortOrders.length > 0 &&
         SortOrders.map((Order: any) => (
           <SingleOrder
             Order={Order}
