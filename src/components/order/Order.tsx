@@ -42,8 +42,6 @@ function Order() {
     }
   };
   //
-  useEffect(() => {}, []);
-  //
   useEffect(() => {
     sortingShopOrders();
   }, [user]);

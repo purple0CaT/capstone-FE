@@ -18,9 +18,6 @@ import DeleteOrder from "./DeleteOrder";
 function OrderSingleOne({ Order, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
   //
-  useEffect(() => {
-    console.log(Order);
-  }, []);
   return (
     <>
       {Order.items && (
