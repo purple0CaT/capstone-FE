@@ -25,7 +25,15 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
   );
   const tokens = useSelector((state: any) => state.tokens);
   const [Loading, setLoading] = useState(false);
-  //
+  // DISABLE DAYS
+  const tileDisabled = ({ date, view }: any) =>
+    view === "month" &&
+    FetchedCreator?.booking.availability.some(
+      (disabledDate: any) =>
+        date.getFullYear() === new Date(disabledDate.start).getFullYear() &&
+        date.getMonth() === new Date(disabledDate.start).getMonth() &&
+        date.getDate() === new Date(disabledDate.start).getDate(),
+    );
   //
   const setAvailab = async () => {
     setLoading(true);
@@ -81,7 +89,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       <div className="d-flex flex-column align-items-center creatorCard">
         <h5 className="text-muted">Pending appointments</h5>
         <div
-          className="d-flex p-1 w-100"
+          className="d-flex p-1 py-3 w-100"
           style={{
             gap: "1rem",
             overflowX: "scroll",
@@ -126,7 +134,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       <div className="d-flex flex-column align-items-center creatorCard">
         <h5 className="text-muted">Approved appointments</h5>
         <div
-          className="d-flex p-1 w-100"
+          className="d-flex p-1 py-3 w-100"
           style={{
             gap: "1rem",
             overflowX: "scroll",
@@ -164,7 +172,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       <div className="d-flex flex-column align-items-center creatorCard">
         <h5 className="text-muted">Appointments Archive</h5>
         <div
-          className="d-flex p-1 w-100"
+          className="d-flex p-1 py-3 w-100"
           style={{
             gap: "1rem",
             overflowX: "scroll",
@@ -204,7 +212,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       <div className="creatorCard">
         <h5 className="text-muted text-center">Your Availability</h5>
         <div
-          className="d-flex p-1 w-100"
+          className="d-flex p-1 py-3 w-100"
           style={{
             gap: "1rem",
             overflowX: "scroll",
@@ -271,7 +279,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
               {/* ======================================================================= Set availability CALENDAR*/}
               <h5 className="text-center text-muted">Set availability</h5>
               <Calendar
-                minDate={new Date()}
+                minDate={new Date(new Date().setDate(new Date().getDate() + 1))}
                 locale="US"
                 onChange={(date: any) => {
                   let cDate = new Date(date);
@@ -281,98 +289,100 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                   setAvailabEnd(new Date(cDate));
                 }}
                 value={AvailabDate}
-                // tileDisabled={tileDisabled}
+                tileDisabled={tileDisabled}
               />
             </div>
           </Grid>
           {/* =================================================================== SET AVAILABILITY HOURS  */}
           <Grid item xs={12} md={6}>
-            <div className="d-flex justify-content-center flex-column w-100 py-3">
-              <h5 className="text-center">
-                {dateFormat(AvailabDate, "mmm dd yyyy | HH:MM - ")}
-                {AvailabEnd && dateFormat(AvailabEnd, "HH:MM")}
-              </h5>
-            </div>
-            <div className="d-flex justify-content-between w-100">
-              <span>
-                <small>Start at: </small>
-                {AvailabDate?.getHours()}h
-              </span>
-              <span>
-                <small>End at: </small>
-                {AvailabEnd?.getHours()}h
-              </span>
-            </div>
-            <div className="d-flex justify-content-between w-100">
-              {/* ===================== START HOURS */}
-
-              <div className="d-flex align-items-center" style={setHBtns}>
-                <IconButton
-                  onClick={() => {
-                    setAvailabDate(
-                      new Date(
-                        AvailabDate.setHours(AvailabDate.getHours() + 1),
-                      ),
-                    );
-                    if (AvailabDate.getHours() >= AvailabEnd.getHours()) {
-                      AvailabEnd.setHours(AvailabEnd.getHours() + 1);
-                      setAvailabEnd(new Date(AvailabEnd));
-                    }
-                  }}
-                >
-                  <KeyboardArrowUpIcon />
-                </IconButton>{" "}
-                <IconButton
-                  onClick={() =>
-                    setAvailabDate(
-                      new Date(
-                        AvailabDate.setHours(AvailabDate.getHours() - 1),
-                      ),
-                    )
-                  }
-                >
-                  <KeyboardArrowDownIcon />
-                </IconButton>{" "}
-              </div>
-              <div className="d-flex w-100 justify-content-center">
-                <h5 className="text-muted">
-                  {AvailabEnd.getHours() - AvailabDate.getHours()} h
+            <div className="p-4">
+              <div className="d-flex justify-content-center flex-column w-100 py-3">
+                <h5 className="text-center">
+                  {dateFormat(AvailabDate, "mmm dd yyyy | HH:MM - ")}
+                  {AvailabEnd && dateFormat(AvailabEnd, "HH:MM")}
                 </h5>
               </div>
-              {/* ============================== END HOURS  */}
-              <div className="d-flex" style={setHBtns}>
-                <IconButton
-                  onClick={() => {
-                    AvailabEnd.setMinutes(0);
-                    AvailabEnd.setHours(AvailabEnd.getHours() + 1);
-                    setAvailabEnd(new Date(AvailabEnd));
-                  }}
-                >
-                  <KeyboardArrowUpIcon />
-                </IconButton>{" "}
-                <IconButton
-                  onClick={() => {
-                    AvailabEnd.setHours(AvailabEnd.getHours() - 1);
-                    setAvailabEnd(new Date(AvailabEnd));
-                    if (AvailabDate.getHours() >= AvailabEnd.getHours()) {
-                      AvailabDate.setHours(AvailabDate.getHours() - 1);
-                      setAvailabDate(new Date(AvailabDate));
-                    }
-                  }}
-                >
-                  <KeyboardArrowDownIcon />
-                </IconButton>{" "}
+              <div className="d-flex justify-content-between w-100">
+                <span>
+                  <small>Start at: </small>
+                  {AvailabDate?.getHours()}h
+                </span>
+                <span>
+                  <small>End at: </small>
+                  {AvailabEnd?.getHours()}h
+                </span>
               </div>
-            </div>
-            <hr />
-            <div className="d-flex justify-content-center">
-              <LoadingButton
-                loading={Loading}
-                variant="outlined"
-                onClick={setAvailab}
-              >
-                Set availability
-              </LoadingButton>
+              <div className="d-flex justify-content-between w-100">
+                {/* ===================== START HOURS */}
+
+                <div className="d-flex align-items-center" style={setHBtns}>
+                  <IconButton
+                    onClick={() => {
+                      setAvailabDate(
+                        new Date(
+                          AvailabDate.setHours(AvailabDate.getHours() + 1),
+                        ),
+                      );
+                      if (AvailabDate.getHours() >= AvailabEnd.getHours()) {
+                        AvailabEnd.setHours(AvailabEnd.getHours() + 1);
+                        setAvailabEnd(new Date(AvailabEnd));
+                      }
+                    }}
+                  >
+                    <KeyboardArrowUpIcon />
+                  </IconButton>{" "}
+                  <IconButton
+                    onClick={() =>
+                      setAvailabDate(
+                        new Date(
+                          AvailabDate.setHours(AvailabDate.getHours() - 1),
+                        ),
+                      )
+                    }
+                  >
+                    <KeyboardArrowDownIcon />
+                  </IconButton>{" "}
+                </div>
+                <div className="d-flex w-100 justify-content-center">
+                  <h5 className="text-muted">
+                    {AvailabEnd.getHours() - AvailabDate.getHours()} h
+                  </h5>
+                </div>
+                {/* ============================== END HOURS  */}
+                <div className="d-flex" style={setHBtns}>
+                  <IconButton
+                    onClick={() => {
+                      AvailabEnd.setMinutes(0);
+                      AvailabEnd.setHours(AvailabEnd.getHours() + 1);
+                      setAvailabEnd(new Date(AvailabEnd));
+                    }}
+                  >
+                    <KeyboardArrowUpIcon />
+                  </IconButton>{" "}
+                  <IconButton
+                    onClick={() => {
+                      AvailabEnd.setHours(AvailabEnd.getHours() - 1);
+                      setAvailabEnd(new Date(AvailabEnd));
+                      if (AvailabDate.getHours() >= AvailabEnd.getHours()) {
+                        AvailabDate.setHours(AvailabDate.getHours() - 1);
+                        setAvailabDate(new Date(AvailabDate));
+                      }
+                    }}
+                  >
+                    <KeyboardArrowDownIcon />
+                  </IconButton>{" "}
+                </div>
+              </div>
+              <hr />
+              <div className="d-flex justify-content-center">
+                <LoadingButton
+                  loading={Loading}
+                  variant="outlined"
+                  onClick={setAvailab}
+                >
+                  Set availability
+                </LoadingButton>
+              </div>
             </div>
           </Grid>
         </Grid>

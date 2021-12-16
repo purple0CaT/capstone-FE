@@ -56,6 +56,9 @@ function Creator() {
   //
   useEffect(() => {
     fetchCreator();
+    return () => {
+      setFetchedCreator();
+    };
   }, []);
   return (
     <>

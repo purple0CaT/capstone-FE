@@ -143,7 +143,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
           </div>
           {/*  ============================================================================= NAME BIO  */}
           {FetchedCreator && (
-            <div>
+            <div className="mb-2">
               <small className="font-weight-bold text-muted">
                 {FetchedCreator.creatorType}
               </small>

@@ -59,41 +59,41 @@ function Booking({ creator }: any) {
         <Divider />
         <div className="d-flex p-1 flex-column justify-content-center">
           {creator.booking.availability.length > 0 ? (
-            creator.booking.availability.map((A: any) => (
-              <div
-                className="availabilityCard text-center"
-                key={"3322" + A.end}
-              >
-                <h6 className="m-0 text-muted">
-                  {dateFormat(A.start, "mmm dd yyyy | HH:MM")} -
-                  {dateFormat(A.end, "HH:MM")}
-                </h6>
-                <div>
-                  {creator.booking.appointments.map((APP: any) => {
-                    if (
-                      A.start <= APP.appointmentDate &&
-                      A.end >= APP.appointmentEnd &&
-                      APP.confirmed
-                    ) {
-                      return (
-                        <div
-                          className="d-flex flex-column align-items-center"
-                          key={APP._id + "llkk"}
-                        >
-                          <small className="text-muted">
-                            Booked Appointment
-                          </small>
-                          <p className="m-0">
-                            {dateFormat(APP.appointmentDate, "HH:MM")} -{" "}
-                            {dateFormat(APP.appointmentEnd, "HH:MM")}
-                          </p>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-              </div>
-            ))
+            creator.booking.availability.map(
+              (A: any) =>
+                new Date() <= new Date(A.end) && (
+                  <div
+                    className="availabilityCard text-center"
+                    key={"3322" + A.end}
+                  >
+                    <h6 className="m-0 text-muted">
+                      {dateFormat(A.start, "mmm dd yyyy | HH:MM")} -
+                      {dateFormat(A.end, "HH:MM")}
+                    </h6>
+                    <div>
+                      {creator.booking.appointments.map(
+                        (APP: any) =>
+                          A.start <= APP.appointmentDate &&
+                          A.end >= APP.appointmentEnd &&
+                          APP.confirmed && (
+                            <div
+                              className="d-flex flex-column align-items-center"
+                              key={APP._id + "llkk"}
+                            >
+                              <small className="text-muted">
+                                Booked Appointment
+                              </small>
+                              <p className="m-0">
+                                {dateFormat(APP.appointmentDate, "HH:MM")} -{" "}
+                                {dateFormat(APP.appointmentEnd, "HH:MM")}
+                              </p>
+                            </div>
+                          ),
+                      )}
+                    </div>
+                  </div>
+                ),
+            )
           ) : (
             <div>
               <br />
@@ -126,7 +126,7 @@ function Booking({ creator }: any) {
             >
               {FreeHours.map((Ap: any) => (
                 <div
-                key={Ap+"zxc"}
+                  key={Ap + "zxc"}
                   className={`appointHoursPick ${
                     new Date(CustomDate.appointmentDate).getHours() === Ap &&
                     "appointHoursActive"
