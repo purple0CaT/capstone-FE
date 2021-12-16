@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 //
 const setHBtns = {
   borderRadius: "20px",
@@ -61,10 +62,30 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
       console.log(error);
     }
   };
-  //
+  // ====================================   CONFIRM APPOINTMENT
   const confirmApp = async (id: any) => {
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/booking/appointmentConfirm/${id}`;
+      const res = await fetch(url, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${tokens.accessToken}`,
+        },
+      });
+      if (res.ok) {
+        reFetch();
+      } else {
+        alert("Error!");
+        console.log(res);
+      }
+    } catch (error) {
+      alert("Error!");
+      console.log(error);
+    }
+  };
+  const cancelAvailab = async (id: string) => {
+    const url = `${process.env.REACT_APP_FETCHURL}/booking/cancelAvailability/${id}`;
+    try {
       const res = await fetch(url, {
         method: "PUT",
         headers: {
@@ -225,7 +246,7 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
               (A: any) =>
                 new Date(A.end) >= new Date() && (
                   <div
-                    className="availItemBook text-center"
+                    className="availItemBookCreator text-center"
                     key={A._id + "kcvs"}
                   >
                     <h6 className="m-0">
@@ -256,6 +277,15 @@ function BookingCreator({ FetchedCreator, reFetch }: any) {
                           );
                         }
                       })}
+                    </div>
+                    <div>
+                      <br />{" "}
+                      <IconButton
+                        color="warning"
+                        onClick={() => cancelAvailab(A._id)}
+                      >
+                        <DeleteIcon color="warning" />
+                      </IconButton>
                     </div>
                   </div>
                 ),

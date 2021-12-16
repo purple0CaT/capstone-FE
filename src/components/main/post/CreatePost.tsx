@@ -8,7 +8,7 @@ import {
   DialogTitle,
   IconButton,
   Slide,
-  TextField
+  TextField,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import { TransitionProps } from "@mui/material/transitions";
@@ -105,9 +105,6 @@ function CreatePost({ reFetch }: any) {
         onClose={handleClose}
         TransitionComponent={Transition}
         keepMounted
-        sx={{
-          backdropFilter: "blur(2px)",
-        }}
       >
         <DialogTitle>Create post</DialogTitle>
         <form onSubmit={createPost}>

@@ -29,14 +29,7 @@ function MainMess() {
         </Col>
       ) : (
         <>
-          <Drawer
-            sx={{
-              backdropFilter: "blur(2px)",
-            }}
-            anchor="left"
-            open={SideBar}
-            onClose={toggleDrawer}
-          >
+          <Drawer anchor="left" open={SideBar} onClose={toggleDrawer}>
             <div className="navbar d-flex align-items-end side-drawer">
               <ChevronLeftIcon
                 className="ml-auto"

@@ -71,9 +71,6 @@ function UpdateAvatar({ user, reFetch }: any) {
         keepMounted
         onClose={() => setShowAvatarUpdate(false)}
         aria-describedby="alert-dialog-slide-description"
-        sx={{
-          backdropFilter: "blur(2px)",
-        }}
       >
         <div className="d-flex flex-column p-3" style={{ minWidth: "18rem" }}>
           {MediaPrew && (

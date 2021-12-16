@@ -31,7 +31,6 @@ function Order() {
   };
   //
   const sortingShopOrders = () => {
-    fetchUser();
     if (user.shopping.orders.length > 0) {
       const sorted = user.shopping.orders.sort(function (a: any, b: any) {
         let st: any = new Date(a.createdAt);
@@ -43,26 +42,34 @@ function Order() {
   };
   //
   useEffect(() => {
+    fetchUser();
+  }, []);
+  useEffect(() => {
     sortingShopOrders();
   }, [user]);
   return (
-    <Grid container style={{ boxShadow: "0 0 5px grey" }}>
-      {SortOrders.length > 0 && (
-        <Grid item xs={12} className="orderWrapper">
-          <br />
-          <h4 className="text-muted text-center">My orders</h4>
-          <Divider />
-          {SortOrders.map((Order: any) => (
+    <div style={{ boxShadow: "0 0 5px grey" }}>
+      <div className="orderWrapper">
+        <br />
+        <h4 className="text-muted text-center">My orders</h4>
+        <Divider />
+        {SortOrders.length > 0 ? (
+          SortOrders.map((Order: any) => (
             <OrderSingleOne
               Order={Order}
               reFetch={fetchUser}
               key={"asls" + Order._id}
             />
-          ))}
-          <br />
-        </Grid>
-      )}
-    </Grid>
+          ))
+        ) : (
+          <div>
+            <br />
+            <h5 className="text-center text-muted">No orders</h5>
+          </div>
+        )}
+      </div>
+      <br />
+    </div>
   );
 }
 

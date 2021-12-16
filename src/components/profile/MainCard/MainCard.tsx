@@ -192,9 +192,6 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               keepMounted
               onClose={handleFollowers}
               aria-describedby="alert-dialog-slide-description"
-              sx={{
-                backdropFilter: "blur(2px)",
-              }}
             >
               <div className="d-flex flex-column p-3">
                 {Followers.length > 0 &&
@@ -227,9 +224,6 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               TransitionComponent={Transition}
               keepMounted
               onClose={handleFollowing}
-              sx={{
-                backdropFilter: "blur(2px)",
-              }}
             >
               <div className="d-flex flex-column p-3">
                 {Following.length > 0 &&

@@ -61,9 +61,6 @@ function DeleteOrder({ id }: any) {
       </Button>
       <Dialog
         open={ShowConfirmModal}
-        sx={{
-          backdropFilter: "blur(2px)",
-        }}
         keepMounted
         onClose={() => setShowConfirmModal(false)}
       >

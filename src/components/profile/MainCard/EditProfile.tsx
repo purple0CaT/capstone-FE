@@ -72,9 +72,6 @@ function EditProfile({ userInfo, reFetch }: any) {
         //   TransitionComponent={Transition}
         // keepMounted
         onClose={handleInfoUpdate}
-        // sx={{
-        //   backdropFilter: "blur(2px)",
-        // }}
       >
         <h6 className="text-center mt-3">Update profile</h6>
         {FormInfo && (

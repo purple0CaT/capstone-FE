@@ -25,14 +25,14 @@
   background-color: white;
   align-items: center;
 }
-.availItemBook {
+.availItemBookCreator {
   border-radius: 5px;
   box-shadow: 0 0 5px grey;
   background-color: white;
-
-  padding: 0.4rem;
+  padding: 1rem;
   margin: 0.2rem 0;
   min-width: 10rem;
+  min-height: 5rem;
 }
 .react-calendar {
   border-radius: 5px !important;

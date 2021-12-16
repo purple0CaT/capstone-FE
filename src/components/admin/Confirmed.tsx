@@ -17,7 +17,6 @@ function Confirmed({ Order, reFetch }: any) {
         return en - st;
       });
       setSortOrders(sorted);
-      console.log(sorted);
     }
   }, [Order]);
   return (
@@ -29,7 +28,7 @@ function Confirmed({ Order, reFetch }: any) {
         SortOrders.map(
           (oOrder: any) =>
             !oOrder.items.some((itm: any) => itm.item.completed === false) && (
-              <Accordion className="simpleOrder p-0">
+              <Accordion className="simpleOrder p-0" key={oOrder._id + ".mdk"}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"

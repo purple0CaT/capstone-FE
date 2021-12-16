@@ -77,9 +77,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -117,9 +114,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -196,9 +190,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -235,9 +226,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -274,9 +262,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -313,9 +298,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -361,9 +343,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -400,9 +379,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -439,9 +415,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -478,9 +451,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}
@@ -517,9 +487,6 @@ function App() {
                     ) : (
                       <>
                         <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
                           anchor="right"
                           open={SideBar}
                           onClose={toggleDrawer}

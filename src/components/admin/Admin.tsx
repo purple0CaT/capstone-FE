@@ -24,7 +24,6 @@ function Admin() {
       });
       const data = await res.json();
       if (res.ok) {
-        console.log(data);
         setAllOrders(data);
       } else {
         console.log(data);

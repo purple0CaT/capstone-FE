@@ -19,9 +19,6 @@ function PostImgItem({ P, reFetch }: any) {
       </ImageListItem>
       <Dialog
         open={open}
-        sx={{
-          backdropFilter: "blur(2px)",
-        }}
         keepMounted
         onClose={handleDialog}
         aria-describedby="alert-dialog-slide-description"

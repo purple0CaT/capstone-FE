@@ -18,7 +18,6 @@ function NotConfiremd({ Order, reFetch }: any) {
         return en - st;
       });
       setSortOrders(sorted);
-      console.log(sorted);
     }
   }, [Order]);
   return (
@@ -31,7 +30,7 @@ function NotConfiremd({ Order, reFetch }: any) {
           (oOrder: any) =>
             oOrder.items.some((itm: any) => itm.item.completed === false) &&
             oOrder.paid && (
-              <Accordion className="simpleOrder p-0">
+              <Accordion className="simpleOrder p-0" key={"s.mdk" + oOrder._id}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"

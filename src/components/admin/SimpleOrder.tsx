@@ -10,12 +10,6 @@ function SimpleOrder({ Order, reFetch }: any) {
   const [DeliveryCode, setDeliveryCode] = useState("");
   const tokens = useSelector((state: any) => state.tokens);
   //
-  const confirmDelivery = async (
-    delCode: string,
-    orderId: string,
-    itemId: string,
-  ) => {};
-
   const confirmItem = async (orderId: string, itemId: string) => {
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/order/completeItemDelivery/${orderId}/${itemId}`;
@@ -29,7 +23,6 @@ function SimpleOrder({ Order, reFetch }: any) {
       });
       const data = await res.json();
       if (res.ok) {
-        console.log(data);
         reFetch();
       } else {
         alert("Error!");
