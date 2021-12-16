@@ -146,8 +146,18 @@ function MessCard() {
                 m.sender._id.toString() === user._id.toString() && "ml-auto"
               }`}
             >
+              <img
+                src={m.sender.avatar}
+                style={{
+                  width: "20px",
+                  aspectRatio: "1/1",
+                  borderRadius: "50%",
+                  marginRight: "1rem",
+                }}
+                alt=""
+              />
               <span className="mr-1">{m.message}</span>
-              <small className="ml-auto text-muted">
+              <small className="ml-2 text-muted">
                 {dateFormat(m.createdAt, "HH:MM")}
               </small>
             </div>
