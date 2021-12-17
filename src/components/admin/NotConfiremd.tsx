@@ -37,9 +37,9 @@ function NotConfiremd({ Order, reFetch }: any) {
                   id="panel1a-header"
                 >
                   <div className="d-flex flex-wrap justify-content-between w-100 align-items-center">
-                    <h5 className="text-muted text-center">
+                  <h6 className="text-muted text-center m-0">
                       <small>Order :</small> #{oOrder._id}
-                    </h5>{" "}
+                    </h6>{" "}
                     <span className="d-flex align-items-center ml-auto mr-1 font-weight-bold">
                       Completed:{" "}
                       {!oOrder.items.some(

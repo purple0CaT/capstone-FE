@@ -4,36 +4,8 @@ import { useSelector } from "react-redux";
 import SimpleOrder from "./SimpleOrder";
 
 function SearchOrder({ Order, reFetch }: any) {
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
-
   const [SearchById, setSearchById] = useState("");
   const [FindedOrder, setFindedOrder] = useState([]);
-  //
-  const confirmDelivery = async (delCode: string, orderId: string) => {};
-  //
-  const confirmItem = async (orderId: string, itemId: string) => {
-    try {
-      const url = `${process.env.REACT_APP_FETCHURL}/order/completeItem/${orderId}/${itemId}`;
-      const res = await fetch(url, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${tokens.accessToken}`,
-          "Content-type": "application/json",
-        },
-      });
-      const data = await res.json();
-      if (res.ok) {
-        console.log(data);
-        reFetch();
-      } else {
-        alert("Error!");
-        console.log(res);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   //
   useEffect(() => {
     if (SearchById.length > 3) {
@@ -71,7 +43,7 @@ function SearchOrder({ Order, reFetch }: any) {
                 <div className="findedOrder">
                   <span className="d-flex justify-content-center align-items-baseline">
                     id:
-                    <h5 className="text-muted m-0 ml-2">{Order._id}</h5>
+                    <h6 className="text-muted m-0 ml-2">{Order._id}</h6>
                   </span>
                   <SimpleOrder Order={Order} reFetch={reFetch} />
                 </div>

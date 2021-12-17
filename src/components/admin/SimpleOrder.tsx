@@ -2,12 +2,12 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Button, Grid, TextField } from "@mui/material";
 import dateFormat from "dateformat";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function SimpleOrder({ Order, reFetch }: any) {
-  const [DeliveryCode, setDeliveryCode] = useState("");
+  const [DeliveryCode, setDeliveryCode]: any = useState({});
   const tokens = useSelector((state: any) => state.tokens);
   //
   const confirmItem = async (orderId: string, itemId: string) => {
@@ -32,9 +32,12 @@ function SimpleOrder({ Order, reFetch }: any) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    return setDeliveryCode({});
+  }, []);
   return (
     <>
-      {Order.items?.map((I: any) => (
+      {Order.items?.map((I: any, index: number) => (
         <Grid
           container
           className="d-flex justify-content-between p-0 orderItem"
@@ -70,6 +73,9 @@ function SimpleOrder({ Order, reFetch }: any) {
                 {I.item.sellerId}
               </Link>
             </span>
+            <span className="d-flex align-items-baseline">
+              Item type : <h6 className="m-0 ml-1">{I.item.type}</h6>
+            </span>
             <div className="d-flex justify-content-between align-items-center flex-wrap">
               <div className="d-flex">
                 <span>Completed: </span>
@@ -80,6 +86,7 @@ function SimpleOrder({ Order, reFetch }: any) {
                 )}
               </div>
             </div>
+
             <div className="d-flex justify-content-between align-items-center flex-wrap">
               <span className="d-flex align-items-baseline">
                 Delivery code :{" "}
@@ -87,6 +94,7 @@ function SimpleOrder({ Order, reFetch }: any) {
                   {I.item.deliveryCode ? I.item.deliveryCode : "-"}
                 </h6>
               </span>
+
               {I.item.type === "default" && !I.item.completed && (
                 <div className="d-flex align-items-baseline">
                   <TextField
@@ -94,12 +102,17 @@ function SimpleOrder({ Order, reFetch }: any) {
                     color="info"
                     variant="standard"
                     label="Tracking code"
-                    value={DeliveryCode}
+                    value={DeliveryCode[index + "a"]}
                     size="small"
-                    onChange={(e) => setDeliveryCode(e.target.value)}
+                    onChange={(e) =>
+                      setDeliveryCode({
+                        ...DeliveryCode,
+                        [index + "a"]: e.target.value,
+                      })
+                    }
                   />
                   <Button
-                    disabled={DeliveryCode ? false : true}
+                    disabled={DeliveryCode[index + "a"] ? false : true}
                     onClick={() => confirmItem(Order._id, I.item._id)}
                     variant="outlined"
                     className="ml-1"

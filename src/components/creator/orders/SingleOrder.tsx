@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import dateFormat from "dateformat";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 //
@@ -20,12 +20,16 @@ function SingleOrder({ Order, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);
   const [DeliveryCode, setDeliveryCode]: any = useState({});
   //
-  const confirmItem = async (orderId: string, itemId: string) => {
+  const confirmItem = async (
+    orderId: string,
+    itemId: string,
+    index: number,
+  ) => {
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/order/completeItemDelivery/${orderId}/${itemId}`;
       const res = await fetch(url, {
         method: "PUT",
-        body: JSON.stringify({ deliveryCode: DeliveryCode }),
+        body: JSON.stringify({ deliveryCode: DeliveryCode[index + "a"] }),
         headers: {
           Authorization: `Bearer ${tokens.accessToken}`,
           "Content-type": "application/json",
@@ -33,7 +37,6 @@ function SingleOrder({ Order, reFetch }: any) {
       });
       const data = await res.json();
       if (res.ok) {
-        console.log(data);
         reFetch();
       } else {
         alert("Error!");
@@ -43,6 +46,9 @@ function SingleOrder({ Order, reFetch }: any) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    return setDeliveryCode({});
+  }, []);
   return (
     <Accordion className="simpleOrder p-0">
       <AccordionSummary
@@ -138,20 +144,24 @@ function SingleOrder({ Order, reFetch }: any) {
                 </span>
                 {I.item.sellerId === user._id && !I.item.completed && (
                   <div className="d-flex align-items-baseline">
+                    {DeliveryCode[index]}
                     <TextField
                       required
                       color="info"
                       variant="standard"
                       label="Tracking code"
-                      value={DeliveryCode[index]}
+                      value={DeliveryCode[index + "a"]}
                       size="small"
                       onChange={(e) =>
-                        setDeliveryCode((DeliveryCode[index] = e.target.value))
+                        setDeliveryCode({
+                          ...DeliveryCode,
+                          [index + "a"]: e.target.value,
+                        })
                       }
                     />
                     <Button
                       disabled={DeliveryCode && Order.paid ? false : true}
-                      onClick={() => confirmItem(Order._id, I.item._id)}
+                      onClick={() => confirmItem(Order._id, I.item._id, index)}
                       variant="outlined"
                       className="ml-1"
                       size="small"
