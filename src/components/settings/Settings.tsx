@@ -1,11 +1,13 @@
 import { Button, LinearProgress, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
 import "./style.css";
 import UsCreatBtn from "./UsCreatBtn";
 
 function Settings() {
+  const history = useHistory();
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const dispatch = useDispatch();
@@ -40,6 +42,9 @@ function Settings() {
   };
   //
   useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
     fetchUser();
   }, []);
   return (

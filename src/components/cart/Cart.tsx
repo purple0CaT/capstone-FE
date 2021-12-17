@@ -4,6 +4,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Button, Divider, Grid, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { clearShop, setDelItem, setItemQty } from "../../redux/actions/action";
 import "./style.css";
 // Style
@@ -15,6 +16,8 @@ const imgStyle = {
 };
 //
 function Cart() {
+  const history = useHistory();
+  const user = useSelector((state: any) => state.user);
   const shop = useSelector((state: any) => state.shop);
   const tokens = useSelector((state: any) => state.tokens);
   const [DeliveryAddress, setDeliveryAddress] = useState({
@@ -68,6 +71,9 @@ function Cart() {
   };
   //
   useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
     setItemsCart(shop.cart);
   }, []);
   return (

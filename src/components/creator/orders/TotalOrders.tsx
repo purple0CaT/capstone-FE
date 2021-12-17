@@ -17,13 +17,30 @@ function TotalOrders({ reFetch, FetchedCreator }: any) {
   return (
     <>
       {SortOrders.length > 0 &&
-        SortOrders.map((Order: any) => (
-          <SingleOrder
-            Order={Order}
-            reFetch={reFetch}
-            key={Order._id + "zvffcc"}
-          />
-        ))}
+        SortOrders.map(
+          (Order: any) =>
+            Order.items.some((itm: any) => itm.item.completed === false) && (
+              <SingleOrder
+                Order={Order}
+                reFetch={reFetch}
+                key={Order._id + "zvffcc"}
+              />
+            ),
+        )}
+      <hr />
+      <h5 className="text-muted">Confirmed</h5>
+      <hr />
+      {SortOrders.length > 0 &&
+        SortOrders.map(
+          (Order: any) =>
+            !Order.items.some((itm: any) => itm.item.completed === false) && (
+              <SingleOrder
+                Order={Order}
+                reFetch={reFetch}
+                key={Order._id + "zvffcc"}
+              />
+            ),
+        )}
     </>
   );
 }

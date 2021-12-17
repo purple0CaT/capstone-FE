@@ -7,12 +7,14 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import TotalOrders from "./orders/TotalOrders";
 import BookingCreator from "./setbookings/BookingCreator";
 import StoreSet from "./setstore/StoreSet";
 import "./style.css";
 
 function Creator() {
+  const history = useHistory();
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [FetchedCreator, setFetchedCreator]: any = useState();
@@ -55,6 +57,9 @@ function Creator() {
   };
   //
   useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
     fetchCreator();
     return () => {
       setFetchedCreator();
@@ -105,26 +110,26 @@ function Creator() {
           </Accordion> */}
           <br />
           <h3 className="text-center text-muted">Orders</h3>
-          <Accordion>
+          <hr />
+          <div className="d-flex justify-content-between">
+            <h5 className="text-center text-muted m-0">
+              Waiting for your confirmation
+            </h5>
+            <span className="d-flex">
+              Total earnings: <h5 className="ml-1">{totalEarnings}£</h5>
+            </span>
+          </div>
+          <TotalOrders reFetch={fetchCreator} FetchedCreator={FetchedCreator} />
+          {/* <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <div className="d-flex justify-content-between align-items-center w-100">
-                <h4 className="text-center text-muted m-0">Orders</h4>
-                <span className="d-flex">
-                  Total earnings: <h5 className="ml-1">{totalEarnings}£</h5>
-                </span>
-              </div>
+              <div className="d-flex justify-content-between align-items-center w-100"></div>
             </AccordionSummary>
-            <AccordionDetails className="p-1">
-              <TotalOrders
-                reFetch={fetchCreator}
-                FetchedCreator={FetchedCreator}
-              />
-            </AccordionDetails>
-          </Accordion>{" "}
+            <AccordionDetails className="p-1"></AccordionDetails>
+          </Accordion>{" "} */}
           <br />
         </div>
       )}

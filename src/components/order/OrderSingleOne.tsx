@@ -12,12 +12,18 @@ import {
 import dateFormat from "dateformat";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DeleteOrder from "./DeleteOrder";
 //
 function OrderSingleOne({ Order, reFetch }: any) {
+  const history = useHistory();
   const user = useSelector((state: any) => state.user);
   //
+  useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
+  }, []);
   return (
     <>
       {Order.items && (
@@ -28,9 +34,11 @@ function OrderSingleOne({ Order, reFetch }: any) {
             id={`header-${Order._id}`}
           >
             <div className="d-flex flex-wrap justify-content-between w-100 align-items-center">
-              <h5 className="text-muted text-center">
-                <small>Order :</small> #{Order._id}
-              </h5>{" "}
+              {" "}
+              <span style={{ textOverflow: "ellipsis" }}>
+                {" "}
+                {Order.items?.map((I: any) => I.item.title + ", ")}
+              </span>
               <span className="d-flex align-items-center ml-auto mr-1 font-weight-bold">
                 Completed:{" "}
                 {!Order?.items.some(
@@ -53,6 +61,10 @@ function OrderSingleOne({ Order, reFetch }: any) {
           </AccordionSummary>
           <AccordionDetails className="itemsOrderWrapper p-0">
             <Divider />
+            <br />
+            <h6 className="text-muted text-center">
+              <small>Order :</small> #{Order._id}
+            </h6>
             {Order.items?.map((I: any) => (
               <Grid
                 container

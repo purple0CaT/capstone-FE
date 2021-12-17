@@ -1,14 +1,16 @@
+import CancelIcon from "@mui/icons-material/Cancel";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { Divider, LinearProgress } from "@mui/material";
+import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./style.css";
-import dateFormat from "dateformat";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CancelIcon from "@mui/icons-material/Cancel";
-
-import { Divider, LinearProgress } from "@mui/material";
+import { useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
+import "./style.css";
+
 //
 function MyBooking() {
+  const history = useHistory();
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const dispatch = useDispatch();
@@ -37,6 +39,9 @@ function MyBooking() {
   };
   //
   useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
     fetchUser();
   }, []);
   //

@@ -16,12 +16,10 @@ import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
 import Redirect from "./components/oauth/Redirect";
 import Order from "./components/order/Order";
-import PayOrder from "./components/payorder/PayOrder";
 import Profile from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
 import Sidebar from "./components/sidebar/Sidebar";
 import SuccessOrder from "./components/success/SuccessOrder";
-//
 //
 function App() {
   //
@@ -405,42 +403,6 @@ function App() {
                   <>
                     <Col xs="12" md="9" className="w-100">
                       <Admin />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
-                )}
-              />
-              <Route
-                path="/payorder/:id"
-                exact
-                render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <PayOrder />
                     </Col>
                     {matches ? (
                       <Col md="3" className="pr-4">

@@ -4,11 +4,12 @@ import { Button, Grid, LinearProgress } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
 import "./style.css";
 //
 function SuccessOrder() {
+  const history = useHistory();
   const params: any = useParams();
   const session_id = new URLSearchParams(window.location.search).get(
     "session_id",
@@ -63,6 +64,9 @@ function SuccessOrder() {
   };
   // EFECT
   useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
     checkSession();
   }, []);
   //   TSX

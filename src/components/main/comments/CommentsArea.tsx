@@ -38,8 +38,9 @@ function CommentsArea({ post, reFetch }: any) {
               <Avatar
                 alt={C.author.firstname + " " + C.author.lastname}
                 src={C.author.avatar}
+                sx={{ width: 34, height: 34, marginLeft: "0.5rem" }}
               />
-              <div className="d-flex flex-column justify-content-center">
+              <div className="d-flex flex-column justify-content-center mx-1">
                 <div>
                   <p className="text-muted m-0">
                     {C.author.firstname + " " + C.author.lastname}

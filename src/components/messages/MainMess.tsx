@@ -1,8 +1,10 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import InboxIcon from "@mui/icons-material/Inbox";
 import { Drawer, useMediaQuery } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Chats from "./Chats";
 import MessCard from "./MessCard";
 import "./style.css";
@@ -10,8 +12,10 @@ import "./style.css";
 //
 
 function MainMess() {
+  const history = useHistory();
   const matches = useMediaQuery("(min-width:768px)");
   const [SideBar, setSideBar] = useState(false);
+  const user = useSelector((state: any) => state.user);
   //
   const toggleDrawer = () => {
     setSideBar(!SideBar);
@@ -21,6 +25,11 @@ function MainMess() {
   };
   //
 
+  useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
+  }, []);
   return (
     <div className="mainMessageCard position-relative">
       {matches ? (

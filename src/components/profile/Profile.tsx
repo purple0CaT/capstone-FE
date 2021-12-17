@@ -2,12 +2,14 @@ import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
 import MainCard from "./MainCard/MainCard";
 import SecondCard from "./SecondTab/SecondCard";
 import "./style.css";
 
 function Profile() {
+  const history = useHistory();
   const params: any = useParams();
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
@@ -71,6 +73,9 @@ function Profile() {
   };
   //
   useEffect(() => {
+    if (user._id === "") {
+      history.push("/login");
+    }
     fetchProfile();
   }, [params.id]);
   //

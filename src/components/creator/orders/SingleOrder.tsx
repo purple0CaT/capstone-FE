@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 function SingleOrder({ Order, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
-  const [DeliveryCode, setDeliveryCode] = useState("");
+  const [DeliveryCode, setDeliveryCode]: any = useState({});
   //
   const confirmItem = async (orderId: string, itemId: string) => {
     try {
@@ -51,9 +51,10 @@ function SingleOrder({ Order, reFetch }: any) {
         id="panel1a-header"
       >
         <div className="d-flex flex-wrap justify-content-between w-100 align-items-center">
-          <h5 className="text-muted text-center">
-            <small>Order :</small> #{Order._id}
-          </h5>{" "}
+          <span style={{ textOverflow: "ellipsis" }}>
+            {" "}
+            {Order.items?.map((I: any) => I.item.title + ", ")}
+          </span>
           <span className="d-flex align-items-center ml-auto mr-1 font-weight-bold">
             Completed:{" "}
             {!Order.items.some((itm: any) => itm.item.completed === false) ? (
@@ -74,7 +75,11 @@ function SingleOrder({ Order, reFetch }: any) {
       </AccordionSummary>
       <AccordionDetails className="itemsOrderWrapper p-0">
         <Divider />
-        {Order.items?.map((I: any) => (
+        <br />
+        <h6 className="text-muted text-center">
+          <small>Order :</small> #{Order._id}
+        </h6>{" "}
+        {Order.items?.map((I: any, index: number) => (
           <Grid
             container
             className="d-flex justify-content-between p-0 orderItem"
@@ -138,12 +143,14 @@ function SingleOrder({ Order, reFetch }: any) {
                       color="info"
                       variant="standard"
                       label="Tracking code"
-                      value={DeliveryCode}
+                      value={DeliveryCode[index]}
                       size="small"
-                      onChange={(e) => setDeliveryCode(e.target.value)}
+                      onChange={(e) =>
+                        setDeliveryCode((DeliveryCode[index] = e.target.value))
+                      }
                     />
                     <Button
-                      disabled={DeliveryCode ? false : true}
+                      disabled={DeliveryCode && Order.paid ? false : true}
                       onClick={() => confirmItem(Order._id, I.item._id)}
                       variant="outlined"
                       className="ml-1"

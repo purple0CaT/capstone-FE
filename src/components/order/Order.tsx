@@ -52,15 +52,36 @@ function Order() {
       <div className="orderWrapper">
         <br />
         <h4 className="text-muted text-center">My orders</h4>
-        <Divider />
+        <hr />
         {SortOrders.length > 0 ? (
-          SortOrders.map((Order: any) => (
-            <OrderSingleOne
-              Order={Order}
-              reFetch={fetchUser}
-              key={"asls" + Order._id}
-            />
-          ))
+          <>
+            {SortOrders.map(
+              (Order: any) =>
+                Order.items.some(
+                  (itm: any) => itm.item.completed === false,
+                ) && (
+                  <OrderSingleOne
+                    Order={Order}
+                    reFetch={fetchUser}
+                    key={"asls" + Order._id}
+                  />
+                ),
+            )}
+            <hr />
+            <h5 className="text-muted text-center">Completed</h5>
+            {SortOrders.map(
+              (Order: any) =>
+                !Order.items.some(
+                  (itm: any) => itm.item.completed === false,
+                ) && (
+                  <OrderSingleOne
+                    Order={Order}
+                    reFetch={fetchUser}
+                    key={"asls" + Order._id}
+                  />
+                ),
+            )}
+          </>
         ) : (
           <div>
             <br />
