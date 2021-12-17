@@ -33,6 +33,8 @@
   margin: 0.2rem 0;
   min-width: 10rem;
   min-height: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 .react-calendar {
   border-radius: 5px !important;

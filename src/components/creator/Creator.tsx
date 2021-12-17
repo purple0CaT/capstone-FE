@@ -71,43 +71,14 @@ function Creator() {
         <LinearProgress />
       ) : (
         <div className="cardWrapper">
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-              className="m-0"
-            >
-              <h3 className="text-center text-muted m-0">Booking</h3>
-            </AccordionSummary>
-            <AccordionDetails
-              style={{ backgroundColor: "#f2f2f2" }}
-              className="p-1"
-            >
-              <BookingCreator
-                FetchedCreator={FetchedCreator}
-                reFetch={fetchCreator}
-              />
-            </AccordionDetails>
-          </Accordion>
+          <h4 className="text-center text-muted m-0">Booking</h4>
+          <BookingCreator
+            FetchedCreator={FetchedCreator}
+            reFetch={fetchCreator}
+          />
           <hr className="w-100" />
-          {/*<Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-          <br />
-          <br />
-          {/* </AccordionSummary>
-            <AccordionDetails
-              style={{ backgroundColor: "#f2f2f2" }}
-              className="p-1"
-            > */}
           <h3 className="text-center text-muted">Store</h3>
           <StoreSet FetchedCreator={FetchedCreator} reFetch={fetchCreator} />
-          {/* </AccordionDetails>
-          </Accordion> */}
           <br />
           <h3 className="text-center text-muted">Orders</h3>
           <hr />
@@ -120,16 +91,6 @@ function Creator() {
             </span>
           </div>
           <TotalOrders reFetch={fetchCreator} FetchedCreator={FetchedCreator} />
-          {/* <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <div className="d-flex justify-content-between align-items-center w-100"></div>
-            </AccordionSummary>
-            <AccordionDetails className="p-1"></AccordionDetails>
-          </Accordion>{" "} */}
           <br />
         </div>
       )}
