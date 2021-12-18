@@ -103,7 +103,7 @@ function Booking({ creator }: any) {
         </div>
         <br />
       </Col>
-      <Col xs="12" md="6" className="d-flex flex-column">
+      <Col xs="12" md="6" className="d-flex flex-column align-items-center">
         <h5 className="text-muted mx-auto">Book a shot</h5>
         <Divider />
         <div className="position-relative">

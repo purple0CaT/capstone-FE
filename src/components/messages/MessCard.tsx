@@ -24,7 +24,6 @@ function MessCard() {
   });
   //
   const activeChat = useSelector((state: any) => state.chat.activeChat);
-  const chat = useSelector((state: any) => state.chat);
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   let chatMembers =
@@ -66,7 +65,6 @@ function MessCard() {
       console.log("connect");
     });
     socket.on("message", ({ chatHistory, allChats }) => {
-      console.log(chatHistory);
       dispatch(setChats(allChats));
       dispatch(setActiveChat(chatHistory));
     });

@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CommentsArea from "../comments/CommentsArea";
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 //
 function Post({ post, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
@@ -72,6 +73,11 @@ function Post({ post, reFetch }: any) {
             </ListItem>
           )}
         </div>
+        {post.author.creator && (
+          <div>
+            <PhotoCameraIcon />
+          </div>
+        )}
         {post.author._id === user._id && (
           <div className="mx-2 ml-auto">
             <div className="delete-btn" onClick={deletePost}>
@@ -96,7 +102,7 @@ function Post({ post, reFetch }: any) {
           <p className="m-0">{post.text}</p>
         </div>
         <div className="text-muted ml-auto" style={{ minWidth: "5rem" }}>
-          <small className="m-0" >
+          <small className="m-0">
             {dateFormat(post.createdAt, "HH:MM, mmm d")}
           </small>
         </div>

@@ -57,7 +57,10 @@ function SingleOrder({ Order, reFetch }: any) {
         id="panel1a-header"
       >
         <div className="d-flex flex-wrap justify-content-between w-100 align-items-center">
-          <span style={{ textOverflow: "ellipsis" }}>
+          <span
+            className="font-weight-bold"
+            style={{ textOverflow: "ellipsis" }}
+          >
             {" "}
             {Order.items?.map((I: any) => I.item.title + ", ")}
           </span>
@@ -142,34 +145,40 @@ function SingleOrder({ Order, reFetch }: any) {
                     {I.item.deliveryCode ? I.item.deliveryCode : "-"}
                   </h6>
                 </span>
-                {I.item.sellerId === user._id && !I.item.completed && (
-                  <div className="d-flex align-items-baseline">
-                    {DeliveryCode[index]}
-                    <TextField
-                      required
-                      color="info"
-                      variant="standard"
-                      label="Tracking code"
-                      value={DeliveryCode[index + "a"]}
-                      size="small"
-                      onChange={(e) =>
-                        setDeliveryCode({
-                          ...DeliveryCode,
-                          [index + "a"]: e.target.value,
-                        })
-                      }
-                    />
-                    <Button
-                      disabled={DeliveryCode && Order.paid ? false : true}
-                      onClick={() => confirmItem(Order._id, I.item._id, index)}
-                      variant="outlined"
-                      className="ml-1"
-                      size="small"
-                    >
-                      Add track
-                    </Button>
-                  </div>
-                )}
+                {I.item.sellerId === user._id &&
+                  !I.item.completed &&
+                  I.item.type === "user" && (
+                    <div className="d-flex align-items-baseline">
+                      {DeliveryCode[index]}
+                      <TextField
+                        required
+                        color="info"
+                        variant="standard"
+                        label="Tracking code"
+                        value={DeliveryCode[index + "a"]}
+                        size="small"
+                        onChange={(e) =>
+                          setDeliveryCode({
+                            ...DeliveryCode,
+                            [index + "a"]: e.target.value,
+                          })
+                        }
+                      />
+                      <Button
+                        disabled={
+                          DeliveryCode[index + "a"] && Order.paid ? false : true
+                        }
+                        onClick={() =>
+                          confirmItem(Order._id, I.item._id, index)
+                        }
+                        variant="outlined"
+                        className="ml-1"
+                        size="small"
+                      >
+                        Add track
+                      </Button>
+                    </div>
+                  )}
               </div>
               <div className="d-flex justify-content-between flex-wrap">
                 <span className="d-flex align-items-center">

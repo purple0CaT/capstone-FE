@@ -114,7 +114,7 @@ function CreatePost({ reFetch }: any) {
               autoFocus
               margin="dense"
               id="text"
-              label="Text"
+              label="Title"
               type="text"
               fullWidth
               variant="standard"
