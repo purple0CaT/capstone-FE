@@ -1,6 +1,6 @@
 import { Dialog, ImageListItem } from "@mui/material";
 import React, { useState } from "react";
-import Post from "../../main/post/Post";
+import Post from "../../feed/post/Post";
 
 function PostImgItem({ P, reFetch }: any) {
   const [open, setopen] = useState(false);

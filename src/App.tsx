@@ -11,7 +11,7 @@ import Register from "./components/authorization/Register";
 import MyBooking from "./components/bookings/MyBooking";
 import Cart from "./components/cart/Cart";
 import Creator from "./components/creator/Creator";
-import Main from "./components/main/Main";
+import Main from "./components/feed/Main";
 import MainMess from "./components/messages/MainMess";
 import Navbar from "./components/navbar/Navbar";
 import Redirect from "./components/oauth/Redirect";

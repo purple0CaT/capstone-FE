@@ -39,7 +39,7 @@ function Main() {
     if (user._id === "") {
       history.push("/login");
     } else {
-      fetchPosts();
+      fetchPosts(); 
     }
   }, []);
   return (
