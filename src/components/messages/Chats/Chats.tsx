@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loadAllUserChats,
   setActiveChat,
-  setChats,
+  setChats
 } from "../../../redux/actions/action";
 //
 function Chats({ closeChatsDrawer }: any) {

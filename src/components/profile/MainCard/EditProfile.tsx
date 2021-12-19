@@ -3,7 +3,6 @@ import { LoadingButton } from "@mui/lab";
 import { Button, Dialog, Divider, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 function EditProfile({ userInfo, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
@@ -11,27 +10,9 @@ function EditProfile({ userInfo, reFetch }: any) {
   const [OpenInfoUpdate, setOpenInfoUpdate] = useState(false);
   const [FormInfo, setFormInfo]: any = useState();
   const [Loading, setLoading] = useState(false);
-  const [NewLink, setNewLink] = useState({ title: "", link: "" });
   //
   const handleInfoUpdate = () => {
     setOpenInfoUpdate(!OpenInfoUpdate);
-  };
-  //
-  const removeLink = (i: number) => {
-    if (FormInfo) {
-      const updateForm = FormInfo.links.slice(i, 1);
-      if (!updateForm.links) {
-        updateForm.links = [];
-      }
-      setFormInfo(updateForm);
-    }
-  };
-  const pushToForm = () => {
-    if (FormInfo) {
-      const updateForm = FormInfo;
-      updateForm.links.push(NewLink);
-      setFormInfo(updateForm);
-    }
   };
   //
   const updateUserInfo = async (e: React.FormEvent<HTMLFormElement>) => {

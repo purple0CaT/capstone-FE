@@ -27,7 +27,6 @@ function Cart() {
     country: "",
   });
   const dispatch = useDispatch();
-  const [ItemsCart, setItemsCart] = useState([{ item: {}, qty: 0 }]);
   //
   const createOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,7 +73,6 @@ function Cart() {
     if (user._id === "") {
       history.push("/login");
     }
-    setItemsCart(shop.cart);
   }, []);
   return (
     <>

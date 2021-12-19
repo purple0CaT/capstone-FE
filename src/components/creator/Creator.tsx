@@ -1,9 +1,5 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  LinearProgress,
+  LinearProgress
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";

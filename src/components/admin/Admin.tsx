@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Confirmed from "./Confirmed";
-import Finished from "./Finished";
 import NotConfiremd from "./NotConfiremd";
 import SearchOrder from "./SearchOrder";
 import "./style.css";
@@ -16,6 +15,7 @@ function Admin() {
   const [AllOrders, setAllOrders] = useState([]);
   //
   const fetchOrders = async () => {
+    setLoading(true);
     const url = `${process.env.REACT_APP_FETCHURL}/order/adminOrders`;
     try {
       const res = await fetch(url, {
@@ -24,8 +24,10 @@ function Admin() {
       });
       const data = await res.json();
       if (res.ok) {
+        setLoading(false);
         setAllOrders(data);
       } else {
+        setLoading(false);
         console.log(data);
         alert(data.message);
       }

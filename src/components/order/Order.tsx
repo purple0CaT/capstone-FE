@@ -1,4 +1,3 @@
-import { Divider, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/actions/action";

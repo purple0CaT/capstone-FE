@@ -1,18 +1,8 @@
-import { Avatar, Dialog, Slide } from "@mui/material";
+import { Avatar, Dialog } from "@mui/material";
 import Button from "@mui/material/Button";
-import { TransitionProps } from "@mui/material/transitions";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-//
-// const Transition = React.forwardRef(function Transition(
-//   props: TransitionProps & {
-//     children: React.ReactElement<any, any>;
-//   },
-//   ref: React.Ref<unknown>,
-// ) {
-//   return <Slide direction="down" ref={ref} {...props} />;
-// });
 //
 function FollowCard({ FetchedUser, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);

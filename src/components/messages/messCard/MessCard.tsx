@@ -1,17 +1,13 @@
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SendIcon from "@mui/icons-material/Send";
-import dateFormat from "dateformat";
 import Picker from "emoji-picker-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { setActiveChat, setChats } from "../../../redux/actions/action";
 import { socket } from "../MainMess";
-import ChatSetting from "./ChatSettings/ChatSetting";
 import Messages from "./Messages";
 import TopBar from "./TopBar";
 //

@@ -1,7 +1,7 @@
-import { Button, Dialog } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import dateFormat from "dateformat";
 import { LoadingButton } from "@mui/lab";
+import { Button, Dialog } from "@mui/material";
+import dateFormat from "dateformat";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 function SendAppointment({ appInfo, creator }: any) {

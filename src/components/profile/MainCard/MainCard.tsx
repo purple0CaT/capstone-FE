@@ -1,33 +1,16 @@
-import { Avatar, Dialog, Grid, Slide, useMediaQuery } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
-import { TransitionProps } from "@mui/material/transitions";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import FollowCard from "./FollowCard";
 import UpdateAvatar from "./UpdateAvatar";
 import UpdateBG from "./UpdateBG";
 //
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="down" ref={ref} {...props} />;
-});
-//
 function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
   const matches = useMediaQuery("(min-width:599px)");
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
-  //
-  const [OpenFollowers, setOpenFollowers] = useState(false);
-  const [OpenFollowing, setOpenFollowing] = useState(false);
-  const [OpenLinks, setOpenLinks] = useState(false);
-  const [Following, setFollowing] = useState([]);
-  const [Followers, setFollowers] = useState([]);
   //
   const followUser = async () => {
     try {
@@ -36,10 +19,11 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
         method: "POST",
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
       });
+      const data = await res.json();
       if (res.ok) {
-        const data = await res.json();
         reFetch();
       } else {
+        alert(data.message);
         console.log(res);
       }
     } catch (error) {
@@ -65,36 +49,6 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
     }
   };
   //
-  const handleFollowers = () => {
-    setOpenFollowers(!OpenFollowers);
-  };
-  const handleFollowing = () => {
-    setOpenFollowing(!OpenFollowing);
-  };
-  //
-  const unFollow = async (id: string) => {
-    try {
-      const url = `${process.env.REACT_APP_FETCHURL}/follow/${id}`;
-      const res = await fetch(url, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${tokens.accessToken}` },
-      });
-      if (res.ok) {
-        reFetch();
-      } else {
-        console.log(res);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  //
-  useEffect(() => {
-    FetchedUser.followers?.youFollow &&
-      setFollowing(FetchedUser.followers.youFollow);
-    FetchedUser.followers?.followers &&
-      setFollowers(FetchedUser.followers.followers);
-  }, [FetchedUser]);
   return (
     <div className="profile-page">
       <Grid item xs={12} sm={4} className="position-relative">
@@ -119,7 +73,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
           className="user-info"
           style={{
             paddingLeft: matches ? "4rem" : "1rem",
-            paddingTop: matches ? "1rem" : "2rem",
+            paddingTop: matches ? "1rem" : "3rem",
           }}
         >
           <div className="d-flex justify-content-between align-items-center w-100">
@@ -131,7 +85,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
             ) : (
               <>
                 {FetchedUser.followers.followers.some(
-                  (F: any) => F._id == user._id,
+                  (F: any) => F._id === user._id,
                 ) ? (
                   <Button color="warning" onClick={() => unfollowUser()}>
                     Unfollow
@@ -142,6 +96,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               </>
             )}
           </div>
+          <br />
           {/*  ============================================================================= NAME BIO  */}
           {FetchedCreator && (
             <div className="mb-2">
@@ -150,10 +105,19 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               </small>
             </div>
           )}
-          <div className="mr-auto">
-            <h4 className="font-weight-light">
-              {FetchedUser.user.firstname + " " + FetchedUser.user.lastname}
-            </h4>
+          <div className="d-flex align-items-center justify-content-between w-100">
+            <div className="mr-auto">
+              <h4 className="font-weight-light">
+                {FetchedUser.user.firstname + " " + FetchedUser.user.lastname}
+              </h4>
+            </div>
+            <div>
+              {FetchedUser.user._id !== user._id && (
+                <Button disabled color="info">
+                  Message
+                </Button>
+              )}
+            </div>
           </div>
 
           <div className="mr-auto">
