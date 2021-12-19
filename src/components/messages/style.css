@@ -32,7 +32,7 @@
   background-size: auto;
   background-repeat: initial;
   background-position: center;
-  max-height: calc(100vh - 9rem);
+  max-height: calc(100vh - 9.6rem);
   height: 100% !important;
   overflow-y: scroll !important;
 }

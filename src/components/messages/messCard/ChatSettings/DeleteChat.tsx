@@ -1,7 +1,7 @@
 import { Dialog, DialogActions, DialogTitle, Button } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveChat, setChats } from "../../../redux/actions/action";
+import { setActiveChat, setChats } from "../../../../redux/actions/action";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 function DeleteChat({ closeSettings }: any) {

@@ -96,7 +96,11 @@ function Sidebar({ toggleDrawer }: any) {
               >
                 <ListItem button className="d-flex align-items-center">
                   <div>
-                    <img src={U.avatar} alt="" className="findedUserImg" />
+                    <Avatar
+                      src={U.avatar}
+                      alt={U.firstname}
+                      className="findedUserImg"
+                    />
                   </div>
                   <h6 className="text-muted m-0 ml-2">{U.firstname}</h6>
                 </ListItem>
@@ -113,14 +117,8 @@ function Sidebar({ toggleDrawer }: any) {
               <Avatar
                 src={user.avatar}
                 alt={user.firstname}
-                sx={{ width: 45, height: 45, boxShadow: "0 0 5px grey" }}
+                sx={{ width: 40, height: 40, boxShadow: "0 0 5px grey" }}
               />
-              {/* <img
-                src={user.avatar}
-                className="imageSidebar"
-                style={{ boxShadow: "0 0 8px grey" }}
-                alt=""
-              /> */}
             </div>
             <h6 className="m-0 my-auto ml-3 text-muted">{user.firstname}</h6>
           </Link>

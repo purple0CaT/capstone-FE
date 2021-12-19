@@ -8,7 +8,7 @@ import {
   loadAllUserChats,
   setActiveChat,
   setChats,
-} from "../../redux/actions/action";
+} from "../../../redux/actions/action";
 //
 function Chats({ closeChatsDrawer }: any) {
   const user = useSelector((state: any) => state.user);
@@ -54,7 +54,6 @@ function Chats({ closeChatsDrawer }: any) {
         const data = await res.json();
         dispatch(setActiveChat(data.newChat));
         dispatch(setChats(data.allChats));
-        loadAllUserChats();
       } else {
         console.log(res);
         alert("Error");

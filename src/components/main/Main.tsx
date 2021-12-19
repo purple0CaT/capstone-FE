@@ -21,12 +21,12 @@ function Main() {
         method: "GET",
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
       });
+      const data = await res.json();
       if (res.ok) {
-        const data = await res.json();
         setPostFetches(data);
         setLoading(false);
       } else {
-        console.log(res);
+        console.log(data);
         setLoading(false);
       }
     } catch (error) {

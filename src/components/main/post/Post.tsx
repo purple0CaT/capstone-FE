@@ -3,7 +3,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import { Divider, IconButton, ListItem } from "@mui/material";
+import { Avatar, Divider, IconButton, ListItem } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -57,7 +57,11 @@ function Post({ post, reFetch }: any) {
     <div className="post">
       <div className="d-flex align-items-center px-2 py-1">
         <div className="mr-2">
-          <img src={post.author.avatar} alt="" className="post-img" />
+          <Avatar
+            src={post.author.avatar}
+            alt={post.author.firstname}
+            className="post-img"
+          />
         </div>
         <div className="d-flex flex-column justify-content-center">
           <ListItem button className="d-flex p-0">

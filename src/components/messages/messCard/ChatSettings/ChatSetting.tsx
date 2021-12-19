@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Button, Col, FormControl, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setActiveChat, setChats } from "../../../redux/actions/action";
+import { setActiveChat, setChats } from "../../../../redux/actions/action";
 import DeleteChat from "./DeleteChat";
 
 function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
