@@ -8,7 +8,7 @@ import {
 } from "../../redux/actions/action";
 
 export const tokenCheck = ({ res }: any) => {
-  if (res.message === "jwt token expired") {
+  if (res.message === "Relogin") {
     const dispatch = useDispatch();
     const history = useHistory();
     //

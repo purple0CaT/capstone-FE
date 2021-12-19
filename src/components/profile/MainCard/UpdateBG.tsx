@@ -81,6 +81,7 @@ function UpdateBG({ user, reFetch }: any) {
         aria-describedby="alert-dialog-slide-description"
       >
         <div className="d-flex flex-column p-3" style={{ minWidth: "18rem" }}>
+          <h5 className="text-muted text-center">Update background</h5>
           {MediaPrew && (
             <div className="d-flex justify-content-center position-relative">
               <img

@@ -3,7 +3,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import { Avatar, Divider, IconButton, ListItem } from "@mui/material";
+import { Avatar, Dialog, Divider, IconButton, ListItem } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -15,6 +15,7 @@ function Post({ post, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [ComArea, setComArea] = useState(false);
+  const [ShowFullSize, setShowFullSize] = useState(false);
   //
   let like = post.likes.some((L: string[]) => L === user._id);
   //
@@ -65,10 +66,22 @@ function Post({ post, reFetch }: any) {
         </div>
         <div className="d-flex flex-column justify-content-center">
           <ListItem button className="d-flex p-0">
-            <Link to={`/profile/${post.author._id}`}>
-              <h6 className="m-0 text-muted">
+            <Link
+              to={`/profile/${post.author._id}`}
+              className="d-flex align-items-center"
+            >
+              <h6 className="m-0 text-muted mr-1">
                 {post.author.firstname} {post.author.lastname}
               </h6>
+              {post.author.creator && (
+                <div>
+                  <PhotoCameraIcon
+                    className="text-muted"
+                    color="info"
+                    style={{ fontSize: "0.8rem" }}
+                  />
+                </div>
+              )}
             </Link>
           </ListItem>
           {post.location && (
@@ -77,11 +90,7 @@ function Post({ post, reFetch }: any) {
             </ListItem>
           )}
         </div>
-        {post.author.creator && (
-          <div>
-            <PhotoCameraIcon />
-          </div>
-        )}
+
         {post.author._id === user._id && (
           <div className="mx-2 ml-auto">
             <div className="delete-btn" onClick={deletePost}>
@@ -94,11 +103,31 @@ function Post({ post, reFetch }: any) {
       {/* POST IMAGE */}
       <div className="post-image d-flex justify-content-center">
         <img
+          onClick={() => setShowFullSize(true)}
           src={post.media}
-          style={{ maxHeight: "20rem", maxWidth: "100%" }}
+          style={{ maxHeight: "25rem", maxWidth: "100%", cursor: "pointer" }}
           alt=""
         />
       </div>
+      <Dialog
+        // fullWidth
+        fullScreen
+        onClose={() => setShowFullSize(false)}
+        open={ShowFullSize}
+      >
+        {" "}
+        <div
+          className="d-flex align-items-center justify-content-center h-100"
+          onClick={() => setShowFullSize(false)}
+          style={{ backgroundColor: "grey" }}
+        >
+          <img
+            src={post.media}
+            style={{ maxHeight: "100vh", maxWidth: "100%", cursor: "pointer" }}
+            alt=""
+          />
+        </div>
+      </Dialog>
       <Divider />
       {/* Height */}
       <div className="px-2 mt-1 d-flex">

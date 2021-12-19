@@ -19,7 +19,9 @@ function Main() {
       const url = `${process.env.REACT_APP_FETCHURL}/post`;
       const res = await fetch(url, {
         method: "GET",
-        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        headers: {
+          Authorization: `Bearer ${tokens.accessToken}`,
+        },
       });
       const data = await res.json();
       if (res.ok) {
@@ -27,6 +29,7 @@ function Main() {
         setLoading(false);
       } else {
         console.log(data);
+        alert(data.message)
         setLoading(false);
       }
     } catch (error) {
@@ -39,7 +42,7 @@ function Main() {
     if (user._id === "") {
       history.push("/login");
     } else {
-      fetchPosts(); 
+      fetchPosts();
     }
   }, []);
   return (
