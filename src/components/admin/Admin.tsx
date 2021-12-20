@@ -25,6 +25,7 @@ function Admin() {
       const data = await res.json();
       if (res.ok) {
         setLoading(false);
+        console.log(data);
         setAllOrders(data);
       } else {
         setLoading(false);
