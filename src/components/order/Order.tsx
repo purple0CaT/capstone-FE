@@ -42,6 +42,7 @@ function Order() {
   //
   useEffect(() => {
     fetchUser();
+    sortingShopOrders();
   }, []);
   useEffect(() => {
     sortingShopOrders();
@@ -54,32 +55,34 @@ function Order() {
         <hr />
         {SortOrders.length > 0 ? (
           <>
-            {SortOrders.map(
-              (Order: any) =>
-                Order.items.some(
-                  (itm: any) => itm.item.completed === false,
-                ) && (
-                  <OrderSingleOne
-                    Order={Order}
-                    reFetch={fetchUser}
-                    key={"asls" + Order._id}
-                  />
-                ),
-            )}
+            {SortOrders.length > 0 &&
+              SortOrders?.map(
+                (Order: any) =>
+                  Order.items?.some(
+                    (itm: any) => itm.item.completed === false,
+                  ) && (
+                    <OrderSingleOne
+                      Order={Order}
+                      reFetch={fetchUser}
+                      key={"asls" + Order._id}
+                    />
+                  ),
+              )}
             <hr />
             <h5 className="text-muted text-center">Completed</h5>
-            {SortOrders.map(
-              (Order: any) =>
-                !Order.items.some(
-                  (itm: any) => itm.item.completed === false,
-                ) && (
-                  <OrderSingleOne
-                    Order={Order}
-                    reFetch={fetchUser}
-                    key={"asls" + Order._id}
-                  />
-                ),
-            )}
+            {SortOrders.length > 0 &&
+              SortOrders.map(
+                (Order: any) =>
+                  !Order.items?.some(
+                    (itm: any) => itm.item.completed === false,
+                  ) && (
+                    <OrderSingleOne
+                      Order={Order}
+                      reFetch={fetchUser}
+                      key={"asls" + Order._id}
+                    />
+                  ),
+              )}
           </>
         ) : (
           <div>

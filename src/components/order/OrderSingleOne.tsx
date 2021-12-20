@@ -108,6 +108,7 @@ function OrderSingleOne({ Order, reFetch }: any) {
                   <div className="d-flex justify-content-between align-items-center flex-wrap">
                     <div className="d-flex">
                       <span>Completed: </span>
+                      {console.log(I.item)}
                       {I.item.completed ? (
                         <CheckCircleOutlineIcon
                           color="success"
