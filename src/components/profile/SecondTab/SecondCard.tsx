@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PostImgItem from "../MainCard/PostImgItem";
 import Booking from "./Tabs/Booking";
+import Map from "./Tabs/Map/Map";
 import StoreTab from "./Tabs/StoreTab";
 
 function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
@@ -50,8 +51,9 @@ function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
             centered
           >
             <Tab label="Posts" value="1" />
-            {FetchedUser.user.creator && <Tab label="Booking" value="2" />}
-            {FetchedUser.user.creator && <Tab label="Store" value="3" />}
+            <Tab label="Map" value="2" />
+            {FetchedUser.user.creator && <Tab label="Booking" value="3" />}
+            {FetchedUser.user.creator && <Tab label="Store" value="4" />}
           </TabList>
         </Box>
         {/* POST TAB */}
@@ -71,9 +73,12 @@ function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
         </TabPanel>
         {/* BOOKING TAB */}
         <TabPanel value="2">
-          <Booking creator={FetchedCreator} />
+          <Map creator={FetchedCreator} Posts={Posts} />
         </TabPanel>
         <TabPanel value="3">
+          <Booking creator={FetchedCreator} />
+        </TabPanel>
+        <TabPanel value="4">
           <StoreTab creator={FetchedCreator} Posts={Posts} />
         </TabPanel>
       </TabContext>

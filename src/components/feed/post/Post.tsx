@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CommentsArea from "../comments/CommentsArea";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 //
 function Post({ post, reFetch }: any) {
   const user = useSelector((state: any) => state.user);
@@ -85,12 +86,15 @@ function Post({ post, reFetch }: any) {
             </Link>
           </ListItem>
           {post.location && (
-            <ListItem button className="d-flex p-0">
-              <small>{post.location}</small>
+            <ListItem button className="d-flex align-items-center p-0">
+              <LocationOnIcon
+                className="text-muted mr-1"
+                style={{ fontSize: "1rem" }}
+              />
+              <small>{post.location.title}</small>
             </ListItem>
           )}
         </div>
-
         {post.author._id === user._id && (
           <div className="mx-2 ml-auto">
             <div className="delete-btn" onClick={deletePost}>

@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import { TransitionProps } from "@mui/material/transitions";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import SetCordMap from "./SetCordMap";
 //
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -26,7 +27,10 @@ const Transition = React.forwardRef(function Transition(
 //
 function CreatePost({ reFetch }: any) {
   const [Open, setOpen] = useState(false);
-  const [NewPost, setNewPost] = useState({ text: "", location: "" });
+  const [NewPost, setNewPost] = useState({
+    text: "",
+    location: { title: "", cord: [] },
+  });
   const [MediaFiles, setMediaFiles] = useState([]);
   const [ImgPrev, setImgPrev] = useState([]);
   const [Loading, setLoading] = useState(false);
@@ -36,7 +40,8 @@ function CreatePost({ reFetch }: any) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("text", NewPost.text);
-    formData.append("location", NewPost.location);
+    formData.append("locTitle", NewPost.location.title);
+    formData.append("locCord", NewPost.location.cord[0]);
     formData.append("media", MediaFiles[0]);
     //
     setLoading(true);
@@ -50,16 +55,24 @@ function CreatePost({ reFetch }: any) {
           Authorization: `Bearer ${tokens.accessToken}`,
         },
       });
+      const data = await res.json();
       if (res.ok) {
-        // const data = await res.json();
         reFetch();
         setLoading(false);
         setOpen(false);
+        setNewPost({
+          text: "",
+          location: { title: "", cord: [] },
+        });
+        setMediaFiles([]);
+        setImgPrev([]);
       } else {
+        alert(data.message);
         setLoading(false);
         console.log(res);
       }
     } catch (error) {
+      alert("Error");
       setLoading(false);
       console.log(error);
     }
@@ -123,19 +136,7 @@ function CreatePost({ reFetch }: any) {
                 setNewPost({ ...NewPost, text: e.target.value })
               }
             />
-
-            <TextField
-              margin="dense"
-              id="heo"
-              label="Heolocation"
-              type="text"
-              fullWidth
-              variant="standard"
-              value={NewPost.location}
-              onChange={(e: any) =>
-                setNewPost({ ...NewPost, location: e.target.value })
-              }
-            />
+            <SetCordMap />
             <div
               className="w-100 position-relative"
               style={{ overflow: "hidden" }}
