@@ -14,7 +14,12 @@ function Map({ creator, Posts }: any) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {Posts.length > 0 &&
-          Posts.map((P: any) => <CustomMarker P={P} key={P._id + "zvcx"} />)}
+          Posts.map(
+            (P: any) =>
+              P.location.cord.length > 1 && (
+                <CustomMarker P={P} key={P._id + "zvcx"} />
+              ),
+          )}
       </MapContainer>
     </div>
   );

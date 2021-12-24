@@ -40,9 +40,14 @@ function CreatePost({ reFetch }: any) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("text", NewPost.text);
-    formData.append("locTitle", NewPost.location.title);
-    formData.append("locCord", NewPost.location.cord[0]);
     formData.append("media", MediaFiles[0]);
+    if (NewPost.location.title && NewPost.location.cord.length > 1) {
+      formData.append("locTitle", NewPost.location.title);
+      formData.append(
+        "locCord",
+        `${NewPost.location.cord[0]}, ${NewPost.location.cord[1]}`,
+      );
+    }
     //
     setLoading(true);
     try {
@@ -60,12 +65,7 @@ function CreatePost({ reFetch }: any) {
         reFetch();
         setLoading(false);
         setOpen(false);
-        setNewPost({
-          text: "",
-          location: { title: "", cord: [] },
-        });
-        setMediaFiles([]);
-        setImgPrev([]);
+        clearForm();
       } else {
         alert(data.message);
         setLoading(false);
@@ -77,7 +77,21 @@ function CreatePost({ reFetch }: any) {
       console.log(error);
     }
   };
-  //
+  // Close Dialog
+  const handleClose = () => {
+    setOpen(!Open);
+    clearForm();
+  };
+  //  CLear Form
+  const clearForm = () => {
+    setNewPost({
+      text: "",
+      location: { title: "", cord: [] },
+    });
+    setMediaFiles([]);
+    setImgPrev([]);
+  };
+  // IMG
   const imageHandler = (e: any) => {
     const images = e.target.files;
     const imageArray: any = Array.from(images);
@@ -85,11 +99,7 @@ function CreatePost({ reFetch }: any) {
     setMediaFiles(imageArray);
     setImgPrev(imagePreview);
   };
-  //
-  const handleClose = () => {
-    setOpen(!Open);
-  };
-  //
+  // === Remove IMG
   const removeImg = (i: number) => {
     const delImg = [...ImgPrev];
     delImg.splice(i, 1);
@@ -99,9 +109,16 @@ function CreatePost({ reFetch }: any) {
     imgFile.splice(i, 1);
     setMediaFiles(imgFile);
   };
+  const setFormLocation = (value: any) => {
+    console.log(value);
+    setNewPost({
+      ...NewPost,
+      location: { title: value.title, cord: value.cord },
+    });
+  };
   //
-  // useEffect(() => { }, []);
-  // =====================
+  // useEffect(() => {}, []);
+  // ===================== JSX
   return (
     <>
       <div
@@ -120,85 +137,92 @@ function CreatePost({ reFetch }: any) {
         keepMounted
       >
         <DialogTitle>Create post</DialogTitle>
-        <form onSubmit={createPost}>
-          <DialogContent dividers>
-            <TextField
-              required
-              autoFocus
-              margin="dense"
-              id="text"
-              label="Title"
-              type="text"
-              fullWidth
-              variant="standard"
-              value={NewPost.text}
-              onChange={(e: any) =>
-                setNewPost({ ...NewPost, text: e.target.value })
-              }
-            />
-            <SetCordMap />
-            <div
-              className="w-100 position-relative"
-              style={{ overflow: "hidden" }}
-            >
-              <div className="upload-images mt-3">
-                {ImgPrev.length > 0 &&
-                  ImgPrev.map((Img, i) => (
+        {/* <form onSubmit={createPost}> */}
+        <DialogContent dividers>
+          <TextField
+            required
+            autoFocus
+            margin="dense"
+            id="text"
+            label="Title"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={NewPost.text}
+            onChange={(e: any) =>
+              setNewPost({ ...NewPost, text: e.target.value })
+            }
+          />
+          {/* ======== MAP CARD */}
+          <SetCordMap clearForm={clearForm} setFormLocation={setFormLocation} />
+          <div
+            className="w-100 position-relative"
+            style={{ overflow: "hidden" }}
+          >
+            <div className="upload-images mt-3">
+              {ImgPrev.length > 0 &&
+                ImgPrev.map((Img, i) => (
+                  <div
+                    className="d-flex flex-column position-relative"
+                    style={{ width: "20rem" }}
+                    key={Img + "13"}
+                  >
+                    <img
+                      src={Img}
+                      alt=""
+                      style={{
+                        objectFit: "cover",
+                      }}
+                    />
                     <div
-                      className="d-flex flex-column position-relative"
-                      style={{ width: "20rem" }}
+                      className="delete-img-button"
+                      onClick={() => removeImg(i)}
                     >
-                      <img
-                        src={Img}
-                        alt=""
-                        style={{
-                          objectFit: "cover",
-                        }}
-                      />
-                      <div
-                        className="delete-img-button"
-                        onClick={() => removeImg(i)}
+                      <IconButton
+                        className="p-1"
+                        color="warning"
+                        aria-label="upload picture"
+                        component="span"
                       >
-                        <IconButton
-                          className="p-1"
-                          color="warning"
-                          aria-label="upload picture"
-                          component="span"
-                        >
-                          <HighlightOffIcon />
-                        </IconButton>
-                      </div>
+                        <HighlightOffIcon />
+                      </IconButton>
                     </div>
-                  ))}
-              </div>
+                  </div>
+                ))}
             </div>
-            <div className="w-100 d-flex justify-content-center mt-3">
-              <input
-                id="raised-button-file"
-                onChange={(e: any) => imageHandler(e)}
-                accept="image/*"
-                required
-                style={{ display: "none" }}
-                type="file"
-              />
-              <label htmlFor="raised-button-file">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <AddPhotoAlternateIcon fontSize="large" />
-                </IconButton>
-              </label>
-            </div>
-          </DialogContent>
-          <DialogActions className="d-flex justify-content-center">
-            <Button onClick={handleClose}>Cancel</Button>
-            <LoadingButton type="submit" loading={Loading} variant="outlined">
-              Post
-            </LoadingButton>
-          </DialogActions>
-        </form>
+          </div>
+          <div className="w-100 d-flex justify-content-center mt-3">
+            <input
+              id="raised-button-file"
+              onChange={(e: any) => imageHandler(e)}
+              accept="image/*"
+              required
+              style={{ display: "none" }}
+              type="file"
+            />
+            <label htmlFor="raised-button-file">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <AddPhotoAlternateIcon fontSize="large" />
+              </IconButton>
+            </label>
+          </div>
+        </DialogContent>
+        <DialogActions className="d-flex justify-content-center">
+          <Button onClick={handleClose}>Cancel</Button>
+          <LoadingButton
+            disabled={NewPost.text && MediaFiles.length > 0 ? false : true}
+            loading={Loading}
+            variant="outlined"
+            onClick={(e: any) => createPost(e)}
+          >
+            Post
+          </LoadingButton>
+        </DialogActions>
+        {/* </form> */}
       </Dialog>
     </>
   );

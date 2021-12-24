@@ -97,3 +97,22 @@
   bottom: 120%;
   left: -2rem;
 }
+/* ==============================CREATE POST MAP */
+.locationSearch {
+  padding: 0.4em;
+  background-color: rgb(238, 238, 238);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 3px 6px grey;
+}
+.locationSearchItem {
+  padding: 0.2em;
+  margin: 0.2em 0;
+  transition: 0.1s;
+}
+.locationSearchItem:hover {
+  transform: scale(1.02);
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

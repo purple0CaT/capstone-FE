@@ -85,13 +85,22 @@ function Post({ post, reFetch }: any) {
               )}
             </Link>
           </ListItem>
-          {post.location && (
+          {post.location.title && (
             <ListItem button className="d-flex align-items-center p-0">
               <LocationOnIcon
                 className="text-muted mr-1"
                 style={{ fontSize: "1rem" }}
               />
-              <small>{post.location.title}</small>
+              <small
+                style={{
+                  textOverflow: "ellipsis",
+                  maxWidth: "7em",
+                  overflow: "hidden",
+                  maxHeight: "1rem",
+                }}
+              >
+                {post.location.title}
+              </small>
             </ListItem>
           )}
         </div>

@@ -13,12 +13,16 @@ function getIcon(iconSize: any) {
 function CustomMarker({ P }: any) {
   return (
     <>
-      <Marker position={[51.507351, -0.127758]} icon={getIcon(30)}>
+      <Marker position={P.location.cord} icon={getIcon(30)}>
         <Popup>
           <div className="d-flex flex-column align-items-center justify-content-center">
             <img
               src={P.media}
-              style={{ width: "100px", aspectRatio: "1.5/1", objectFit: "cover" }}
+              style={{
+                width: "100px",
+                aspectRatio: "1.5/1",
+                objectFit: "cover",
+              }}
               alt=""
             />
           </div>
