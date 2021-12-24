@@ -85,7 +85,7 @@ function Post({ post, reFetch }: any) {
               )}
             </Link>
           </ListItem>
-          {post.location?.title && post.location?.cord.length > 1 && (
+          {post.location?.cord.length > 1 && (
             <ListItem button className="d-flex align-items-center p-0">
               <LocationOnIcon
                 className="text-muted mr-1"
