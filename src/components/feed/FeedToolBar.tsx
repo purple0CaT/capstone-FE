@@ -10,22 +10,22 @@ function FeedToolBar({ reFetch }: any) {
   };
   return (
     <Grid container className="align-items-center">
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <FeedType />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={4}>
         <div
           className="d-flex justify-content-center align-items-center post-create"
           onClick={() => setOpenCreatePost(true)}
           style={{ cursor: "pointer" }}
         >
-          <h6 className="text-muted m-0">Create post</h6>
+          <h6 className="text-muted m-0">New post</h6>
         </div>
         {OpenCreatePost && (
           <CreatePost reFetch={reFetch} handleClose={handleClose} />
         )}
       </Grid>
-      <Grid item xs={3}></Grid>
+      <Grid item xs={4}></Grid>
     </Grid>
   );
 }

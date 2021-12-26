@@ -8,14 +8,17 @@ function FeedType() {
   const app = useSelector((state: any) => state.app);
   const dispatch = useDispatch();
   return (
-    <div className="d-flex align-items-center">
+    <div className="d-flex align-items-center justify-content-center">
       <Switch
         defaultChecked
+        color="warning"
         checked={app.feed}
         onChange={() => dispatch(setFeedSearch(!app.feed))}
         inputProps={{ "aria-label": "controlled" }}
       />
-      <small className="text-muted font-weight-bold">{app.feed && "All"}</small>
+      <small className="text-muted font-weight-bold">
+        {app.feed ? "All" : "Followed"}
+      </small>
     </div>
   );
 }
