@@ -18,6 +18,7 @@ import {
   clearShop,
   clearToken,
   clearUser,
+  setFeedSearch,
 } from "../../redux/actions/action";
 import "./style.css";
 //
@@ -35,6 +36,7 @@ function Sidebar({ toggleDrawer }: any) {
     dispatch(clearToken());
     dispatch(clearChat());
     dispatch(clearShop());
+    dispatch(setFeedSearch(false));
     history.push("/login");
   };
   //

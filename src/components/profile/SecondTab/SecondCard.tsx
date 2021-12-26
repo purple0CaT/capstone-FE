@@ -4,9 +4,9 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PostImgItem from "../MainCard/PostImgItem";
-import Booking from "./Tabs/Booking";
-import Map from "./Tabs/Map/Map";
-import StoreTab from "./Tabs/StoreTab";
+import Booking from "./Booking/Booking";
+import Map from "./Posts/Map";
+import StoreTab from "./Cart/StoreTab";
 
 function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
   const [value, setValue] = React.useState("1");
