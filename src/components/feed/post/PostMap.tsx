@@ -1,20 +1,15 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Dialog, ListItem } from "@mui/material";
-import L from "leaflet";
+import { ListItem } from "@mui/material";
 import React, { useState } from "react";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import SingleMap from "./SingleMap";
 
 //
-function getIcon(iconSize: any) {
-  return L.icon({
-    iconUrl:
-      "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
-    iconSize,
-    iconAnchor: [15, 30],
-  });
-}
+
 function PostMap({ location }: any) {
   const [OpenMap, setOpenMap] = useState(false);
+  const closeMap = () => {
+    setOpenMap(false);
+  };
   return (
     <>
       {location?.cord.length > 1 && (
@@ -39,20 +34,13 @@ function PostMap({ location }: any) {
               {location.title}
             </small>
           </ListItem>
-          <Dialog fullWidth open={OpenMap} onClose={() => setOpenMap(false)}>
-            <MapContainer
-              center={location.cord}
-              zoom={7}
-              scrollWheelZoom={false}
-              style={{ minWidth: "10em", minHeight: "20em" }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={location.cord} icon={getIcon(30)}></Marker>
-            </MapContainer>
-          </Dialog>{" "}
+          {OpenMap && (
+            <SingleMap
+              OpenMap={OpenMap}
+              location={location}
+              closeMap={closeMap}
+            />
+          )}
         </>
       )}
     </>

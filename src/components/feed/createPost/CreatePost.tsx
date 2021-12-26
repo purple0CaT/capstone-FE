@@ -25,8 +25,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 //
-function CreatePost({ reFetch }: any) {
-  const [Open, setOpen] = useState(false);
+function CreatePost({ reFetch, handleClose }: any) {
   const [NewPost, setNewPost] = useState({
     text: "",
     location: { title: "", cord: [] },
@@ -64,7 +63,7 @@ function CreatePost({ reFetch }: any) {
       if (res.ok) {
         reFetch();
         setLoading(false);
-        setOpen(false);
+        handleClose();
         clearForm();
       } else {
         alert(data.message);
@@ -78,9 +77,9 @@ function CreatePost({ reFetch }: any) {
     }
   };
   // Close Dialog
-  const handleClose = () => {
-    setOpen(!Open);
+  const dialogHandler = () => {
     clearForm();
+    handleClose();
   };
   //  CLear Form
   const clearForm = () => {
@@ -117,27 +116,17 @@ function CreatePost({ reFetch }: any) {
     });
   };
   //
-  // useEffect(() => {}, []);
-  // ===================== JSX
   return (
     <>
-      <div
-        className="d-flex justify-content-center align-items-center post-create"
-        onClick={handleClose}
-        style={{ cursor: "pointer" }}
-      >
-        <h6 className="text-muted m-0">Create post</h6>
-      </div>
       <Dialog
         maxWidth="md"
         fullWidth={true}
-        open={Open}
-        onClose={handleClose}
+        open={true}
+        onClose={dialogHandler}
         TransitionComponent={Transition}
         keepMounted
       >
         <DialogTitle>Create post</DialogTitle>
-        {/* <form onSubmit={createPost}> */}
         <DialogContent dividers>
           <TextField
             required
@@ -222,7 +211,6 @@ function CreatePost({ reFetch }: any) {
             Post
           </LoadingButton>
         </DialogActions>
-        {/* </form> */}
       </Dialog>
     </>
   );

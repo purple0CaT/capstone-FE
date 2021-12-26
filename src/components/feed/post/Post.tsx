@@ -28,7 +28,6 @@ function Post({ post, reFetch }: any) {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
       });
       if (res.ok) {
-        // const data = await res.json();
         reFetch();
       } else {
         console.log(res);

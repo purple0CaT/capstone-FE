@@ -4,6 +4,7 @@ import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 import localStorage from "redux-persist/es/storage";
 import thunk from "redux-thunk";
+import { AppRed } from "../reducers/app";
 import { ChatRed } from "../reducers/chat";
 import { ShopRed } from "../reducers/shop";
 import { TokenRed } from "../reducers/tokens";
@@ -39,6 +40,9 @@ export const inititalState = {
     activeChat: {},
     allChat: [],
   },
+  app: {
+    feed: false,
+  },
 };
 
 const Reducer = combineReducers({
@@ -46,6 +50,7 @@ const Reducer = combineReducers({
   shop: ShopRed,
   chat: ChatRed,
   tokens: TokenRed,
+  app: AppRed,
 });
 const persistConfigs = {
   key: "root",

@@ -91,3 +91,8 @@ export const addToCart = (value: any) => {
     console.log(value);
   };
 };
+// FEED
+export const setFeedSearch = (value: boolean) => ({
+  type: "SET_FEED_SEARCH",
+  payload: value,
+});
