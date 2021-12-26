@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
-import MainCard from "./MainCard/MainCard";
-import SecondCard from "./SecondTab/SecondCard";
+import MainCard from "./ProfileCard/MainCard";
+import SecondCard from "./Tabs/SecondCard";
 import "./style.css";
 
 function Profile() {

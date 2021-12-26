@@ -10,7 +10,6 @@ function FeedType() {
   return (
     <div className="d-flex align-items-center justify-content-center">
       <Switch
-        defaultChecked
         color="warning"
         checked={app.feed}
         onChange={() => dispatch(setFeedSearch(!app.feed))}
