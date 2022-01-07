@@ -55,7 +55,7 @@ const Reducer = combineReducers({
 const persistConfigs = {
   key: "root",
   storage: localStorage,
-  transform: [
+  transforms: [
     encryptTransform({
       secretKey: process.env.REACT_APP_KEYENCRIPT!,
       onError: function (error) {},

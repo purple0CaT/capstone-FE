@@ -13,9 +13,6 @@ function Profile() {
   const params: any = useParams();
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
-  // const matches = useMediaQuery("(min-width:600px)");
-  // //
-  // const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
   const [Loading, setLoading] = useState(true);
   const [FetchedUser, setFetchedUser]: any = useState();
@@ -32,6 +29,7 @@ function Profile() {
       if (res.ok) {
         const data = await res.json();
         setFetchedUser(data);
+        // document.title = `${data.user.firstname} ${data.user.lastname}`;
         if (data.user.creator) {
           fetchCreator(data.user.creator);
         } else {
