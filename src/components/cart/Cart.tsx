@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { clearShop, setDelItem, setItemQty } from "../../redux/actions/action";
+import { reduxItem, ReduxStore } from "../../types/reduxStore";
 import "./style.css";
 // Style
 const imgStyle = {
@@ -17,9 +18,7 @@ const imgStyle = {
 //
 function Cart() {
   const history = useHistory();
-  const user = useSelector((state: any) => state.user);
-  const shop = useSelector((state: any) => state.shop);
-  const tokens = useSelector((state: any) => state.tokens);
+  const { user, shop, tokens } = useSelector((state: ReduxStore) => state);
   const [DeliveryAddress, setDeliveryAddress] = useState({
     street: "",
     postal: "",
@@ -79,7 +78,7 @@ function Cart() {
       <div className="cartCard">
         <h4 className="text-muted text-center">Cart</h4>
         {shop.cart.length > 0 ? (
-          shop.cart.map((I: any, index: number) => (
+          shop.cart.map((I: reduxItem, index: number) => (
             <Grid container className="itemCart" key={I.item._id + "osos"}>
               <Grid item xs={12} md={6} className="text-center p-2">
                 <img src={I.item.image} style={imgStyle} alt="" />

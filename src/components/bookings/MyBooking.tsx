@@ -2,17 +2,17 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Divider, LinearProgress } from "@mui/material";
 import dateFormat from "dateformat";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
+import { ReduxStore } from "../../types/reduxStore";
 import "./style.css";
 
 //
 function MyBooking() {
   const history = useHistory();
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const dispatch = useDispatch();
   const [Loading, setLoading] = useState(true);
   //

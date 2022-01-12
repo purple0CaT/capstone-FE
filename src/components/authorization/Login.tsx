@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { setTokens, setUser } from "../../redux/actions/action";
+import { ReduxStore } from "../../types/reduxStore";
 import "./style.css";
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
   //
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: ReduxStore) => state.user);
   //
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

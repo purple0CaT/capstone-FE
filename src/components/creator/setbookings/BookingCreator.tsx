@@ -3,10 +3,11 @@ import EventIcon from "@mui/icons-material/Event";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import React from "react";
+import { creatorFetch } from "../creatorInterface";
 import AppointPage from "./AppointPage";
 import AvailabPage from "./AvailabPage";
 //
-function BookingCreator({ FetchedCreator, reFetch }: any) {
+function BookingCreator({ FetchedCreator, reFetch }: creatorFetch) {
   return (
     <div>
       {/* =================================================== PENDING APPOINTMENTS */}

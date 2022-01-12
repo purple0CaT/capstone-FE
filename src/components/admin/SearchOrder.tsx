@@ -1,8 +1,9 @@
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { ConfirmedType } from "./interface";
 import SimpleOrder from "./SimpleOrder";
-
-function SearchOrder({ Order, reFetch }: any) {
+//
+function SearchOrder({ Order, reFetch }: ConfirmedType) {
   const [SearchById, setSearchById] = useState("");
   const [FindedOrder, setFindedOrder] = useState([]);
   //
@@ -10,7 +11,9 @@ function SearchOrder({ Order, reFetch }: any) {
     if (SearchById.length > 3) {
       console.log(Order);
       if (Order) {
-        const orders = Order.filter((Or: any) => Or._id.includes(SearchById));
+        const orders: any = Order.filter((Or: any) =>
+          Or._id.includes(SearchById),
+        );
         console.log(orders);
         if (orders.length > 0) {
           setFindedOrder(orders);

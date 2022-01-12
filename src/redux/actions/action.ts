@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { reduxItem, reduxTokens, singleChat } from "../../types/reduxStore";
 
 export const setUser = (value: string) => ({
   type: "SET_USER",
@@ -16,19 +17,19 @@ export const clearChat = () => ({
 export const clearShop = () => ({
   type: "CLEAR_SHOP",
 });
-export const setTokens = (value: any) => ({
+export const setTokens = (value: reduxTokens) => ({
   type: "SET_TOKENS",
   payload: value,
 });
-export const setActiveChat = (value: any) => ({
+export const setActiveChat = (value: singleChat) => ({
   type: "SET_ACTIVE_CHAT",
   payload: value,
 });
-export const setChats = (value: any) => ({
+export const setChats = (value: singleChat[]) => ({
   type: "SET_CHATS",
   payload: value,
 });
-export const setItemQty = (value: any, index: number) => {
+export const setItemQty = (value: reduxItem, index: number) => {
   return async (dispatch: Dispatch, getState: any) => {
     const state = getState();
     const modifCart = state.shop.cart;

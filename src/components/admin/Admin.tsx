@@ -1,15 +1,16 @@
 import { LinearProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { ReduxStore } from "../../types/reduxStore";
 import Confirmed from "./Confirmed";
 import NotConfiremd from "./NotConfiremd";
 import SearchOrder from "./SearchOrder";
 import "./style.css";
 //
 function Admin() {
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+  const user = useSelector((state: ReduxStore) => state.user);
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   const history = useHistory();
   const [Loading, setLoading] = useState(false);
   const [AllOrders, setAllOrders] = useState([]);

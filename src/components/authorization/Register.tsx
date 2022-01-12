@@ -26,7 +26,7 @@ function Register() {
     setLoading(true);
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/register`;
-      const res: any = await fetch(url, {
+      const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify(FormInfo),
         headers: {

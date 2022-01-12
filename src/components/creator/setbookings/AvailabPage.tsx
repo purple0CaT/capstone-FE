@@ -7,21 +7,24 @@ import dateFormat from "dateformat";
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
-//
+import { Appointment, Availability } from "../../../types/creatorTypes";
+import { ReduxStore } from "../../../types/reduxStore";
+// Style
 const setHBtns = {
   borderRadius: "20px",
   boxShadow: "0 0 3px grey",
   backgroundColor: "white",
 };
+//
 function AvailabPage({ FetchedCreator, reFetch }: any) {
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
+  const [Loading, setLoading] = useState(false);
   const [AvailabDate, setAvailabDate]: any = useState(
     new Date(new Date().setMinutes(0)),
   );
   const [AvailabEnd, setAvailabEnd]: any = useState(
     new Date(new Date().setMinutes(0)),
   );
-  const tokens = useSelector((state: any) => state.tokens);
-  const [Loading, setLoading] = useState(false);
   // DISABLE DAYS
   const tileDisabled = ({ date, view }: any) =>
     view === "month" &&
@@ -94,7 +97,7 @@ function AvailabPage({ FetchedCreator, reFetch }: any) {
         >
           {FetchedCreator?.booking.availability.length > 0 ? (
             FetchedCreator.booking.availability.map(
-              (A: any) =>
+              (A: Availability) =>
                 new Date(A.end) >= new Date() && (
                   <div
                     className="availItemBookCreator text-center"
@@ -106,7 +109,7 @@ function AvailabPage({ FetchedCreator, reFetch }: any) {
                     </h6>
                     <div>
                       <Divider className="w-100" />
-                      {FetchedCreator.booking.appointments.map((APP: any) => {
+                      {FetchedCreator.booking.appointments.map((APP: Appointment) => {
                         if (
                           A.start <= APP.appointmentDate &&
                           A.end >= APP.appointmentEnd &&

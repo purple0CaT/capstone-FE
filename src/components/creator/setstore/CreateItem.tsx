@@ -4,9 +4,14 @@ import { IconButton, TextField } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
-function CreateItem({ reFetch }: any) {
-  const tokens = useSelector((state: any) => state.tokens);
+import { ReduxStore } from "../../../types/reduxStore";
+//
+interface ReFetch {
+  reFetch: () => void;
+}
+//
+function CreateItem({ reFetch }: ReFetch) {
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   const [Loading, setLoading] = useState(false);
   const [ItemForm, setItemForm] = useState({
     title: "",
@@ -14,8 +19,8 @@ function CreateItem({ reFetch }: any) {
     price: "",
     quantity: "",
   });
-  const [ItemImage, setItemImage]: any = useState();
-  const [ImgPrev, setImgPrev]: any = useState();
+  const [ItemImage, setItemImage] = useState(null);
+  const [ImgPrev, setImgPrev] = useState(null);
   //
   const imageHandler = (e: any) => {
     const imagePreview: any = URL.createObjectURL(e.target.files[0]);
@@ -68,8 +73,8 @@ function CreateItem({ reFetch }: any) {
             <div
               className="delete-img-button"
               onClick={() => {
-                setItemImage();
-                setImgPrev();
+                setItemImage(null);
+                setImgPrev(null);
               }}
             >
               <IconButton

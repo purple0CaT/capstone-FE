@@ -1,17 +1,19 @@
-export interface reduxCart {
-  item: {
-    _id: string;
-    image: string;
-    sellerId: string;
-    title: string;
-    imgRatio: string;
-    completed: boolean;
-    description: string;
-    price: number;
-    quantity: number;
-    type: string;
-    __v: number;
-  };
+export interface reduxSingleItem {
+  _id: string;
+  image: string;
+  sellerId: string;
+  title: string;
+  imgRatio: string;
+  completed: boolean;
+  description: string;
+  deliveryCode?: string;
+  price: number
+  quantity: number;
+  type: string;
+  __v: number;
+}
+export interface reduxItem {
+  item: reduxSingleItem;
   qty: number;
 }
 //
@@ -21,7 +23,7 @@ export interface reduxOrders {
   customerId: string;
   deliveryAddress: string;
   deliveryCodeTracking: null | string;
-  items: reduxCart[];
+  items: reduxItem[];
   paid: boolean;
   totalCost: number;
   updatedAt: string;
@@ -30,7 +32,17 @@ export interface reduxOrders {
 }
 //
 export interface reduxShop {
-  shop: { cart: reduxCart[]; orders: reduxOrders[] };
+  shop: { cart: reduxItem[]; orders: reduxOrders[] };
+}
+// === Booking ===
+export interface reduxBooking {
+  _id: string;
+  appointmentDate: string;
+  appointmentEnd: string;
+  user: string;
+  confirmed: boolean;
+  rejected: boolean;
+  __v: number;
 }
 // === Chat ===
 export interface chatMember {
@@ -65,13 +77,11 @@ export interface singleChat {
 }
 // === Tokens ===
 export interface reduxTokens {
-  tokens: {
-    accessToken: string;
-    refreshToken: string;
-  };
+  accessToken: string | null;
+  refreshToken: string | null;
 }
 // Store
-export interface ReduxStore extends reduxTokens, reduxShop {
+export interface ReduxStore extends reduxShop {
   user: {
     _id: string;
     firstname: string;
@@ -82,10 +92,10 @@ export interface ReduxStore extends reduxTokens, reduxShop {
     fbId: string;
     creator: string;
     type: string;
-    booking: string;
+    booking: reduxBooking[];
     followers: string;
     shopping: {
-      cart: reduxCart[] | [];
+      cart: reduxItem[] | [];
       orders: reduxOrders[] | [];
     };
   };
@@ -96,4 +106,5 @@ export interface ReduxStore extends reduxTokens, reduxShop {
   app: {
     feed: boolean;
   };
+  tokens: reduxTokens;
 }

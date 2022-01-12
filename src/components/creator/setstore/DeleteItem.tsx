@@ -2,8 +2,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Dialog, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { itemRefetch } from "../creatorInterface";
 
-function DeleteItem({ item, reFetch }: any) {
+function DeleteItem({ item, reFetch }: itemRefetch) {
   const tokens = useSelector((state: any) => state.tokens);
   const [ShowDelete, setShowDelete] = useState(false);
   //

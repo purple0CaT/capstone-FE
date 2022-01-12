@@ -1,17 +1,18 @@
 import CancelIcon from "@mui/icons-material/Cancel";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { ConfirmedType } from "./interface";
 import SimpleOrder from "./SimpleOrder";
-
-function Confirmed({ Order, reFetch }: any) {
+//
+function Confirmed({ Order, reFetch }: ConfirmedType) {
   const [SortOrders, setSortOrders] = useState([]);
   //
   //
   useEffect(() => {
     if (Order.length > 0) {
-      const sorted = Order.sort(function (a: any, b: any) {
+      const sorted: any = Order.sort(function (a: any, b: any) {
         let st: any = new Date(a.createdAt);
         let en: any = new Date(b.createdAt);
         return en - st;

@@ -4,15 +4,20 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SimpleOrder from "./SimpleOrder";
+import { reduxOrders } from "../../types/reduxStore";
 //
-
-function NotConfiremd({ Order, reFetch }: any) {
+interface Confirmed {
+  Order: reduxOrders[];
+  reFetch: () => void;
+}
+//
+function NotConfiremd({ Order, reFetch }: Confirmed) {
   const [SortOrders, setSortOrders] = useState([]);
   //
   //
   useEffect(() => {
     if (Order.length > 0) {
-      const sorted = Order.sort(function (a: any, b: any) {
+      const sorted: any = Order.sort(function (a: any, b: any) {
         let st: any = new Date(a.createdAt);
         let en: any = new Date(b.createdAt);
         return en - st;
@@ -37,7 +42,7 @@ function NotConfiremd({ Order, reFetch }: any) {
                   id="panel1a-header"
                 >
                   <div className="d-flex flex-wrap justify-content-between w-100 align-items-center">
-                  <h6 className="text-muted text-center m-0">
+                    <h6 className="text-muted text-center m-0">
                       <small>Order :</small> #{oOrder._id}
                     </h6>{" "}
                     <span className="d-flex align-items-center ml-auto mr-1 font-weight-bold">

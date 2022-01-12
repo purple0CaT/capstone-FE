@@ -1,6 +1,7 @@
+import { AnyAction } from "redux";
 import { inititalState } from "../store/store";
 
-export const ChatRed = (state = inititalState.chat, action: any) => {
+export const ChatRed = (state = inititalState.chat, action: AnyAction) => {
   switch (action.type) {
     case "SET_CHATS":
       return {

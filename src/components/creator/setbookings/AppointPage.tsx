@@ -5,9 +5,11 @@ import dateFormat from "dateformat";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { ReduxStore } from "../../../types/reduxStore";
+import { creatorFetch } from "../creatorInterface";
 //
-function AppointPage({ FetchedCreator, reFetch }: any) {
-  const tokens = useSelector((state: any) => state.tokens);
+function AppointPage({ FetchedCreator, reFetch }: creatorFetch) {
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   //
   const confirmApp = async (id: any) => {
     try {

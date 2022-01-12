@@ -5,10 +5,12 @@ import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { reduxItem, ReduxStore } from "../../types/reduxStore";
+import { SingleOrder } from "./interface";
 
-function SimpleOrder({ Order, reFetch }: any) {
-  const [DeliveryCode, setDeliveryCode]: any = useState({});
-  const tokens = useSelector((state: any) => state.tokens);
+function SimpleOrder({ Order, reFetch }: SingleOrder) {
+  const [DeliveryCode, setDeliveryCode]: any = useState();
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   //
   const confirmItem = async (
     orderId: string,
@@ -42,7 +44,7 @@ function SimpleOrder({ Order, reFetch }: any) {
   return (
     <>
       {Order &&
-        Order.items.map((I: any, index: number) => (
+        Order.items.map((I: reduxItem, index: number) => (
           <Grid
             container
             className="d-flex justify-content-between p-0 orderItem"
@@ -177,7 +179,7 @@ function SimpleOrder({ Order, reFetch }: any) {
         </span>
         <span className="d-flex align-items-center ml-auto mr-4 font-weight-bold">
           Completed:{" "}
-          {!Order?.items.some((itm: any) => itm.item.completed === false) ? (
+          {!Order?.items.some((itm: reduxItem) => itm.item.completed === false) ? (
             <CheckCircleOutlineIcon color="success" fontSize="medium" />
           ) : (
             <CancelIcon color="warning" fontSize="medium" />

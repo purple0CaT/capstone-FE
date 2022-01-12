@@ -3,18 +3,21 @@ import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { LoadingButton } from "@mui/lab";
 import { Dialog, IconButton, TextField } from "@mui/material";
+import { stringify } from "querystring";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { ReduxStore } from "../../../types/reduxStore";
+import { itemInfoRefetch } from "../creatorInterface";
 //
-function EditItemStore({ itemInfo, reFetch }: any) {
-  const tokens = useSelector((state: any) => state.tokens);
+function EditItemStore({ itemInfo, reFetch }: itemInfoRefetch) {
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   const [Loading, setLoading] = useState(false);
   const [ShowEdit, setShowEdit] = useState(false);
   const [ItemForm, setItemForm] = useState({
     title: "",
     description: "",
-    price: "",
-    quantity: "",
+    price: 0,
+    quantity: 0,
   });
   const [ItemImage, setItemImage]: any = useState();
   const [ImgPrev, setImgPrev]: any = useState();
@@ -31,8 +34,8 @@ function EditItemStore({ itemInfo, reFetch }: any) {
     const formData = new FormData();
     formData.append("title", ItemForm.title);
     formData.append("description", ItemForm.description);
-    formData.append("price", ItemForm.price);
-    formData.append("quantity", ItemForm.quantity);
+    formData.append("price", `${ItemForm.price}`);
+    formData.append("quantity", `${ItemForm.quantity}`);
     formData.append("media", ItemImage!);
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/shop/item/${itemInfo._id}`;
@@ -156,7 +159,7 @@ function EditItemStore({ itemInfo, reFetch }: any) {
             variant="standard"
             value={ItemForm.quantity}
             onChange={(e) =>
-              setItemForm({ ...ItemForm, quantity: e.target.value })
+              setItemForm({ ...ItemForm, quantity: parseInt(e.target.value) })
             }
           />
           <TextField
@@ -168,7 +171,7 @@ function EditItemStore({ itemInfo, reFetch }: any) {
             variant="standard"
             value={ItemForm.price}
             onChange={(e) =>
-              setItemForm({ ...ItemForm, price: e.target.value })
+              setItemForm({ ...ItemForm, price: parseInt(e.target.value) })
             }
           />
 

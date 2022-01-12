@@ -1,12 +1,17 @@
 import { Divider, Grid } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import {
+  reduxItem,
+  reduxSingleItem,
+  ReduxStore,
+} from "../../../types/reduxStore";
+import { creatorFetch } from "../creatorInterface";
 import CreateItem from "./CreateItem";
 import DeleteItem from "./DeleteItem";
 import EditItemStore from "./EditItemStore";
 
-function StoreSet({ FetchedCreator, reFetch }: any) {
-  const user = useSelector((state: any) => state.user);
+function StoreSet({ FetchedCreator, reFetch }: creatorFetch) {
   return (
     <div>
       <Grid container spacing={2}>
@@ -24,7 +29,7 @@ function StoreSet({ FetchedCreator, reFetch }: any) {
               }}
             >
               {FetchedCreator?.shop &&
-                FetchedCreator.shop.items.map((I: any) => (
+                FetchedCreator.shop.items.map((I: reduxSingleItem) => (
                   <div
                     className="creatorItemCard"
                     style={{ minWidth: "10rem" }}

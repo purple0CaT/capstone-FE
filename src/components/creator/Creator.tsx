@@ -1,9 +1,8 @@
-import {
-  LinearProgress
-} from "@mui/material";
+import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { reduxItem, reduxOrders, ReduxStore } from "../../types/reduxStore";
 import TotalOrders from "./orders/TotalOrders";
 import BookingCreator from "./setbookings/BookingCreator";
 import StoreSet from "./setstore/StoreSet";
@@ -11,15 +10,16 @@ import "./style.css";
 
 function Creator() {
   const history = useHistory();
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [FetchedCreator, setFetchedCreator]: any = useState();
   const [Loading, setLoading] = useState(true);
-  const myTotalEarnings = FetchedCreator?.shop.orders.map((OR: any) =>
+  const myTotalEarnings = FetchedCreator?.shop.orders.map((OR: reduxOrders) =>
     OR.items.filter((IT: any) => IT.item.sellerId === user._id),
   );
   const total2 = myTotalEarnings
-    ?.map((OR: any) => OR?.map((IT: any) => IT.item.price * IT.qty))
+    ?.map((OR: reduxItem[]) =>
+      OR?.map((IT: reduxItem) => IT.item.price * IT.qty),
+    )
     .flat();
   const totalEarnings =
     total2?.length > 0

@@ -25,7 +25,7 @@ export const inititalState: ReduxStore = {
     fbId: "",
     creator: "",
     type: "user",
-    booking: "",
+    booking: [],
     followers: "",
     shopping: {
       cart: [],
