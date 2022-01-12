@@ -4,6 +4,7 @@ import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 import localStorage from "redux-persist/es/storage";
 import thunk from "redux-thunk";
+import { ReduxStore } from "../../types/reduxStore";
 import { AppRed } from "../reducers/app";
 import { ChatRed } from "../reducers/chat";
 import { ShopRed } from "../reducers/shop";
@@ -13,7 +14,7 @@ import { UserRed } from "../reducers/user";
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const inititalState = {
+export const inititalState: ReduxStore = {
   user: {
     _id: "",
     firstname: "",
@@ -22,7 +23,7 @@ export const inititalState = {
     avatar: "",
     googleId: "",
     fbId: "",
-    creator: {},
+    creator: "",
     type: "user",
     booking: "",
     followers: "",
@@ -41,7 +42,7 @@ export const inititalState = {
     allChat: [],
   },
   app: {
-    feed: false,
+    feed: true,
   },
 };
 

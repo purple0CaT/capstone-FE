@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 
-export const setUser = (value: any) => ({
+export const setUser = (value: string) => ({
   type: "SET_USER",
   payload: value,
 });
