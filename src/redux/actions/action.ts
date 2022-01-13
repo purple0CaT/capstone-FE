@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { reduxItem, reduxTokens, singleChat } from "../../types/reduxStore";
+import { reduxItem, reduxTokens, singleChatType } from "../../types/reduxStore";
 
 export const setUser = (value: string) => ({
   type: "SET_USER",
@@ -17,15 +17,18 @@ export const clearChat = () => ({
 export const clearShop = () => ({
   type: "CLEAR_SHOP",
 });
+export const setFeedDefault = () => ({
+  type: "USER_LOG_OUT",
+});
 export const setTokens = (value: reduxTokens) => ({
   type: "SET_TOKENS",
   payload: value,
 });
-export const setActiveChat = (value: singleChat) => ({
+export const setActiveChat = (value: singleChatType) => ({
   type: "SET_ACTIVE_CHAT",
   payload: value,
 });
-export const setChats = (value: singleChat[]) => ({
+export const setChats = (value: singleChatType[]) => ({
   type: "SET_CHATS",
   payload: value,
 });

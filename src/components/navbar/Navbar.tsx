@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./style.css";
 //
-function Navbar({ sideBar, toggleDrawer }: any) {
+function Navbar() {
   return (
     <div
       className="navbar"
@@ -12,13 +12,6 @@ function Navbar({ sideBar, toggleDrawer }: any) {
       <Col xs="3" className="position-relative"></Col>
       <Col xs="6" className="d-flex justify-content-center">
         <Link to="/" className="d-flex logo-style">
-          {/* <div className="position-relative">
-            <img
-              src="https://lh3.google.com/u/0/d/1aYWPga8Gy0irn0mpWtTc5ICXDSJO6D2X=w2880-h1640-iv1"
-              alt=""
-              style={{ height: "2rem", backgroundColor: "white" }}
-            />
-          </div> */}
           <h4 className="m-0 mx-auto">
             <span style={{ fontWeight: "lighter" }}>sando</span>
             <span

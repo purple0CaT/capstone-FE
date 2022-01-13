@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loadAllUserChats,
   setActiveChat,
-  setChats
+  setChats,
 } from "../../../redux/actions/action";
+import { ReduxStore, singleChatType } from "../../../types/reduxStore";
+import { ChatDrawerType } from "../ChatInterface";
 //
-function Chats({ closeChatsDrawer }: any) {
-  const user = useSelector((state: any) => state.user);
+function Chats({ closeChatsDrawer }: ChatDrawerType) {
+  const { user, chat, tokens } = useSelector((state: ReduxStore) => state);
   const [SearchQuery, setSearchQuery] = useState("");
-  const chat = useSelector((state: any) => state.chat);
-  const tokens = useSelector((state: any) => state.tokens);
   const [FindedUsers, setFindedUsers] = useState([]);
   const [UserLoader, setUserLoader] = useState(false);
   const dispatch = useDispatch();
@@ -30,8 +30,6 @@ function Chats({ closeChatsDrawer }: any) {
       });
       if (res) {
         const data = await res.json();
-        // console.log(data);
-        // const filteredData = data.fitler((U: any) => U._id !== user._id);
         setFindedUsers(data);
         setUserLoader(false);
       } else {
@@ -120,11 +118,11 @@ function Chats({ closeChatsDrawer }: any) {
       {/* CHATS LIST */}
       <div className="d-flex flex-column w-100 mt-3">
         {chat.allChat.length > 0 &&
-          chat.allChat.map((C: any) => (
+          chat.allChat.map((C: singleChatType) => (
             <div
               key={C._id + "alk"}
               className={`singleChat ${
-                C._id === chat.activeChat._id && "activeChat"
+                C._id === chat.activeChat?._id && "activeChat"
               }`}
               onClick={() => {
                 dispatch(setActiveChat(C));
@@ -143,8 +141,7 @@ function Chats({ closeChatsDrawer }: any) {
                   {C.members.filter((M: any) => M._id !== user._id)[0].lastname}
                 </p>
                 <small className="chatLastMess">
-                  {(C.history && C.history[C.history.length - 1]?.message) ||
-                    ""}
+                  {(C.history && C.history[C.history.length - 1].message) || ""}
                 </small>
               </div>
               <div className="ml-auto d-flex align-items-center">

@@ -38,7 +38,7 @@ export const inititalState: ReduxStore = {
     refreshToken: "",
   },
   chat: {
-    activeChat: {},
+    activeChat: null,
     allChat: [],
   },
   app: {

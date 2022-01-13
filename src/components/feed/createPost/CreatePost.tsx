@@ -14,6 +14,8 @@ import Button from "@mui/material/Button";
 import { TransitionProps } from "@mui/material/transitions";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { ReduxStore } from "../../../types/reduxStore";
+import { CreatePostImprt } from "../feedInterface";
 import SetCordMap from "./SetCordMap";
 //
 const Transition = React.forwardRef(function Transition(
@@ -25,7 +27,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 //
-function CreatePost({ reFetch, handleClose }: any) {
+function CreatePost({ reFetch, handleClose }: CreatePostImprt) {
   const [NewPost, setNewPost] = useState({
     text: "",
     location: { title: "", cord: [] },
@@ -33,7 +35,7 @@ function CreatePost({ reFetch, handleClose }: any) {
   const [MediaFiles, setMediaFiles] = useState([]);
   const [ImgPrev, setImgPrev] = useState([]);
   const [Loading, setLoading] = useState(false);
-  const tokens = useSelector((state: any) => state.tokens);
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   // CREATE POST
   const createPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -94,7 +96,7 @@ function CreatePost({ reFetch, handleClose }: any) {
   const imageHandler = (e: any) => {
     const images = e.target.files;
     const imageArray: any = Array.from(images);
-    const imagePreview = imageArray.map((i: any) => URL.createObjectURL(i));
+    const imagePreview = imageArray.map((i: File) => URL.createObjectURL(i));
     setMediaFiles(imageArray);
     setImgPrev(imagePreview);
   };
@@ -109,7 +111,6 @@ function CreatePost({ reFetch, handleClose }: any) {
     setMediaFiles(imgFile);
   };
   const setFormLocation = (value: any) => {
-    console.log(value);
     setNewPost({
       ...NewPost,
       location: { title: value.title, cord: value.cord },

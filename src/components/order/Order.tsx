@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/actions/action";
+import {
+  reduxSingleOrder,
+  ReduxStore
+} from "../../types/reduxStore";
 import OrderSingleOne from "./OrderSingleOne";
 import "./style.css";
 
 function Order() {
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [SortOrders, setSortOrders] = useState([]);
   const dispatch = useDispatch();
   //
@@ -31,7 +34,7 @@ function Order() {
   //
   const sortingShopOrders = () => {
     if (user.shopping.orders.length > 0) {
-      const sorted = user.shopping.orders.sort(function (a: any, b: any) {
+      const sorted: any = user.shopping.orders.sort(function (a: any, b: any) {
         let st: any = new Date(a.createdAt);
         let en: any = new Date(b.createdAt);
         return en - st;
@@ -57,7 +60,7 @@ function Order() {
           <>
             {SortOrders.length > 0 &&
               SortOrders?.map(
-                (Order: any) =>
+                (Order: reduxSingleOrder) =>
                   Order.items?.some(
                     (itm: any) => itm.item.completed === false,
                   ) && (
@@ -72,7 +75,7 @@ function Order() {
             <h5 className="text-muted text-center">Completed</h5>
             {SortOrders.length > 0 &&
               SortOrders.map(
-                (Order: any) =>
+                (Order: reduxSingleOrder) =>
                   !Order.items?.some(
                     (itm: any) => itm.item.completed === false,
                   ) && (

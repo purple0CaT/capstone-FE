@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-// import { AiOutlinePaperClip } from "react-icons/ai";
 
 function PictureModal() {
   const [show, setShow] = useState(false);
@@ -10,12 +9,6 @@ function PictureModal() {
 
   return (
     <>
-      {/* <AiOutlinePaperClip
-        onClick={handleShow}
-        size="1.4rem"
-        style={{ cursor: "pointer" }}
-      /> */}
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>Send picture</Modal.Title>

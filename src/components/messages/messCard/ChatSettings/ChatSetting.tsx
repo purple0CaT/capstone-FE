@@ -6,22 +6,24 @@ import { Button, Col, FormControl, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setActiveChat, setChats } from "../../../../redux/actions/action";
+import { ReduxStore } from "../../../../types/reduxStore";
+import { CloseSettingModalsType } from "../../ChatInterface";
 import DeleteChat from "./DeleteChat";
 
-function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
-  const users = useSelector((state: any) => state.chat.activeChat?.members);
-  const chat = useSelector((state: any) => state.chat.activeChat);
-  const tokens = useSelector((state: any) => state.tokens);
-  const dispatch = useDispatch();
+function ChatSetting({
+  handleCloseSettings,
+  CloseSettingsModal,
+}: CloseSettingModalsType) {
   //
+  const { chat, tokens } = useSelector((state: ReduxStore) => state);
+  const dispatch = useDispatch();
   const [AddField, setAddField] = useState(false);
   const [FetchedUsers, setFetchedUsers]: any = useState([]);
   const [AddFieldQuery, setAddFieldQuery] = useState("");
-  //
   // ADD USER TO CHAT
   const addUserToChat = async (id: string) => {
     try {
-      const url = `${process.env.REACT_APP_FETCHURL}/chat/addUser/${id}/${chat._id}`;
+      const url = `${process.env.REACT_APP_FETCHURL}/chat/addUser/${id}/${chat.activeChat?._id}`;
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
         method: "POST",
@@ -41,7 +43,7 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
   // DELETE USER FROM CHAT
   const deleteUser = async (id: string) => {
     try {
-      const url = `${process.env.REACT_APP_FETCHURL}/chat/deleteUser/${id}/${chat._id}`;
+      const url = `${process.env.REACT_APP_FETCHURL}/chat/deleteUser/${id}/${chat.activeChat?._id}`;
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
         method: "DELETE",
@@ -80,15 +82,13 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
       className={`position-absolute chatSetting ${
         CloseSettingsModal && "chatAppear"
       }`}
-      onMouseLeave={closeSettings}
-      // onBlur={closeSettings}
+      onMouseLeave={handleCloseSettings}
     >
-      {/* <div className="d-flex flex-column align-items-center p-3"> */}
       {/* Chat Users */}
       <Col xs="12" md="6" className="d-flex flex-column w-100">
         <h5 className="text-muted mx-auto"> Users </h5>
-        {users &&
-          users.map((U: any) => (
+        {chat.activeChat?.members &&
+          chat.activeChat?.members.map((U: any) => (
             <div
               className="d-flex my-1 align-items-center border-bottom"
               key={U._id + "0923"}
@@ -203,13 +203,13 @@ function ChatSetting({ closeSettings, CloseSettingsModal }: any) {
             </div>
           )}
         </div>
-        <DeleteChat closeSettings={closeSettings} />
+        <DeleteChat handleCloseSettings={handleCloseSettings} />
       </Col>
       <Col xs="12">
         <Divider />
         <div
           className="d-flex justify-content-center w-100"
-          onClick={closeSettings}
+          onClick={handleCloseSettings}
         >
           <IconButton>
             <KeyboardArrowUpIcon fontSize="medium" />

@@ -1,10 +1,10 @@
-import { reduxOrders } from "../../types/reduxStore";
+import { reduxSingleOrder } from "../../types/reduxStore";
 
 export interface ConfirmedType {
-  Order: reduxOrders[];
+  Order: reduxSingleOrder[];
   reFetch: () => void;
 }
 export interface SingleOrder {
-  Order: reduxOrders;
+  Order: reduxSingleOrder;
   reFetch: () => void;
 }

@@ -2,21 +2,23 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { chatMemberType, ReduxStore } from "../../../types/reduxStore";
+import { ActiveChatImprt } from "../ChatInterface";
 import ChatSetting from "./ChatSettings/ChatSetting";
 
-function TopBar({ activeChat }: any) {
+function TopBar({ activeChat }: ActiveChatImprt) {
   const [CloseSettingsModal, setCloseSettingsModal] = useState(false);
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: ReduxStore) => state.user);
   //
   let chatMembers =
     activeChat?.members?.length > 0
-      ? activeChat.members.filter((M: any) => M._id !== user._id)
+      ? activeChat.members.filter((M: chatMemberType) => M._id !== user._id)
       : [];
   //
   const openSettings = () => {
     setCloseSettingsModal(true);
   };
-  const closeSettings = () => {
+  const handleCloseSettings = () => {
     setCloseSettingsModal(false);
   };
   //
@@ -64,7 +66,7 @@ function TopBar({ activeChat }: any) {
         </div>
       </div>
       <ChatSetting
-        closeSettings={closeSettings}
+        handleCloseSettings={handleCloseSettings}
         CloseSettingsModal={CloseSettingsModal}
       />
     </div>

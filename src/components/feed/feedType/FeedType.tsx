@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setFeedSearch } from "../../../redux/actions/action";
+import { ReduxStore } from "../../../types/reduxStore";
 
 function FeedType() {
-  const app = useSelector((state: any) => state.app);
+  const app = useSelector((state: ReduxStore) => state.app);
   const dispatch = useDispatch();
   return (
     <div className="d-flex align-items-center justify-content-center">

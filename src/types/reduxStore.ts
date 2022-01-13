@@ -7,7 +7,7 @@ export interface reduxSingleItem {
   completed: boolean;
   description: string;
   deliveryCode?: string;
-  price: number
+  price: number;
   quantity: number;
   type: string;
   __v: number;
@@ -17,7 +17,7 @@ export interface reduxItem {
   qty: number;
 }
 //
-export interface reduxOrders {
+export interface reduxSingleOrder {
   completed: boolean;
   createdAt: string;
   customerId: string;
@@ -32,7 +32,7 @@ export interface reduxOrders {
 }
 //
 export interface reduxShop {
-  shop: { cart: reduxItem[]; orders: reduxOrders[] };
+  shop: { cart: reduxItem[]; orders: reduxSingleOrder[] };
 }
 // === Booking ===
 export interface reduxBooking {
@@ -45,14 +45,14 @@ export interface reduxBooking {
   __v: number;
 }
 // === Chat ===
-export interface chatMember {
+export interface chatMemberType {
   _id: string;
   firstname: string;
   lastname: string;
   avatar: string;
 }
 //
-export interface chatHistory {
+export interface chatHistoryType {
   sender: {
     _id: string;
     firstname: string;
@@ -60,20 +60,21 @@ export interface chatHistory {
     avatar: string;
     message: string;
   };
+  message: string;
   _id: string;
   updatedAt: string;
   createdAt: string;
 }
 //
-export interface singleChat {
+export interface singleChatType {
   _id: string;
   name: string;
   image: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
-  members: chatMember[];
-  history: chatHistory[] | [];
+  members: chatMemberType[];
+  history: chatHistoryType[] | [];
 }
 // === Tokens ===
 export interface reduxTokens {
@@ -96,12 +97,12 @@ export interface ReduxStore extends reduxShop {
     followers: string;
     shopping: {
       cart: reduxItem[] | [];
-      orders: reduxOrders[] | [];
+      orders: reduxSingleOrder[] | [];
     };
   };
   chat: {
-    activeChat: singleChat | {};
-    allChat: singleChat[] | [];
+    activeChat: singleChatType | null;
+    allChat: singleChatType[] | [];
   };
   app: {
     feed: boolean;

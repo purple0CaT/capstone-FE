@@ -2,7 +2,8 @@ import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import CreatePost from "./createPost/CreatePost";
+import { ReduxStore } from "../../types/reduxStore";
+import { SinglePostType } from "./feedInterface";
 import FeedToolBar from "./FeedToolBar";
 import Post from "./post/Post";
 import "./style.css";
@@ -10,9 +11,7 @@ import "./style.css";
 //
 function Main() {
   const history = useHistory();
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
-  const app = useSelector((state: any) => state.app);
+  const { user, tokens, app } = useSelector((state: ReduxStore) => state);
   const [PostFetches, setPostFetches] = useState([]);
   const [Loading, setLoading] = useState(true);
   //
@@ -56,7 +55,7 @@ function Main() {
       <div className="post-container px-3">
         <FeedToolBar reFetch={fetchPosts} />
         {PostFetches.length > 0 &&
-          PostFetches.map((P: any) => (
+          PostFetches.map((P: SinglePostType) => (
             <div key={P._id + P.text}>
               <br />
               <Post post={P} reFetch={fetchPosts} />

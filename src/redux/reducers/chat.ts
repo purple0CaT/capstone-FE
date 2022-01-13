@@ -16,7 +16,7 @@ export const ChatRed = (state = inititalState.chat, action: AnyAction) => {
     case "CLEAR_CHATS":
       return {
         allChat: [],
-        activeChat: [],
+        activeChat: null,
       };
     default:
       return state;

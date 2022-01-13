@@ -5,6 +5,7 @@ import {
   clearShop,
   clearToken,
   clearUser,
+  setFeedDefault,
 } from "../../redux/actions/action";
 
 export const tokenCheck = ({ res }: any) => {
@@ -13,6 +14,7 @@ export const tokenCheck = ({ res }: any) => {
     const history = useHistory();
     //
     dispatch(clearUser());
+    dispatch(setFeedDefault());
     dispatch(clearToken());
     dispatch(clearChat());
     dispatch(clearShop());

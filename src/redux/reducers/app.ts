@@ -8,6 +8,11 @@ export const AppRed = (state = inititalState.app, action: AnyAction) => {
         ...state,
         feed: action.payload,
       };
+    case "USER_LOG_OUT":
+      return {
+        ...state,
+        feed: true,
+      };
     default:
       return state;
   }

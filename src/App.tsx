@@ -40,7 +40,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar sideBar={matches} toggleDrawer={toggleDrawer} />
+        <Navbar />
         <div
           className={`menuBar ${matches && "d-none"}`}
           style={{ zIndex: "200" }}

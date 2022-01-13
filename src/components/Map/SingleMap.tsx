@@ -2,6 +2,7 @@ import { Dialog } from "@mui/material";
 import L from "leaflet";
 import React from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { SingleMapImport } from "./MapInterface";
 
 function getIcon(iconSize: any) {
   return L.icon({
@@ -12,7 +13,7 @@ function getIcon(iconSize: any) {
   });
 }
 //
-function SingleMap({ location, OpenMap, closeMap }: any) {
+function SingleMap({ location, OpenMap, closeMap }: SingleMapImport) {
   return (
     <>
       {" "}
@@ -27,7 +28,9 @@ function SingleMap({ location, OpenMap, closeMap }: any) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={location.cord} icon={getIcon(30)}></Marker>
+          {location.cord && (
+            <Marker position={location.cord} icon={getIcon(30)}></Marker>
+          )}
         </MapContainer>
       </Dialog>{" "}
     </>

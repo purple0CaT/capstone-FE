@@ -6,6 +6,7 @@ import { Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
+import { ReduxStore } from "../../types/reduxStore";
 import Chats from "./Chats/Chats";
 import MessCard from "./messCard/MessCard";
 import "./style.css";
@@ -14,17 +15,16 @@ import "./style.css";
 export let socket: any;
 //
 function MainMess() {
-  const tokens = useSelector((state: any) => state.tokens);
+  const history = useHistory();
+  const [SideBar, setSideBar] = useState(false);
+  const matches = useMediaQuery("(min-width:768px)");
+  const { tokens, user } = useSelector((state: ReduxStore) => state);
   socket = io(process.env.REACT_APP_FETCHURL!, {
     auth: {
       accessToken: tokens.accessToken,
     },
     transports: ["websocket"],
   });
-  const history = useHistory();
-  const matches = useMediaQuery("(min-width:768px)");
-  const [SideBar, setSideBar] = useState(false);
-  const user = useSelector((state: any) => state.user);
   //
   const toggleDrawer = () => {
     setSideBar(!SideBar);

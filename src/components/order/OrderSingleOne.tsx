@@ -13,11 +13,21 @@ import dateFormat from "dateformat";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import {
+  reduxItem,
+  reduxSingleOrder,
+  ReduxStore,
+} from "../../types/reduxStore";
 import DeleteOrder from "./DeleteOrder";
+//
+interface OrderRefetch {
+  Order: reduxSingleOrder;
+  reFetch: () => void;
+}
 //
 function OrderSingleOne({ Order, reFetch }: any) {
   const history = useHistory();
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: ReduxStore) => state.user);
   //
   useEffect(() => {
     if (user._id === "") {
@@ -37,12 +47,12 @@ function OrderSingleOne({ Order, reFetch }: any) {
               {" "}
               <span style={{ textOverflow: "ellipsis" }}>
                 {" "}
-                {Order.items?.map((I: any) => I.item.title + ", ")}
+                {Order.items?.map((I: reduxItem) => I.item.title + ", ")}
               </span>
               <span className="d-flex align-items-center ml-auto mr-1 font-weight-bold">
                 Completed:{" "}
                 {!Order?.items.some(
-                  (itm: any) => itm.item.completed === false,
+                  (itm: reduxItem) => itm.item.completed === false,
                 ) ? (
                   <CheckCircleOutlineIcon color="success" fontSize="medium" />
                 ) : (
@@ -65,7 +75,7 @@ function OrderSingleOne({ Order, reFetch }: any) {
             <h6 className="text-muted text-center">
               <small>Order :</small> #{Order._id}
             </h6>
-            {Order.items?.map((I: any) => (
+            {Order.items?.map((I: reduxItem) => (
               <Grid
                 container
                 className="d-flex justify-content-between p-0 orderItem"
@@ -171,7 +181,7 @@ function OrderSingleOne({ Order, reFetch }: any) {
               <span className="d-flex align-items-center ml-auto mr-4 font-weight-bold">
                 Completed:{" "}
                 {!Order?.items.some(
-                  (itm: any) => itm.item.completed === false,
+                  (itm: reduxItem) => itm.item.completed === false,
                 ) ? (
                   <CheckCircleOutlineIcon color="success" fontSize="medium" />
                 ) : (

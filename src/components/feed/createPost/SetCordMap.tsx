@@ -1,16 +1,21 @@
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { IconButton, TextField } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import L from "leaflet";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  ChangeEvent, KeyboardEvent, useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import { Col, Row } from "react-bootstrap";
 import {
   MapContainer,
   Marker,
   TileLayer,
   useMap,
-  useMapEvents,
+  useMapEvents
 } from "react-leaflet";
-import CircularProgress from "@mui/material/CircularProgress";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 // ==== MARKER ICON
 function getIcon(iconSize: any) {
@@ -107,13 +112,15 @@ function SetCordMap({ clearForm, setFormLocation }: any) {
             fullWidth
             variant="standard"
             value={SearchLoc}
-            onChange={(e: any) => {
+            onChange={(
+              e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+            ) => {
               setSearchLoc(e.target.value);
               if (e.target.value === "") {
                 setSearchData([]);
               }
             }}
-            onKeyUp={(e: any) => {
+            onKeyUp={(e: KeyboardEvent<HTMLDivElement>) => {
               e.key === "Enter" && fetchCord(false);
             }}
           />{" "}

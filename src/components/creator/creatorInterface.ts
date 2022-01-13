@@ -1,11 +1,8 @@
 import { CreatorType } from "../../types/creatorTypes";
-import {
-    reduxOrders,
-    reduxSingleItem
-} from "../../types/reduxStore";
+import { reduxSingleOrder, reduxSingleItem } from "../../types/reduxStore";
 
 export interface orderFetch {
-  Order: reduxOrders;
+  Order: reduxSingleOrder;
   reFetch: () => void;
 }
 export interface creatorFetch {

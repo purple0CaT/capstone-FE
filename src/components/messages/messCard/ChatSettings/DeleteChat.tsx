@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveChat, setChats } from "../../../../redux/actions/action";
 import LoadingButton from "@mui/lab/LoadingButton";
-
-function DeleteChat({ closeSettings }: any) {
+interface HandleCloseSettingsType {
+  handleCloseSettings: () => void;
+}
+//
+function DeleteChat({ handleCloseSettings }: HandleCloseSettingsType) {
   const [DeleteModal, setDeleteModal] = useState(false);
   const [Loading, setLoading] = useState(false);
   const tokens = useSelector((state: any) => state.tokens);
@@ -27,7 +30,7 @@ function DeleteChat({ closeSettings }: any) {
         const data = await res.json();
         dispatch(setChats(data.allChats));
         dispatch(setActiveChat(data.chat));
-        closeSettings();
+        handleCloseSettings();
         setLoading(false);
         setDeleteModal(false);
       } else {
@@ -45,7 +48,6 @@ function DeleteChat({ closeSettings }: any) {
         DELETE CHAT
       </h5>
       <Dialog open={DeleteModal} onClose={handleClose}>
-        {" "}
         <DialogTitle>Are you shure you want to delete these chat?</DialogTitle>
         <DialogActions className="w-100">
           <LoadingButton

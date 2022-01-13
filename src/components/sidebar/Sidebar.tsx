@@ -18,6 +18,7 @@ import {
   clearShop,
   clearToken,
   clearUser,
+  setFeedDefault,
   setFeedSearch,
 } from "../../redux/actions/action";
 import "./style.css";
@@ -34,6 +35,7 @@ function Sidebar({ toggleDrawer }: any) {
   const handleLogout = () => {
     dispatch(clearUser());
     dispatch(clearToken());
+    dispatch(setFeedDefault());
     dispatch(clearChat());
     dispatch(clearShop());
     dispatch(setFeedSearch(false));

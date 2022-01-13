@@ -3,11 +3,12 @@ import { Avatar, Divider } from "@mui/material";
 import dateFormat from "dateformat";
 import React from "react";
 import { useSelector } from "react-redux";
+import { ReduxStore } from "../../../types/reduxStore";
+import { PostRefetchImprt } from "../feedInterface";
 import NewComment from "./NewComment";
 
-function CommentsArea({ post, reFetch }: any) {
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+function CommentsArea({ post, reFetch }: PostRefetchImprt) {
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   //
   const deleteComment = async (id: string) => {
     try {
@@ -62,7 +63,6 @@ function CommentsArea({ post, reFetch }: any) {
               </p>
             </div>
             <div>
-              {" "}
               {C.author._id === user._id && (
                 <div className="mx-2 ml-auto">
                   <div

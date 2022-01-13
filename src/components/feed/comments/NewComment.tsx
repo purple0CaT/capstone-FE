@@ -4,22 +4,22 @@ import Picker from "emoji-picker-react";
 import { useSelector } from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-// 
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+//
 function NewComment({ postId, reFetch }: any) {
   const tokens = useSelector((state: any) => state.tokens);
   const [Comment, setComment] = useState("");
-  const [ShowEmoji, setShowEmoji] = useState(false)
+  const [ShowEmoji, setShowEmoji] = useState(false);
 
-  //  // EMOFI
+  //*  EMOJI HANDLE
   const onEmojiClick = (event: any, emojiObject: any) => {
     setComment(Comment + emojiObject.emoji);
   };
-  // 
-  const sendComment = async (e: any) => {
+  //
+  const handleComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 
+    //
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/comments/add/${postId}`;
       const res = await fetch(url, {
@@ -33,19 +33,21 @@ function NewComment({ postId, reFetch }: any) {
       if (res.ok) {
         // const data = await res.json();
         reFetch();
-        setComment("")
+        setComment("");
       } else {
         console.log(res);
+        alert("Error");
       }
     } catch (error) {
+      alert("Error");
       console.log(error);
     }
   };
   return (
     <div className="px-4">
-      <form onSubmit={sendComment} className="d-flex align-items-baseline">
-        <div className='d-flex align-items-center w-100'>
-          <div className='mt-auto position-relative'>
+      <form onSubmit={handleComment} className="d-flex align-items-baseline">
+        <div className="d-flex align-items-center w-100">
+          <div className="mt-auto position-relative">
             {!ShowEmoji ? (
               <EmojiEmotionsIcon
                 // size="1.4rem"
@@ -53,9 +55,7 @@ function NewComment({ postId, reFetch }: any) {
                 style={{ cursor: "pointer" }}
               />
             ) : (
-              <InsertEmoticonIcon
-                onClick={() => setShowEmoji(!ShowEmoji)}
-              />
+              <InsertEmoticonIcon onClick={() => setShowEmoji(!ShowEmoji)} />
             )}
             {ShowEmoji && (
               <div
@@ -74,13 +74,13 @@ function NewComment({ postId, reFetch }: any) {
             fullWidth
             color="info"
             variant="standard"
-            className='ml-3'
+            className="ml-3"
             value={Comment}
             onChange={(e: any) => setComment(e.target.value)}
           />
         </div>
         <div>
-          <IconButton onClick={sendComment}>
+          <IconButton type="submit">
             <SendIcon />
           </IconButton>
         </div>

@@ -1,11 +1,12 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { ListItem } from "@mui/material";
 import React, { useState } from "react";
-import SingleMap from "./SingleMap";
+import { LocationImprt } from "../feedInterface";
+import SingleMap from "../../Map/SingleMap";
 
 //
 
-function PostMap({ location }: any) {
+function PostMap({ location }: LocationImprt) {
   const [OpenMap, setOpenMap] = useState(false);
   const closeMap = () => {
     setOpenMap(false);

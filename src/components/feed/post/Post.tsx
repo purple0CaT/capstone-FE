@@ -3,22 +3,23 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import { Avatar, Dialog, Divider, IconButton, ListItem } from "@mui/material";
 import dateFormat from "dateformat";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { ReduxStore } from "../../../types/reduxStore";
 import CommentsArea from "../comments/CommentsArea";
-import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import { PostRefetchImprt } from "../feedInterface";
 import PostMap from "./PostMap";
 //
-function Post({ post, reFetch }: any) {
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+function Post({ post, reFetch }: PostRefetchImprt) {
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [ComArea, setComArea] = useState(false);
   const [ShowFullSize, setShowFullSize] = useState(false);
   //
-  let like = post.likes.some((L: string[]) => L === user._id);
+  let like = post.likes.some((L: string) => L === user._id);
   //
   const likeIt = async () => {
     try {

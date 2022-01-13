@@ -4,10 +4,10 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SimpleOrder from "./SimpleOrder";
-import { reduxOrders } from "../../types/reduxStore";
+import { reduxSingleOrder } from "../../types/reduxStore";
 //
 interface Confirmed {
-  Order: reduxOrders[];
+  Order: reduxSingleOrder[];
   reFetch: () => void;
 }
 //

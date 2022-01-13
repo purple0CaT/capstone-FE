@@ -2,7 +2,11 @@ import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { reduxItem, reduxOrders, ReduxStore } from "../../types/reduxStore";
+import {
+  reduxItem,
+  reduxSingleOrder,
+  ReduxStore,
+} from "../../types/reduxStore";
 import TotalOrders from "./orders/TotalOrders";
 import BookingCreator from "./setbookings/BookingCreator";
 import StoreSet from "./setstore/StoreSet";
@@ -13,8 +17,9 @@ function Creator() {
   const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [FetchedCreator, setFetchedCreator]: any = useState();
   const [Loading, setLoading] = useState(true);
-  const myTotalEarnings = FetchedCreator?.shop.orders.map((OR: reduxOrders) =>
-    OR.items.filter((IT: any) => IT.item.sellerId === user._id),
+  const myTotalEarnings = FetchedCreator?.shop.orders.map(
+    (OR: reduxSingleOrder) =>
+      OR.items.filter((IT: any) => IT.item.sellerId === user._id),
   );
   const total2 = myTotalEarnings
     ?.map((OR: reduxItem[]) =>

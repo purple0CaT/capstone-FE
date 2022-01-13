@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
 import dateFormat from "dateformat";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { chatHistoryType } from "../../../types/reduxStore";
+import { ActiveChatImprt } from "../ChatInterface";
 
-function Messages({ activeChat }: any) {
+function Messages({ activeChat }: ActiveChatImprt) {
   const user = useSelector((state: any) => state.user);
   // AUTO SCROLL
   const messagesEndRef: any = useRef(null);
@@ -19,7 +21,7 @@ function Messages({ activeChat }: any) {
     >
       {activeChat?.history &&
         activeChat.history.length > 0 &&
-        activeChat.history.map((m: any) => (
+        activeChat.history.map((m: chatHistoryType) => (
           <div
             key={m._id + "history"}
             className={`messageStyle my-1 ${

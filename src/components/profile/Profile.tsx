@@ -7,13 +7,13 @@ import { setUser } from "../../redux/actions/action";
 import MainCard from "./ProfileCard/MainCard";
 import SecondCard from "./Tabs/SecondCard";
 import "./style.css";
+import { ReduxStore } from "../../types/reduxStore";
 
 function Profile() {
   const history = useHistory();
   const params: any = useParams();
-  const user = useSelector((state: any) => state.user);
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const dispatch = useDispatch();
-  const tokens = useSelector((state: any) => state.tokens);
   const [Loading, setLoading] = useState(true);
   const [FetchedUser, setFetchedUser]: any = useState();
   const [FetchedCreator, setFetchedCreator] = useState();

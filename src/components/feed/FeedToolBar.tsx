@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import CreatePost from "./createPost/CreatePost";
+import { RefetchInterface } from "./feedInterface";
 import FeedType from "./feedType/FeedType";
 
-function FeedToolBar({ reFetch }: any) {
+function FeedToolBar({ reFetch }: RefetchInterface) {
   const [OpenCreatePost, setOpenCreatePost] = useState(false);
   const handleClose = () => {
     setOpenCreatePost(false);

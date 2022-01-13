@@ -3,11 +3,11 @@ import { Button, Dialog, Divider } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/actions/action";
+import { ReduxStore } from "../../types/reduxStore";
 
 function DeleteOrder({ id }: any) {
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [ShowConfirmModal, setShowConfirmModal] = useState(false);
   //
   const cancelOrder = async () => {
