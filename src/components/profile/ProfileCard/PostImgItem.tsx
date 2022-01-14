@@ -1,8 +1,9 @@
 import { Dialog, ImageListItem } from "@mui/material";
 import React, { useState } from "react";
 import Post from "../../feed/post/Post";
+import { PostReFetchTypeImprt } from "../ProfileInterface";
 
-function PostImgItem({ P, reFetch }: any) {
+function PostImgItem({ P, reFetch }: PostReFetchTypeImprt) {
   const [open, setopen] = useState(false);
   const handleDialog = () => {
     setopen(!open);

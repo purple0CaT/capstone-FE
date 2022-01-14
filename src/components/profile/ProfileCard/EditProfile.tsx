@@ -3,10 +3,11 @@ import { LoadingButton } from "@mui/lab";
 import { Button, Dialog, Divider, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { ReduxStore } from "../../../types/reduxStore";
+import { ProfUserFetchType } from "../ProfileInterface";
 
-function EditProfile({ userInfo, reFetch }: any) {
-  const user = useSelector((state: any) => state.user);
-  const tokens = useSelector((state: any) => state.tokens);
+function EditProfile({ userInfo, reFetch }: ProfUserFetchType) {
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [OpenInfoUpdate, setOpenInfoUpdate] = useState(false);
   const [FormInfo, setFormInfo]: any = useState();
   const [Loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ function EditProfile({ userInfo, reFetch }: any) {
         method: "PUT",
         body: JSON.stringify(FormInfo),
         headers: {
-          Authorization: tokens.accessToken,
+          Authorization: `Bearer ${tokens.accessToken}`,
           "Content-type": "application/json",
         },
       });
@@ -48,12 +49,7 @@ function EditProfile({ userInfo, reFetch }: any) {
       <IconButton onClick={handleInfoUpdate}>
         <SettingsIcon />
       </IconButton>
-      <Dialog
-        open={OpenInfoUpdate}
-        //   TransitionComponent={Transition}
-        // keepMounted
-        onClose={handleInfoUpdate}
-      >
+      <Dialog open={OpenInfoUpdate} onClose={handleInfoUpdate}>
         <h6 className="text-center mt-3">Update profile</h6>
         {FormInfo && (
           <form

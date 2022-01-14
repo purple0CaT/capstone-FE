@@ -57,7 +57,7 @@ function Post({ post, reFetch }: PostRefetchImprt) {
   };
   return (
     <div className="post">
-      <div className="d-flex align-items-center px-2 py-1">
+      <section className="d-flex align-items-center px-2 py-1">
         <div className="mr-2">
           <Avatar
             src={post.author.avatar}
@@ -95,7 +95,7 @@ function Post({ post, reFetch }: PostRefetchImprt) {
             </div>
           </div>
         )}
-      </div>
+      </section>
       <Divider />
       {/* POST IMAGE */}
       <div className="post-image d-flex justify-content-center">
@@ -137,7 +137,7 @@ function Post({ post, reFetch }: PostRefetchImprt) {
           </small>
         </div>
       </div>
-      <div className="d-flex px-2">
+      <section className="d-flex px-2">
         <div className="d-flex align-items-center">
           <IconButton onClick={likeIt}>
             {like ? (
@@ -158,7 +158,7 @@ function Post({ post, reFetch }: PostRefetchImprt) {
           </IconButton>
           <small className="text-muted m-0">{post.comments.length}</small>
         </div>
-      </div>
+      </section>
       {ComArea && <CommentsArea post={post} reFetch={reFetch} />}
     </div>
   );

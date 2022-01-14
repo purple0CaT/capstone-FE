@@ -24,9 +24,13 @@ export const inititalState: ReduxStore = {
     googleId: "",
     fbId: "",
     creator: "",
+    nickname: "",
+    bio: "",
     type: "user",
     booking: [],
+    links: [],
     followers: "",
+    background: "",
     shopping: {
       cart: [],
       orders: [],

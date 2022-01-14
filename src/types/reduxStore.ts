@@ -76,6 +76,27 @@ export interface singleChatType {
   members: chatMemberType[];
   history: chatHistoryType[] | [];
 }
+export interface reduxUserInfo {
+  _id: string;
+  nickname?: string;
+  firstname: string;
+  lastname: string;
+  background: string;
+  email: string;
+  avatar: string;
+  googleId: string;
+  fbId: string;
+  bio?: string;
+  creator: string;
+  links: { title: string; link: string }[] | [];
+  type: string;
+  booking: reduxBooking[];
+  followers: string;
+  shopping: {
+    cart: reduxItem[] | [];
+    orders: reduxSingleOrder[] | [];
+  };
+}
 // === Tokens ===
 export interface reduxTokens {
   accessToken: string | null;
@@ -83,23 +104,8 @@ export interface reduxTokens {
 }
 // Store
 export interface ReduxStore extends reduxShop {
-  user: {
-    _id: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    avatar: string;
-    googleId: string;
-    fbId: string;
-    creator: string;
-    type: string;
-    booking: reduxBooking[];
-    followers: string;
-    shopping: {
-      cart: reduxItem[] | [];
-      orders: reduxSingleOrder[] | [];
-    };
-  };
+  user: reduxUserInfo;
+
   chat: {
     activeChat: singleChatType | null;
     allChat: singleChatType[] | [];

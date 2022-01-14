@@ -7,7 +7,7 @@ import dateFormat from "dateformat";
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
-import { Appointment, Availability } from "../../../types/creatorTypes";
+import { Appointment, Availability } from "../../../types/Creator/creatorTypes";
 import { ReduxStore } from "../../../types/reduxStore";
 // Style
 const setHBtns = {

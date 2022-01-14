@@ -1,24 +1,35 @@
 import { Dispatch } from "redux";
 import { reduxItem, reduxTokens, singleChatType } from "../../types/reduxStore";
-
-export const setUser = (value: string) => ({
-  type: "SET_USER",
-  payload: value,
-});
-export const clearUser = () => ({
-  type: "CLEAR_USER",
-});
-export const clearToken = () => ({
-  type: "CLEAR_TOKENS",
-});
+//  LOGOUT
+export const handleUserLogout = () => {
+  return async (dispatch: Dispatch, getState: any) => {
+    dispatch({
+      type: "CLEAR_USER",
+    });
+    dispatch({
+      type: "CLEAR_TOKENS",
+    });
+    dispatch({
+      type: "CLEAR_CHATS",
+    });
+    dispatch({
+      type: "CLEAR_SHOP",
+    });
+    dispatch({
+      type: "SET_DEF_FEED",
+    });
+  };
+};
 export const clearChat = () => ({
   type: "CLEAR_CHATS",
 });
 export const clearShop = () => ({
   type: "CLEAR_SHOP",
 });
-export const setFeedDefault = () => ({
-  type: "USER_LOG_OUT",
+//
+export const setUser = (value: string) => ({
+  type: "SET_USER",
+  payload: value,
 });
 export const setTokens = (value: reduxTokens) => ({
   type: "SET_TOKENS",

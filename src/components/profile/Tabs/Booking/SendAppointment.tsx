@@ -3,15 +3,22 @@ import { Button, Dialog } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
-function SendAppointment({ appInfo, creator }: any) {
+import { CreatorType } from "../../../../types/Creator/creatorTypes";
+import { ReduxStore } from "../../../../types/reduxStore";
+//
+interface appInfCreatorImprt {
+  appInfo: any;
+  creator: CreatorType | undefined;
+}
+//
+function SendAppointment({ appInfo, creator }: appInfCreatorImprt) {
   const [ShowDialog, setShowDialog] = useState(false);
-  const tokens = useSelector((state: any) => state.tokens);
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   const [Loading, setLoading] = useState(false);
   //
   const sendApp = async () => {
     setLoading(true);
-    const url = `${process.env.REACT_APP_FETCHURL}/booking/createAppoint/${creator._id}`;
+    const url = `${process.env.REACT_APP_FETCHURL}/booking/createAppoint/${creator?._id}`;
     try {
       const res = await fetch(url, {
         method: "POST",

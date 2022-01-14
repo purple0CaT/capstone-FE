@@ -6,11 +6,17 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { CreatorType } from "../../../../types/Creator/creatorTypes";
+import { ReduxStore } from "../../../../types/reduxStore";
 import SendAppointment from "./SendAppointment";
 import { freeAppHours } from "./utility";
 //
-function Booking({ creator }: any) {
-  const user = useSelector((state: any) => state.user);
+interface creatorImprt {
+  creator: CreatorType | undefined;
+}
+//
+function Booking({ creator }: creatorImprt) {
+  const user = useSelector((state: ReduxStore) => state.user);
   const params: any = useParams();
   const [CustomDate, setCustomDate]: any = useState({
     appointmentDate: null,
@@ -19,7 +25,7 @@ function Booking({ creator }: any) {
   const [PickDay, setPickDay]: any = useState();
   const [FreeHours, setFreeHours] = useState([]);
   // CALENDAR AVAILAB DAYS
-  const availab = creator.booking.availability.map(
+  const availab: any = creator?.booking.availability.map(
     (A: any) => new Date(A.start),
   );
   const tileDisabled = ({ date, view }: any) =>
@@ -58,7 +64,7 @@ function Booking({ creator }: any) {
         <h5 className="text-muted mx-auto">Availability</h5>
         <Divider />
         <div className="d-flex p-1 flex-column justify-content-center">
-          {creator.booking.availability.length > 0 ? (
+          {creator && creator.booking.availability.length > 0 ? (
             creator.booking.availability.map(
               (A: any) =>
                 new Date() <= new Date(A.end) && (

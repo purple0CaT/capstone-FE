@@ -5,12 +5,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PostImgItem from "../ProfileCard/PostImgItem";
 import Booking from "./Booking/Booking";
-import Map from "./Posts/Map";
+import Map from "../../Map/Post/Map";
 import StoreTab from "./Cart/StoreTab";
+import { FetchedUserCreatorImprt } from "../ProfileInterface";
+import { ReduxStore } from "../../../types/reduxStore";
+import { SinglePostType } from "../../feed/feedInterface";
 
-function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
+function SecondCard({ FetchedUser, FetchedCreator }: FetchedUserCreatorImprt) {
   const [value, setValue] = React.useState("1");
-  const tokens = useSelector((state: any) => state.tokens);
+  const tokens = useSelector((state: ReduxStore) => state.tokens);
   const [Posts, setPosts] = useState([]);
   const [Loading, setLoading] = useState(true);
 
@@ -20,7 +23,7 @@ function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
   const fetchUserPosts = async () => {
     setLoading(true);
     try {
-      const url = `${process.env.REACT_APP_FETCHURL}/post/userPosts/${userId}`;
+      const url = `${process.env.REACT_APP_FETCHURL}/post/userPosts/${FetchedUser.user._id}`;
       const res = await fetch(url, {
         method: "GET",
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
@@ -61,7 +64,7 @@ function SecondCard({ userId, FetchedUser, FetchedCreator }: any) {
           {Loading && <LinearProgress />}
           <ImageList cols={3} gap={8}>
             {Posts.length > 0 &&
-              Posts.map((P: any) => (
+              Posts.map((P: SinglePostType) => (
                 <PostImgItem
                   P={P}
                   key={P.media}

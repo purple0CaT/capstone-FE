@@ -4,9 +4,16 @@ import { Button, Dialog, Divider, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../redux/actions/action";
+import { reduxSingleItem, ReduxStore } from "../../../../types/reduxStore";
+import { SinglePostType } from "../../../feed/feedInterface";
 //
-function CartDialog({ I, allPosts }: any) {
-  const user = useSelector((state: any) => state.user);
+interface itemPostImprt {
+  I: reduxSingleItem;
+  allPosts: SinglePostType[];
+}
+//
+function CartDialog({ I, allPosts }: itemPostImprt) {
+  const user = useSelector((state: ReduxStore) => state.user);
   const [DialogWindow, setDialogWindow] = useState(false);
   const [ItemQty, setItemQty] = useState(1);
   const [PickedItem, setPickedItem]: any = useState({ image: "" });

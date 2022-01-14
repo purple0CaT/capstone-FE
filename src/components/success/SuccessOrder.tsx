@@ -4,8 +4,9 @@ import { Button, Grid, LinearProgress } from "@mui/material";
 import dateFormat from "dateformat";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { setUser } from "../../redux/actions/action";
+import { ReduxStore } from "../../types/reduxStore";
 import "./style.css";
 //
 function SuccessOrder() {
@@ -15,10 +16,8 @@ function SuccessOrder() {
     "session_id",
   );
   const dispatch = useDispatch();
-  const tokens = useSelector((state: any) => state.tokens);
-  const user = useSelector((state: any) => state.user);
+  const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [Loading, setLoading] = useState(true);
-  //
   const [CompletedOrder, setCompletedOrder]: any = useState();
   // CHECK SESSION TRUE
   const checkSession = async () => {

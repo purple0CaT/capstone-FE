@@ -8,7 +8,7 @@ export const AppRed = (state = inititalState.app, action: AnyAction) => {
         ...state,
         feed: action.payload,
       };
-    case "USER_LOG_OUT":
+    case "SET_DEF_FEED":
       return {
         ...state,
         feed: true,

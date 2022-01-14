@@ -2,12 +2,17 @@ import { Grid, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
 import React from "react";
 import { useSelector } from "react-redux";
+import { FetchedUserCreatorType } from "../ProfileInterface";
 import EditProfile from "./EditProfile";
 import FollowCard from "./FollowCard";
 import UpdateAvatar from "./UpdateAvatar";
 import UpdateBG from "./UpdateBG";
 //
-function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
+function MainCard({
+  FetchedUser,
+  reFetch,
+  FetchedCreator,
+}: FetchedUserCreatorType) {
   const matches = useMediaQuery("(min-width:599px)");
   const user = useSelector((state: any) => state.user);
   const tokens = useSelector((state: any) => state.tokens);
@@ -53,7 +58,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
     <div className="profile-page">
       <Grid item xs={12} sm={4} className="position-relative">
         <div className="position-relative h-100">
-          <UpdateBG user={FetchedUser.user} reFetch={reFetch} />
+          <UpdateBG fetchedUser={FetchedUser.user} reFetch={reFetch} />
           <div
             className="img-avatar"
             style={{
@@ -63,7 +68,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               top: matches ? "calc(50% - 4rem)" : "calc(100% - 4em)",
             }}
           >
-            <UpdateAvatar user={FetchedUser.user} reFetch={reFetch} />
+            <UpdateAvatar fetchedUser={FetchedUser.user} reFetch={reFetch} />
           </div>
         </div>
       </Grid>
@@ -84,7 +89,8 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               <EditProfile userInfo={FetchedUser.user} reFetch={reFetch} />
             ) : (
               <>
-                {FetchedUser.followers.followers.some(
+                {FetchedUser.followers.followers &&
+                FetchedUser.followers.followers.some(
                   (F: any) => F._id === user._id,
                 ) ? (
                   <Button color="warning" onClick={() => unfollowUser()}>
@@ -105,7 +111,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
               </small>
             </div>
           )}
-          <div className="d-flex align-items-center justify-content-between w-100">
+          <section className="d-flex align-items-center justify-content-between w-100">
             <div className="mr-auto">
               <h4 className="font-weight-light">
                 {FetchedUser.user.firstname + " " + FetchedUser.user.lastname}
@@ -118,7 +124,7 @@ function MainCard({ FetchedUser, reFetch, FetchedCreator }: any) {
                 </Button>
               )}
             </div>
-          </div>
+          </section>
 
           <div className="mr-auto">
             <p className="m-0 font-weight-light">{FetchedUser.user.bio}</p>

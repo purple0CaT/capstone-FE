@@ -90,7 +90,6 @@ function Profile() {
             />
             <br />
             <SecondCard
-              userId={params.id}
               FetchedUser={FetchedUser}
               FetchedCreator={FetchedCreator}
             />

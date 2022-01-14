@@ -1,8 +1,8 @@
-import React from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "./style.css";
+import React from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import CustomMarker from "./CustomMarker";
+import "../style.css";
 //
 
 function Map({ creator, Posts }: any) {

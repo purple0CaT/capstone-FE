@@ -1,5 +1,6 @@
 import BrushIcon from "@mui/icons-material/Brush";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from "@mui/icons-material/Search";
@@ -12,32 +13,23 @@ import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link, NavLink } from "react-router-dom";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import {
-  clearChat,
-  clearShop,
-  clearToken,
-  clearUser,
-  setFeedDefault,
-  setFeedSearch,
-} from "../../redux/actions/action";
+import { handleUserLogout, setFeedSearch } from "../../redux/actions/action";
+import { ReduxStore } from "../../types/reduxStore";
 import "./style.css";
 //
-function Sidebar({ toggleDrawer }: any) {
+interface toggleDrawerType {
+  toggleDrawer?: (event: React.KeyboardEvent | React.MouseEvent) => void;
+}
+//
+function Sidebar({ toggleDrawer }: toggleDrawerType) {
   const dispatch = useDispatch();
-  const tokens = useSelector((state: any) => state.tokens);
-  const user = useSelector((state: any) => state.user);
-  const shop = useSelector((state: any) => state.shop);
+  const { tokens, user, shop } = useSelector((state: ReduxStore) => state);
   const history = useHistory();
   const [SearchQuery, setSearchQuery] = useState("");
   const [UsersList, setUsersList] = useState([]) as any;
   //
   const handleLogout = () => {
-    dispatch(clearUser());
-    dispatch(clearToken());
-    dispatch(setFeedDefault());
-    dispatch(clearChat());
-    dispatch(clearShop());
+    dispatch(handleUserLogout());
     dispatch(setFeedSearch(false));
     history.push("/login");
   };
@@ -59,15 +51,9 @@ function Sidebar({ toggleDrawer }: any) {
       console.log(error);
     }
   };
-  //
-  // useEffect(() => {
-  //   if (SearchQuery.length >= 2) {
-  //     fetchUsers();
-  //   }
-  // }, [SearchQuery]);
   return (
     <div className="sidebar">
-      <div className="position-relative d-flex flex-column justify-content-center">
+      <section className="position-relative d-flex flex-column justify-content-center">
         <div className="navSearch">
           <SearchIcon className="mx-1" style={{ fontSize: "2rem" }} />{" "}
           <Form.Control
@@ -112,9 +98,9 @@ function Sidebar({ toggleDrawer }: any) {
             ))}
           </div>
         )}
-      </div>
+      </section>
       <br />
-      <div onClick={toggleDrawer}>
+      <section onClick={toggleDrawer}>
         <ListItem button className="p-0">
           <Link to={`/profile/${user._id}`} className="sidebar-profile">
             <div>
@@ -246,7 +232,7 @@ function Sidebar({ toggleDrawer }: any) {
           </ListItemIcon>
           <h6 className="text-muted m-0">Log out</h6>
         </ListItem>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import {
+  handleUserLogout
+} from "../../redux/actions/action";
 import { ReduxStore } from "../../types/reduxStore";
 import { SinglePostType } from "./feedInterface";
 import FeedToolBar from "./FeedToolBar";
@@ -10,6 +13,7 @@ import "./style.css";
 //
 //
 function Main() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const { user, tokens, app } = useSelector((state: ReduxStore) => state);
   const [PostFetches, setPostFetches] = useState([]);
@@ -32,8 +36,12 @@ function Main() {
         setPostFetches(data);
         setLoading(false);
       } else {
-        console.log(data);
-        alert(data.message);
+        // console.log(data.message);
+        // alert(data.message);
+        if (data.message === "Relogin") {
+          dispatch(handleUserLogout());
+          history.push("/login");
+        }
         setLoading(false);
       }
     } catch (error) {

@@ -4,11 +4,12 @@ import { LoadingButton } from "@mui/lab";
 import { Dialog, Divider, IconButton, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { ReduxStore } from "../../../types/reduxStore";
+import { ProfUserFetchType } from "../ProfileInterface";
 
-function UpdateBG({ user, reFetch }: any) {
+function UpdateBG({ fetchedUser, reFetch }: ProfUserFetchType) {
   const matches = useMediaQuery("(min-width:599px)");
-  const tokens = useSelector((state: any) => state.tokens);
-  const myUser = useSelector((state: any) => state.user);
+  const { tokens, user } = useSelector((state: ReduxStore) => state);
   const [MediaImg, setMediaImg]: any = useState();
   const [MediaPrew, setMediaPrew]: any = useState();
   const [ShowBGUpdate, setShowBGUpdate] = useState(false);
@@ -59,12 +60,12 @@ function UpdateBG({ user, reFetch }: any) {
       <img
         onClick={() => {
           {
-            if (myUser._id === user._id) {
+            if (fetchedUser?._id === user._id) {
               setShowBGUpdate(true);
             }
           }
         }}
-        src={user.background}
+        src={fetchedUser?.background}
         alt=""
         style={{
           width: "100%",

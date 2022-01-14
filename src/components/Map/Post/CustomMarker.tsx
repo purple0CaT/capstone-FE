@@ -1,6 +1,7 @@
 import { Marker, Popup } from "react-leaflet";
 import React from "react";
 import L from "leaflet";
+import { SinglePostType } from "../../feed/feedInterface";
 //
 function getIcon(iconSize: any) {
   return L.icon({
@@ -10,7 +11,10 @@ function getIcon(iconSize: any) {
     iconAnchor: [15, 30],
   });
 }
-function CustomMarker({ P }: any) {
+interface SingPostImprt {
+  P: SinglePostType;
+}
+function CustomMarker({ P }: SingPostImprt) {
   return (
     <>
       <Marker position={P.location.cord} icon={getIcon(30)}>

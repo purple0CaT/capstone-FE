@@ -3,16 +3,17 @@ import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FetchedUserType } from "../ProfileInterface";
 //
-function FollowCard({ FetchedUser, reFetch }: any) {
+function FollowCard({ FetchedUser, reFetch }: FetchedUserType) {
   const tokens = useSelector((state: any) => state.tokens);
   const user = useSelector((state: any) => state.user);
   //
   const [OpenFollowers, setOpenFollowers] = useState(false);
   const [OpenFollowing, setOpenFollowing] = useState(false);
   const [OpenLinks, setOpenLinks] = useState(false);
-  const [Following, setFollowing] = useState([]);
-  const [Followers, setFollowers] = useState([]);
+  const [Following, setFollowing]: any = useState([]);
+  const [Followers, setFollowers]: any = useState([]);
   //
   const handleFollowers = () => {
     setOpenFollowers(!OpenFollowers);

@@ -4,10 +4,11 @@ import { LoadingButton } from "@mui/lab";
 import { Avatar, Dialog, Divider, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { ReduxStore } from "../../../types/reduxStore";
+import { ProfUserFetchType } from "../ProfileInterface";
 
-function UpdateAvatar({ user, reFetch }: any) {
-  const tokens = useSelector((state: any) => state.tokens);
-  const myUser = useSelector((state: any) => state.user);
+function UpdateAvatar({ fetchedUser, reFetch }: ProfUserFetchType) {
+  const { tokens, user } = useSelector((state: ReduxStore) => state);
   const [MediaImg, setMediaImg]: any = useState();
   const [MediaPrew, setMediaPrew]: any = useState();
   const [ShowAvatarUpdate, setShowAvatarUpdate] = useState(false);
@@ -55,76 +56,86 @@ function UpdateAvatar({ user, reFetch }: any) {
   //
   return (
     <>
-      <Avatar
-        alt={user.firstname + " " + user.lastname}
-        src={user.avatar}
-        sx={{ width: "100%", height: "100%", boxShadow: "0 0 8px grey" }}
-        onClick={() => {
-          if (myUser._id === user._id) {
-            setShowAvatarUpdate(true);
-          }
-        }}
-        style={{ cursor: "pointer" }}
-      />
-      <Dialog
-        open={ShowAvatarUpdate}
-        keepMounted
-        onClose={() => setShowAvatarUpdate(false)}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <div className="d-flex flex-column p-3" style={{ minWidth: "18rem" }}>
-          <h5 className="text-muted text-center">Update avatar</h5>
-          {MediaPrew && (
-            <div className="d-flex justify-content-center position-relative">
-              <img
-                src={MediaPrew}
-                style={{
-                  //   aspectRatio: "1/1",
-                  objectFit: "cover",
-                  maxWidth: "100%",
-                }}
-              />
-              <div className="delete-img-button" onClick={() => removeImg()}>
-                <IconButton
-                  className="p-1"
-                  color="warning"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <HighlightOffIcon />
-                </IconButton>
-              </div>
-            </div>
-          )}
-          <Divider />
-          <div className="text-center">
-            {!MediaPrew && (
-              <label
-                htmlFor="UpdateAvatar"
-                className="h-100"
-                style={{ cursor: "pointer" }}
-              >
-                <AddPhotoAlternateIcon color="primary" fontSize="large" />
-              </label>
-            )}
-            <input
-              type="file"
-              className="d-none"
-              id="UpdateAvatar"
-              onChange={(e: any) => setMediaImg(e.target.files[0])}
-            />
-          </div>
-          <Divider />
-          <LoadingButton
-            color="info"
-            disabled={MediaImg ? false : true}
-            loading={Loading}
-            onClick={fetchUploadAvatar}
+      {fetchedUser && (
+        <>
+          <Avatar
+            alt={fetchedUser.firstname + " " + fetchedUser.lastname}
+            src={fetchedUser.avatar}
+            sx={{ width: "100%", height: "100%", boxShadow: "0 0 8px grey" }}
+            onClick={() => {
+              if (user._id === fetchedUser._id) {
+                setShowAvatarUpdate(true);
+              }
+            }}
+            style={{ cursor: "pointer" }}
+          />
+          <Dialog
+            open={ShowAvatarUpdate}
+            keepMounted
+            onClose={() => setShowAvatarUpdate(false)}
+            aria-describedby="alert-dialog-slide-description"
           >
-            Upload
-          </LoadingButton>
-        </div>
-      </Dialog>
+            <div
+              className="d-flex flex-column p-3"
+              style={{ minWidth: "18rem" }}
+            >
+              <h5 className="text-muted text-center">Update avatar</h5>
+              {MediaPrew && (
+                <div className="d-flex justify-content-center position-relative">
+                  <img
+                    src={MediaPrew}
+                    style={{
+                      //   aspectRatio: "1/1",
+                      objectFit: "cover",
+                      maxWidth: "100%",
+                    }}
+                  />
+                  <div
+                    className="delete-img-button"
+                    onClick={() => removeImg()}
+                  >
+                    <IconButton
+                      className="p-1"
+                      color="warning"
+                      aria-label="upload picture"
+                      component="span"
+                    >
+                      <HighlightOffIcon />
+                    </IconButton>
+                  </div>
+                </div>
+              )}
+              <Divider />
+              <div className="text-center">
+                {!MediaPrew && (
+                  <label
+                    htmlFor="UpdateAvatar"
+                    className="h-100"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <AddPhotoAlternateIcon color="primary" fontSize="large" />
+                  </label>
+                )}
+                <input
+                  type="file"
+                  className="d-none"
+                  id="UpdateAvatar"
+                  onChange={(e: any) => setMediaImg(e.target.files[0])}
+                />
+              </div>
+              <Divider />
+              <LoadingButton
+                color="info"
+                disabled={MediaImg ? false : true}
+                loading={Loading}
+                onClick={fetchUploadAvatar}
+              >
+                Upload
+              </LoadingButton>
+            </div>
+          </Dialog>
+        </>
+      )}
     </>
   );
 }
