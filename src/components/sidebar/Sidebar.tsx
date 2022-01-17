@@ -30,7 +30,6 @@ function Sidebar({ toggleDrawer }: toggleDrawerType) {
   //
   const handleLogout = () => {
     dispatch(handleUserLogout());
-    dispatch(setFeedSearch(false));
     history.push("/login");
   };
   //

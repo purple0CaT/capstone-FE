@@ -23,35 +23,10 @@ import SuccessOrder from "./components/success/SuccessOrder";
 import RouteAdapter from "./RouteAdapter";
 //
 function App() {
-  //
-  const matches = useMediaQuery("(min-width:768px)");
-  const [SideBar, setSideBar] = useState(false);
-  //
-  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift")
-    ) {
-      return;
-    }
-
-    setSideBar(!SideBar);
-  };
   return (
     <>
       <Router>
         <Navbar />
-        <div
-          className={`menuBar ${matches && "d-none"}`}
-          style={{ zIndex: "200" }}
-        >
-          <MenuIcon
-            fontSize="large"
-            className="ml-auto mt-auto"
-            onClick={toggleDrawer}
-          />
-        </div>
         <Container fluid="xl" className="main-container">
           <Row className="h-100">
             {/* SWITCH CASE */}

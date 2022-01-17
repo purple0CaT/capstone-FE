@@ -3,7 +3,13 @@ import { useState } from "react";
 import { Col } from "react-bootstrap";
 import Sidebar from "./components/sidebar/Sidebar";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  useParams,
+  useLocation,
+  useHistory,
+  useRouteMatch,
+} from "react-router-dom"; //
 function RouteAdapter(props: any) {
   const matches = useMediaQuery("(min-width:768px)");
   const [SideBar, setSideBar] = useState(false);
@@ -21,6 +27,16 @@ function RouteAdapter(props: any) {
   };
   return (
     <>
+      <div
+        className={`menuBar ${matches && "d-none"}`}
+        style={{ zIndex: "200" }}
+      >
+        <MenuIcon
+          fontSize="large"
+          className="ml-auto mt-auto"
+          onClick={toggleDrawer}
+        />
+      </div>
       <Col xs="12" md="9" className="w-100">
         <>{props.children}</>
       </Col>
