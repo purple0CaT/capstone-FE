@@ -24,8 +24,10 @@ function Redirect() {
       if (res.ok) {
         dispatch(setUser(data.user));
         dispatch(setTokens({ accessToken, refreshToken }));
-        window.opener.location.reload();
-        window.close();
+        setTimeout(() => {
+          window.opener.location.reload();
+          window.close();
+        }, 100);
       } else {
         window.close();
         console.log(res);

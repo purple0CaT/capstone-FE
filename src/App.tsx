@@ -28,7 +28,7 @@ function App() {
       <Router>
         <Navbar />
         <Container fluid="xl" className="main-container">
-          <Row className="h-100">
+          <Row style={{ height: "calc(100vh - 2.8rem" }}>
             {/* SWITCH CASE */}
             <Switch>
               <Route path="/register" exact render={() => <Register />} />
