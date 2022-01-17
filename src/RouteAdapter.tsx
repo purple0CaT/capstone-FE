@@ -11,6 +11,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 function RouteAdapter(props: any) {
   const matches = useMediaQuery("(min-width:768px)");
   const [SideBar, setSideBar] = useState(false);
+  const { pathname } = useLocation();
   //
   const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -23,8 +24,6 @@ function RouteAdapter(props: any) {
 
     setSideBar(!SideBar);
   };
-  const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <>
       <div
@@ -44,7 +43,9 @@ function RouteAdapter(props: any) {
           to="/messages"
           className="text-white align-items-center justify-content-center d-flex"
         >
-          <MailOutlineIcon  fontSize={pathname === "/messages" ? "large" : `medium`} />
+          <MailOutlineIcon
+            fontSize={pathname === "/messages" ? "large" : `medium`}
+          />
         </NavLink>
         <MenuIcon fontSize="medium" onClick={toggleDrawer} />
       </div>
