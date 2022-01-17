@@ -19,6 +19,7 @@
   text-decoration: none;
 }
 .menuBar {
+  height: 2.5rem;
   position: fixed;
   box-shadow: 0 0 5px rgb(23, 66, 71);
   display: flex;
