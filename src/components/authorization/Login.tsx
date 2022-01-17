@@ -2,7 +2,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import GoogleButton from "react-google-button";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -50,6 +49,13 @@ function Login() {
       history.push("/");
     }
   }, []);
+  //
+  useEffect(() => {
+    console.log("Reload");
+    if (user._id) {
+      // history.push("/");
+    }
+  }, [user._id]);
   //
   return (
     <div className=" h-75 w-100 d-flex flex-column justify-content-center align-items-center">
@@ -106,14 +112,26 @@ function Login() {
           </LoadingButton>
         </Form>
         <br />
-        <div className="">
-          <GoogleButton
-            label="Login with Google"
-            type="light"
-            onClick={() =>
-              window.open(`${process.env.REACT_APP_FETCHURL}/login/google`)
-            }
-          />
+        <div>
+          <a
+            href={`${process.env.REACT_APP_FETCHURL}/login/google`}
+            target="popup"
+            className="text-decoration-none googleButton"
+            onClick={() => {
+              window.open(
+                `${process.env.REACT_APP_FETCHURL}/login/google`,
+                "googleLoginTarget",
+                "toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=800",
+              );
+            }}
+          >
+            <img
+              src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
+              style={{ width: 40, height: 40 }}
+              alt="Google"
+            />
+            <span>Login with Google</span>
+          </a>
         </div>
         <div>
           <br />

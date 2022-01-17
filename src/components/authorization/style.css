@@ -6,3 +6,22 @@
   display: flex;
   flex-direction: column;
 }
+
+.googleButton {
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.54);
+  height: 50px;
+  width: 240px;
+  border: none;
+  text-align: center;
+  box-shadow: rgb(0 0 0 / 25%) 0px 2px 4px 0px;
+  font-size: 16px;
+  line-height: 48px;
+  display: block;
+  border-radius: 1px;
+  transition: background-color 0.218s ease 0s, border-color 0.218s ease 0s,
+    box-shadow 0.218s ease 0s;
+  font-family: Roboto, arial, sans-serif;
+  cursor: pointer;
+  user-select: none;
+}

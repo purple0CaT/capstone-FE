@@ -24,13 +24,16 @@ function Redirect() {
       if (res.ok) {
         dispatch(setUser(data.user));
         dispatch(setTokens({ accessToken, refreshToken }));
-        history.push("/");
+        window.opener.location.reload();
+        window.close();
       } else {
+        window.close();
         console.log(res);
         history.push("/login");
         alert("Error!");
       }
     } catch (error) {
+      window.close();
       console.log(error);
       alert("Error!");
     }
