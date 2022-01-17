@@ -58,11 +58,8 @@ function Login() {
   }, [user._id]);
   //
   return (
-    <div className=" h-75 w-100 d-flex flex-column justify-content-center align-items-center">
-      <br />
-      <br />
-      <br />
-      <div className="w-100 d-flex justify-content-center h-50 mt-3">
+    <div className="loginWrapper">
+      <div>
         <img
           src="./sandorawLogo.png"
           alt="Logo"
