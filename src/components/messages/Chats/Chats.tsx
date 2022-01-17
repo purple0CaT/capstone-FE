@@ -141,7 +141,8 @@ function Chats({ closeChatsDrawer }: ChatDrawerType) {
                   {C.members.filter((M: any) => M._id !== user._id)[0].lastname}
                 </p>
                 <small className="chatLastMess">
-                  {(C.history && C.history[C.history.length - 1].message) || ""}
+                  {(C.history && C.history[C.history.length - 1]?.message) ||
+                    ""}
                 </small>
               </div>
               <div className="ml-auto d-flex align-items-center">

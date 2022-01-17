@@ -13,7 +13,7 @@ import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link, NavLink } from "react-router-dom";
-import { handleUserLogout, setFeedSearch } from "../../redux/actions/action";
+import { handleUserLogout } from "../../redux/actions/action";
 import { ReduxStore } from "../../types/reduxStore";
 import "./style.css";
 //
@@ -124,6 +124,19 @@ function Sidebar({ toggleDrawer }: toggleDrawerType) {
               <DynamicFeedIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">Feed</h6>
+          </ListItem>
+        </NavLink>
+        <NavLink
+          exact
+          activeClassName="selectedNavb"
+          to="/"
+          className="sidebar-link"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <DynamicFeedIcon />
+            </ListItemIcon>
+            <h6 className="text-muted m-0">Activity</h6>
           </ListItem>
         </NavLink>
         <NavLink

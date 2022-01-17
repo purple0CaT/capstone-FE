@@ -20,16 +20,14 @@
 }
 .menuBar {
   position: fixed;
-  /* border-top-right-radius: 10%; */
   box-shadow: 0 0 5px rgb(23, 66, 71);
-  /* border-left-top-radius: 50%; */
-  border-bottom-left-radius: 50%;
-  border-top-left-radius: 50%; 
-  padding: 0.6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
   background-color: #587483;
   color: white;
-  bottom: 3rem;
-  right: -10px;
+  inset: auto 0 0 0;
 }
 
 /* NAV SEARCH */
