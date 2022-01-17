@@ -43,7 +43,7 @@ function MainMess() {
   return (
     <div
       className="mainMessageCard position-relative"
-      style={{ height: matches ? "100%" : "calc(100% - 2.5rem)" }}
+      style={{ height: matches ? "100%" : "calc(100vh - 5.3rem)" }}
     >
       {matches ? (
         <Col xs="4" className="h-100 p-0 chatsCardWrapper">
