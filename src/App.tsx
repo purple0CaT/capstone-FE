@@ -20,6 +20,7 @@ import Profile from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
 import Sidebar from "./components/sidebar/Sidebar";
 import SuccessOrder from "./components/success/SuccessOrder";
+import RouteAdapter from "./RouteAdapter";
 //
 function App() {
   //
@@ -62,36 +63,9 @@ function App() {
                 path="/"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Main />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Main />
+                  </RouteAdapter>
                 )}
               />
               {/* PROFILE PAGE */}
@@ -99,220 +73,45 @@ function App() {
                 path="/profile/:id"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Profile />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Profile />
+                  </RouteAdapter>
                 )}
               />
-              {/* ORDERS PAGE */}
-              {/* <Route
-                path="/order/:id"
-                exact
-                render={() => (
-                  <>
-                    <Col xs="12" md="9" xl="10" className="w-100">
-                      <h1>ORDERS</h1>{" "}
-                    </Col>
-                    {matches ? (
-                      <Col md="3" xl="2" className="position-sticky p-0 pr-1">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          sx={{
-                            backdropFilter: "blur(2px)",
-                          }}
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
-                )}
-              /> */}
               <Route
                 path="/messages"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <MainMess />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <MainMess />
+                  </RouteAdapter>
                 )}
               />
               <Route
                 path="/cart"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Cart />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Cart />
+                  </RouteAdapter>
                 )}
               />
               <Route
                 path="/order"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Order />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Order />
+                  </RouteAdapter>
                 )}
               />
               <Route
                 path="/settings"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Settings />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Settings />
+                  </RouteAdapter>
                 )}
               />
               <Route
@@ -328,144 +127,36 @@ function App() {
                 path="/creator"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Creator />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Creator />
+                  </RouteAdapter>
                 )}
               />
               <Route
                 path="/bookings"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <MyBooking />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <MyBooking />
+                  </RouteAdapter>
                 )}
               />
               <Route
                 path="/admin"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <Admin />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="pr-4">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <Admin />
+                  </RouteAdapter>
                 )}
               />
               <Route
                 path="/success/:id"
                 exact
                 render={() => (
-                  <>
-                    <Col xs="12" md="9" className="w-100">
-                      <SuccessOrder />
-                    </Col>
-                    {matches ? (
-                      <Col md="3" className="">
-                        <div className="sidebarWraper">
-                          <Sidebar />
-                        </div>
-                      </Col>
-                    ) : (
-                      <>
-                        <Drawer
-                          anchor="right"
-                          open={SideBar}
-                          onClose={toggleDrawer}
-                        >
-                          <>
-                            <div className="navbar d-flex align-items-center side-drawer">
-                              <ChevronRightIcon
-                                fontSize="large"
-                                onClick={toggleDrawer}
-                              />
-                            </div>
-                          </>
-                          <Sidebar toggleDrawer={toggleDrawer} />
-                        </Drawer>
-                      </>
-                    )}
-                  </>
+                  <RouteAdapter>
+                    <SuccessOrder />
+                  </RouteAdapter>
                 )}
               />
               {/* NOT FOUND PAGE */}
