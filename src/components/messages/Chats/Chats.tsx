@@ -1,14 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Avatar, LinearProgress } from "@mui/material";
 import dateFormat from "dateformat";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loadAllUserChats,
-  setActiveChat,
-  setChats,
-} from "../../../redux/actions/action";
+import { socket } from "../../../App";
+import { setActiveChat, setChats } from "../../../redux/actions/action";
 import { ReduxStore, singleChatType } from "../../../types/reduxStore";
 import { ChatDrawerType } from "../ChatInterface";
 //
@@ -41,6 +38,11 @@ function Chats({ closeChatsDrawer }: ChatDrawerType) {
     }
   };
   // CREATE CHAT WITH SPECIFIC USER
+  const createChatConnection = async (chatId: string) => {
+    console.log("sending connection");
+    socket.emit("new-chat-created", { chatId });
+  };
+  //
   const createChat = async (id: string) => {
     try {
       const url = `${process.env.REACT_APP_FETCHURL}/chat/createChat/${id}`;
@@ -48,10 +50,12 @@ function Chats({ closeChatsDrawer }: ChatDrawerType) {
         method: "POST",
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
       });
+      const data = await res.json();
+      createChatConnection(data.newChat._id);
       if (res.ok) {
-        const data = await res.json();
         dispatch(setActiveChat(data.newChat));
         dispatch(setChats(data.allChats));
+        //
       } else {
         console.log(res);
         alert("Error");
@@ -61,9 +65,6 @@ function Chats({ closeChatsDrawer }: ChatDrawerType) {
       alert("Error");
     }
   };
-  useEffect(() => {
-    dispatch(loadAllUserChats());
-  }, []);
   return (
     <div>
       {/* SEARCH FOR USER */}

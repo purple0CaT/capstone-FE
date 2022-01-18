@@ -6,10 +6,10 @@ import Picker from "emoji-picker-react";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { socket } from "../../../App";
 import { setActiveChat, setChats } from "../../../redux/actions/action";
 import { ReduxStore } from "../../../types/reduxStore";
 import { SendMessageType } from "../ChatInterface";
-import { socket } from "../MainMess";
 import Messages from "./Messages";
 import TopBar from "./TopBar";
 //
@@ -33,9 +33,6 @@ function MessCard() {
   };
   //* SOCKET IO
   useEffect(() => {
-    socket.on("connect", () => {
-      console.log("connect");
-    });
     socket.on("message", ({ chatHistory, allChats }: SendMessageType) => {
       dispatch(setChats(allChats));
       dispatch(setActiveChat(chatHistory));

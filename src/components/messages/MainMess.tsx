@@ -3,28 +3,20 @@ import InboxIcon from "@mui/icons-material/Inbox";
 import { Drawer, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { io } from "socket.io-client";
+import { loadAllUserChats } from "../../redux/actions/action";
 import { ReduxStore } from "../../types/reduxStore";
 import Chats from "./Chats/Chats";
 import MessCard from "./messCard/MessCard";
 import "./style.css";
-
-//
-export let socket: any;
 //
 function MainMess() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [SideBar, setSideBar] = useState(false);
   const matches = useMediaQuery("(min-width:768px)");
-  const { tokens, user } = useSelector((state: ReduxStore) => state);
-  socket = io(process.env.REACT_APP_FETCHURL!, {
-    auth: {
-      accessToken: tokens.accessToken,
-    },
-    transports: ["websocket"],
-  });
+  const { user } = useSelector((state: ReduxStore) => state);
   //
   const toggleDrawer = () => {
     setSideBar(!SideBar);
@@ -33,17 +25,17 @@ function MainMess() {
     setSideBar(false);
   };
   //
-
   useEffect(() => {
     if (user._id === "") {
       history.push("/login");
     }
     //
+    dispatch(loadAllUserChats());
   }, []);
   return (
     <div
       className="mainMessageCard position-relative"
-      style={{ height: matches ? "100%" : "calc(100% - 2.5rem)" }}
+      style={{ height: matches ? "100%" : "calc(100vh - 5.3rem)" }}
     >
       {matches ? (
         <Col xs="4" className="h-100 p-0 chatsCardWrapper">

@@ -1,10 +1,8 @@
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Drawer } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { useEffect, useRef } from "react";
+import { Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { io } from "socket.io-client";
 import Admin from "./components/admin/Admin";
 import Login from "./components/authorization/Login";
 import Register from "./components/authorization/Register";
@@ -18,11 +16,29 @@ import Redirect from "./components/oauth/Redirect";
 import Order from "./components/order/Order";
 import Profile from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
-import Sidebar from "./components/sidebar/Sidebar";
 import SuccessOrder from "./components/success/SuccessOrder";
 import RouteAdapter from "./RouteAdapter";
+import { ReduxStore } from "./types/reduxStore";
+// import socket from "./service/socket";
+//
+export let socket: any;
 //
 function App() {
+  const { tokens } = useSelector((state: ReduxStore) => state);
+  // socket = useRef(null);
+  //
+  socket = io(process.env.REACT_APP_FETCHURL!, {
+    auth: {
+      accessToken: tokens.accessToken,
+    },
+    transports: ["websocket"],
+  });
+  //
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("> ⌘ <");
+    });
+  }, []);
   return (
     <>
       <Router>
