@@ -1,10 +1,8 @@
 .mainMessageCard {
   display: flex;
   flex-wrap: wrap;
-  /* padding: 0 1rem; */
   box-shadow: 0 0 10px grey;
   background-color: white;
-  height: 100%;
 }
 .message-chat {
   /* background-color: rgba(24, 128, 128, 0.377);  */
