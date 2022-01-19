@@ -1,13 +1,13 @@
 import { LinearProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
-import { setUser } from "../../redux/actions/action";
-import MainCard from "./ProfileCard/MainCard";
-import SecondCard from "./Tabs/SecondCard";
-import "./style.css";
-import { ReduxStore } from "../../types/reduxStore";
+import MainCard from "../components/profile/ProfileCard/MainCard";
+import "../components/profile/style.css";
+import SecondCard from "../components/profile/Tabs/SecondCard";
+import { setUser } from "../redux/actions/action";
+import { ReduxStore } from "../types/reduxStore";
 
 function Profile() {
   const history = useHistory();

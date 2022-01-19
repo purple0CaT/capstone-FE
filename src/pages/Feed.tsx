@@ -2,17 +2,14 @@ import { LinearProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import {
-  handleUserLogout
-} from "../../redux/actions/action";
-import { ReduxStore } from "../../types/reduxStore";
-import { SinglePostType } from "./feedInterface";
-import FeedToolBar from "./FeedToolBar";
-import Post from "./post/Post";
-import "./style.css";
+import { handleUserLogout } from "../redux/actions/action";
+import { ReduxStore } from "../types/reduxStore";
+import { SinglePostType } from "../components/feed/feedInterface";
+import FeedToolBar from "../components/feed/FeedToolBar";
+import Post from "../components/feed/post/Post";
+import "../components/feed/style.css";
 //
-//
-function Main() {
+function Feed() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { user, tokens, app } = useSelector((state: ReduxStore) => state);
@@ -74,4 +71,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Feed;

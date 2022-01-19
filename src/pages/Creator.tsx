@@ -1,16 +1,12 @@
 import { LinearProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  reduxItem,
-  reduxSingleOrder,
-  ReduxStore,
-} from "../../types/reduxStore";
-import TotalOrders from "./orders/TotalOrders";
-import BookingCreator from "./setbookings/BookingCreator";
-import StoreSet from "./setstore/StoreSet";
-import "./style.css";
+import { reduxItem, reduxSingleOrder, ReduxStore } from "../types/reduxStore";
+import TotalOrders from "../components/creator/orders/TotalOrders";
+import BookingCreator from "../components/creator/setbookings/BookingCreator";
+import StoreSet from "../components/creator/setstore/StoreSet";
+import "../components/creator/style.css";
 
 function Creator() {
   const history = useHistory();

@@ -1,17 +1,17 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import InboxIcon from "@mui/icons-material/Inbox";
 import { Drawer, useMediaQuery } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { loadAllUserChats } from "../../redux/actions/action";
-import { ReduxStore } from "../../types/reduxStore";
-import Chats from "./Chats/Chats";
-import MessCard from "./messCard/MessCard";
-import "./style.css";
+import { loadAllUserChats } from "../redux/actions/action";
+import { ReduxStore } from "../types/reduxStore";
+import Chats from "../components/messages/Chats/Chats";
+import MessCard from "../components/messages/messCard/MessCard";
+import "../components/messages/style.css";
 //
-function MainMess() {
+function MyMessages() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [SideBar, setSideBar] = useState(false);
@@ -74,4 +74,4 @@ function MainMess() {
   );
 }
 
-export default MainMess;
+export default MyMessages;

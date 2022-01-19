@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../redux/actions/action";
-import {
-  reduxSingleOrder,
-  ReduxStore
-} from "../../types/reduxStore";
-import OrderSingleOne from "./OrderSingleOne";
-import "./style.css";
+import { setUser } from "../redux/actions/action";
+import { reduxSingleOrder, ReduxStore } from "../types/reduxStore";
+import OrderSingleOne from "../components/order/OrderSingleOne";
+import "../components/order/style.css";
 
-function Order() {
+function MyOrder() {
   const { user, tokens } = useSelector((state: ReduxStore) => state);
   const [SortOrders, setSortOrders] = useState([]);
   const dispatch = useDispatch();
@@ -99,4 +96,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default MyOrder;

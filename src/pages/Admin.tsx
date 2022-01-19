@@ -2,11 +2,11 @@ import { LinearProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ReduxStore } from "../../types/reduxStore";
-import Confirmed from "./Confirmed";
-import NotConfiremd from "./NotConfiremd";
-import SearchOrder from "./SearchOrder";
-import "./style.css";
+import { ReduxStore } from "../types/reduxStore";
+import Confirmed from "../components/admin/Confirmed";
+import NotConfiremd from "../components/admin/NotConfiremd";
+import SearchOrder from "../components/admin/SearchOrder";
+import "../components/admin/style.css";
 //
 function Admin() {
   const user = useSelector((state: ReduxStore) => state.user);
