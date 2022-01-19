@@ -6,7 +6,7 @@ import Picker from "emoji-picker-react";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { socket } from "../../../App";
+import { useSocket } from "../../../context/SocketProvider";
 import { setActiveChat, setChats } from "../../../redux/actions/action";
 import { ReduxStore } from "../../../types/reduxStore";
 import { SendMessageType } from "../ChatInterface";
@@ -16,9 +16,11 @@ import TopBar from "./TopBar";
 //
 function MessCard() {
   const { activeChat } = useSelector((state: ReduxStore) => state.chat);
-  const dispatch = useDispatch();
-  const [Message, setMessage] = useState("");
   const [ShowEmoji, setShowEmoji] = useState(false);
+  const [Message, setMessage] = useState("");
+  const socket: any = useSocket();
+  const dispatch = useDispatch();
+
   // EMOJI
   const onEmojiClick = (event: any, emojiObject: any) => {
     setMessage(Message + emojiObject.emoji);
@@ -31,6 +33,7 @@ function MessCard() {
     });
     setMessage("");
   };
+  //  % kill -9 6192
   //* SOCKET IO
   useEffect(() => {
     socket.on("message", ({ chatHistory, allChats }: SendMessageType) => {
@@ -75,14 +78,19 @@ function MessCard() {
                 className="w-100 px-2"
                 value={Message}
                 onKeyUp={(e) => {
-                  if (e.key === "Enter") sendMessage();
+                  e.key === "Enter" && Message.length > 0 && sendMessage();
                 }}
                 onChange={(e) => setMessage(e.target.value)}
               />
             </Col>
             {Message.length > 0 ? (
               <Col xs="1">
-                <SendIcon onClick={sendMessage} style={{ cursor: "pointer" }} />
+                <SendIcon
+                  onClick={() => {
+                    Message.length > 0 && sendMessage();
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
               </Col>
             ) : (
               <Col xs="1">

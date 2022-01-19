@@ -4,7 +4,8 @@ import dateFormat from "dateformat";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { socket } from "../../../App";
+import { useSocket } from "../../../context/SocketProvider";
+// import { socket } from "../../../App";
 import { setActiveChat, setChats } from "../../../redux/actions/action";
 import { ReduxStore, singleChatType } from "../../../types/reduxStore";
 import { ChatDrawerType } from "../ChatInterface";
@@ -15,6 +16,7 @@ function Chats({ closeChatsDrawer }: ChatDrawerType) {
   const [FindedUsers, setFindedUsers] = useState([]);
   const [UserLoader, setUserLoader] = useState(false);
   const dispatch = useDispatch();
+  const socket: any = useSocket();
 
   // SEARCH FOR SPECIFIC USER
   const fetchUsers = async () => {
