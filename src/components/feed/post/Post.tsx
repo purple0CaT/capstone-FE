@@ -71,7 +71,7 @@ function Post({ post, reFetch }: PostRefetchImprt) {
               to={`/profile/${post.author._id}`}
               className="d-flex align-items-center"
             >
-              <h6 className="m-0 text-muted mr-1">
+              <h6 className="m-0 text-muted mx-1">
                 {post.author.firstname} {post.author.lastname}
               </h6>
               {post.author.creator && (

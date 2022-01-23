@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { Avatar, Badge, Divider, ListItem, ListItemIcon } from "@mui/material";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
@@ -134,7 +135,7 @@ function Sidebar({ toggleDrawer }: toggleDrawerType) {
         >
           <ListItem button>
             <ListItemIcon>
-              <DynamicFeedIcon />
+              <NotificationsNoneIcon />
             </ListItemIcon>
             <h6 className="text-muted m-0">Activity</h6>
           </ListItem>
